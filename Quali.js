@@ -19,7 +19,7 @@ let PST = 0
 let endGame = false
 let timestartheld
 let timeRemaining = 60
-let countdown = 30
+let countdown = 30*60
 let carImages = []
 let images = [carImages]
 
@@ -57,7 +57,7 @@ function setup() {
     player.collider = 'd'
     player.tile = 'x'
     player.color = 'yellow'
-    player.image = random(cars)
+    player.image = random(images[0])
     player.scale = 0.045
     player.direction = Math.PI / 2
     if (mapSelected == "map2") {
