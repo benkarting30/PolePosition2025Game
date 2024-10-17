@@ -581,7 +581,8 @@ function draw() {
     if (endGame){
         setTimeout(() => {
             window.sessionStorage.setItem(times, qLaps)
-            window.location.assign("QualiResults.html")
+            window.sessionStorage.setItem(track, mapSelected)
+            window.location.assign("Race.html")
 
         }, 10000);
     }
