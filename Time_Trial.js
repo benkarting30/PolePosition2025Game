@@ -116,7 +116,7 @@ function setup() {
     })
 
 
-    switch (mapSelected[3]) {
+    switch (storage[3]) {
         case "1":
             map1 = new Tiles(
                 [
