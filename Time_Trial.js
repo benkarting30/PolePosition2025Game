@@ -25,7 +25,7 @@ function setup() {
     background(255);
     frameRate(60);
     defaultFont = textFont()
-    let storage = localStorage.map
+    let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
 

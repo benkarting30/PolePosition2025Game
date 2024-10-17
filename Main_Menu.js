@@ -92,7 +92,7 @@ function mouseClicked() {
             if (menuStage != 2) {
                 menuStage++
             } else if (menuStage === 2) {
-                localStorage.setItem("map", "map1")
+                window.sessionStorage.setItem("map", "map1")
                 window.location.assign("Time_Trial.html")
             }
         }
@@ -110,19 +110,19 @@ function mouseClicked() {
         }
     } else {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 6 - buttonHeight / 2 && mouseY < height / 6 + buttonHeight / 2) {
-            localStorage.setItem("map", "map1")
+            window.sessionStorage.setItem("map", "map1")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
-            localStorage.setItem("map", "map2")
+            window.sessionStorage.setItem("map", "map2")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 6 - buttonHeight / 2 && mouseY < 3 * height / 6 + buttonHeight / 2) {
-            localStorage.setItem("map", "map3")
+            window.sessionStorage.setItem("map", "map3")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 6 - buttonHeight / 2 && mouseY < 4 * height / 6 + buttonHeight / 2) {
-            localStorage.setItem("map", "map4")
+            window.sessionStorage.setItem("map", "map4")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 6 - buttonHeight / 2 && mouseY < 5 * height / 6 + buttonHeight / 2) {
