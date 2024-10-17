@@ -101,7 +101,7 @@ function mouseClicked() {
                 menuStage = 3
             } else if (menuStage === 1) {
                 alert("The Following Gamemode is work in progress. You will currently be able to play qualifying only.")
-                window.location.assign("Qualifying.html")
+                window.location.assign("Quali.html")
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 4 - buttonHeight / 2 && mouseY < 3 * height / 4 + buttonHeight / 2) {
