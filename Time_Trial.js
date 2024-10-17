@@ -601,10 +601,10 @@ function controls() {
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
                 if (player.speed < 1) {
-                    player.speed += (20 / 120)
+                    player.speed += (10 / 120)
                 }
             } else {
-                if (player.speed < 3) {
+                if (player.speed < 4) {
                     player.speed += (45 / 120)
                 }
             }
