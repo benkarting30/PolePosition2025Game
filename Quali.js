@@ -20,7 +20,16 @@ let endGame = false
 let timestartheld
 let timeRemaining = 60
 let countdown = 30
+let carImages = []
+let images = [carImages]
 
+function preload(){
+    car1 = loadImage("images/cars/cars_racer (1).png")
+    car2 = loadImage("images/cars/cars_racer (2).png")
+    car3 = loadImage("images/cars/cars_racer (3).png")
+    car4 = loadImage("images/cars/cars_racer (4).png")
+    carImages = [car1, car2, car3, car4]
+}
 function setup() {
     // Create Canvas and set background and frameRate
     createCanvas(windowWidth, windowHeight);
@@ -48,7 +57,7 @@ function setup() {
     player.collider = 'd'
     player.tile = 'x'
     player.color = 'yellow'
-    //player.image = random(cars)
+    player.image = random(cars)
     player.scale = 0.045
     player.direction = Math.PI / 2
     if (mapSelected == "map2") {
