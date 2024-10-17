@@ -27,6 +27,7 @@ function setup() {
     defaultFont = textFont()
     let storage = localStorage.map
     console.log(storage)
+    mapSelected = storage
 
     // mapSelected = localStorage.getItem(map)
     // if (!mapSelected) {
