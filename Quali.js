@@ -548,7 +548,7 @@ function draw() {
         laptime += 1 / fps
         if (timeRemaining > 0) {
             timeRemaining -= 1 / fps
-        } else {
+        } else {A
             if (countdown > 0) {
                 countdown--
             } else {
@@ -580,7 +580,7 @@ function draw() {
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
     if (endGame){
         setTimeout(() => {
-            window.localStorage.setItem()
+            window.sessionStorage.setItem(times, qLaps)
             window.location.assign("QualiResults.html")
 
         }, 10000);
