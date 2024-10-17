@@ -604,7 +604,7 @@ function controls() {
                     player.speed += (10 / 120)
                 }
             } else {
-                if (player.speed < 4) {
+                if (player.speed < 3) {
                     player.speed += (45 / 120)
                 }
             }
@@ -625,12 +625,10 @@ function controls() {
             hasStalled = false
         }
         if (kb.pressing("a")) {
-            console.log(UndersteerCalc(player.speed, -3, "Left"))
             player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
             player.direction = player.rotation;
         }
         if (kb.pressing("d")) {
-            console.log(UndersteerCalc(player.speed, 3, "Right"))
             player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
             player.direction = player.rotation;
         }
