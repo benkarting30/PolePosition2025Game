@@ -54,7 +54,10 @@ function setup() {
     player.scale = 0.045
     player.direction = Math.PI / 2
     if (mapSelected == "map2") {
-        player.direction = -90
+        player.rotation = 0
+    }
+    if (mapSelected == "map4"){
+        player.rotation = 138
     }
     player.w = 11
     player.h = 6
