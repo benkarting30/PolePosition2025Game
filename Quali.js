@@ -580,9 +580,10 @@ function draw() {
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
     if (endGame){
         setTimeout(() => {
-            window.sessionStorage.setItem(times, qLaps)
-            window.sessionStorage.setItem(track, mapSelected)
-            window.location.assign("Race.html")
+            // window.sessionStorage.setItem(times, qLaps)
+            // window.sessionStorage.setItem(track, mapSelected)
+            // window.location.assign("Race.html")
+            window.location.assign("Main_Menu.html")
 
         }, 10000);
     }
