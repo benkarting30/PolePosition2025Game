@@ -78,6 +78,7 @@ function preload() {
 }
 
 function setup() {
+  mapSelected = window.sessionStorage.track
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
   trackLimit.color = "red"
