@@ -620,9 +620,6 @@ function controls() {
         }
 
     } else {
-        if (kb.presses("w") && !endGame) {
-            player.speed = 0.5
-        }
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
                 if (player.speed < 1) {
