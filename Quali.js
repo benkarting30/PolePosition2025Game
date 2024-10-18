@@ -20,8 +20,8 @@ let endGame = false
 let timestartheld
 let timeRemaining = 60
 let countdown = 30*60
-let carImages = []
-let images = [carImages]
+//let carImages = []
+//let images = [carImages]
 
 // function preload(){
 //     // carImg1 = loadImage('images/cars/cars_racer (1).png')
