@@ -582,7 +582,7 @@ function controls() {
                 if (player.speed < 1) {
                     player.speed += (10 / 120)
                 }
-            } else if (inReverse0){
+            } else if (inReverse){
                 if (player.speed > -1){
                     player.speed -= 0.001
                 }
@@ -625,7 +625,7 @@ function controls() {
                 if (player.speed < 1) {
                     player.speed += (10 / 120)
                 }
-            } else if (inReverse0){
+            } else if (inReverse){
                 if (player.speed > -1){
                     player.speed -= 0.001
                 }
