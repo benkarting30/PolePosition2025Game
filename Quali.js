@@ -528,6 +528,7 @@ function setup() {
                 tileSize
 
             )
+            player.rotation = 135
             break
     }
     // Create Tiles from Tile map depending on the input
