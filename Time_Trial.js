@@ -571,7 +571,7 @@ function draw() {
         text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(player.speed)}MPH`, width - 350, height - 30)
-    text(`Gear: ${currentGear}`)
+    text(`Gear: ${currentGear}`, width - 350, height - 25)
 }
 
 function controls() {
