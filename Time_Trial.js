@@ -18,6 +18,7 @@ let Paused = false
 let PST = 0
 let endGame = false
 let timestartheld
+let inReverse = false
 
 function setup() {
     // Create Canvas and set background and frameRate
@@ -558,12 +559,19 @@ function draw() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
+    let currentGear
+    if (inReverse){
+        currentGear = "R"
+    } else {
+        currentGear = "1"
+    }
     if (fastestLap) {
         text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}\nFastest: ${fastestLap.toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
         text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
     }
-    text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
+    text(`Speed: ${(player.speed)}MPH`, width - 350, height - 30)
+    text(`Gear: ${currentGear}`)
 }
 
 function controls() {
@@ -572,7 +580,11 @@ function controls() {
         if (contro.pressing("rightTrigger") && !endGame) {
             if (slowed) {
                 if (player.speed < 1) {
-                    player.speed += (20 / 120)
+                    player.speed += (10 / 120)
+                }
+            } else if (inReverse0){
+                if (player.speed > -1){
+                    player.speed -= 0.001
                 }
             } else {
                 if (player.speed < 3) {
@@ -581,23 +593,29 @@ function controls() {
             }
             player.direction = player.rotation;
         }
+
+        if (contro.presses("a")){
+            if (inReverse){
+                inReverse = false
+            } else {
+                inReverse = true
+            }
+
+        }
+
         let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
         player.rotation = (direction * 180) / Math.PI
         player.direction = player.rotation
+        
         if (contro.pressing("leftTrigger")) {
             player.drag = 10;
             player.friction = 10;
-            player.direction = player.rotation;
+            player.direction = player.rotation;        
         } else {
             player.drag = 5;
             player.friction = 5;
         }
-        if (contro.presses('a') && gear < 6) {
-            gear++
-        }
-        if (contro.presses('b') && gear > 1) {
-            gear--
-        }
+
     } else {
         if (kb.presses("w") && !endGame) {
             player.speed = 0.5
@@ -606,6 +624,10 @@ function controls() {
             if (slowed) {
                 if (player.speed < 1) {
                     player.speed += (10 / 120)
+                }
+            } else if (inReverse0){
+                if (player.speed > -1){
+                    player.speed -= 0.001
                 }
             } else {
                 if (player.speed < 3) {
@@ -625,9 +647,6 @@ function controls() {
             player.friction = 5
 
         }
-        if (kb.presses("shift")) {
-            hasStalled = false
-        }
         if (kb.pressing("a")) {
             player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
             player.direction = player.rotation;
@@ -636,13 +655,13 @@ function controls() {
             player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
             player.direction = player.rotation;
         }
-        if (kb.presses('arrowUp') && gear < 6) {
-            gear++
-            console.log("shift up")
-        }
-        if (kb.presses('arrowDown') && gear > 1) {
-            gear--
-            console.log("shift down")
+        if (kb.presses("shift")){
+            if (inReverse){
+                inReverse = false
+            } else {
+                inReverse = true
+            }
+
         }
         if (kb.presses("escape")) {
             timestartheld = PST
