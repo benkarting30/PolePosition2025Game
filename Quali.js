@@ -1,5 +1,5 @@
 let tileSize = 10
-let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed
+let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, carImg1, carImg2, carImg3, carImg4, cars, mapSelected, slowArea, startSlowArea, slowed
 let resButton
 let maps = [map1, map2, map3]
 let debugInput = "map1"
@@ -24,11 +24,11 @@ let carImages = []
 let images = [carImages]
 
 function preload(){
-    car1 = loadImage("images/cars/cars_racer (1).png")
-    car2 = loadImage("images/cars/cars_racer (2).png")
-    car3 = loadImage("images/cars/cars_racer (3).png")
-    car4 = loadImage("images/cars/cars_racer (4).png")
-    carImages = [car1, car2, car3, car4]
+    carImg1 = loadImage('images/cars/cars_racer (1).png')
+    carImg2 = loadImage('images/cars/cars_racer (2).png')
+    carImg3 = loadImage('images/cars/cars_racer (3).png')
+    carImg4 = loadImage('images/cars/cars_racer (4).png')
+    carImages = [carImg1, carImg2, carImg3, carImg4]
 }
 function setup() {
     // Create Canvas and set background and frameRate
