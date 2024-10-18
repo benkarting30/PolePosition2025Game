@@ -100,7 +100,7 @@ function mouseClicked() {
             if (menuStage === 0) {
                 menuStage = 3
             } else if (menuStage === 1) {
-                alert("The Following Gamemode is work in progress. You will currently be able to play qualifying only.")
+                //alert("The Following Gamemode is work in progress. You will currently be able to play qualifying only.")
                 window.location.assign("Quali.html")
             }
         }
