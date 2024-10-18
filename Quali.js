@@ -36,7 +36,7 @@ function setup() {
     background(255);
     frameRate(60);
     defaultFont = textFont()
-    mapSelected = random["map1", "map2", "map3", "map4"]
+    mapSelected = random(["map1", "map2", "map3", "map4"])
     // Create tile types
 
 
