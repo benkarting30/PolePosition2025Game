@@ -312,7 +312,7 @@ function setup() {
                 tileSize,
                 tileSize
             );
-            player.rotation = 0
+            player.rotation = -90
             break
         case "3":
             new Tiles(
@@ -632,7 +632,7 @@ function controls() {
                 }
                 player.direction = player.rotation;
             } else if (inReverse){
-                if (player.speed > -1){
+                if (player.speed < -1){
                     player.speed -= 0.001
                 }
                 player.direction = -player.rotation
