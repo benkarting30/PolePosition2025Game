@@ -18,6 +18,7 @@ let Paused = false
 let PST = 0
 let endGame = false
 let timestartheld
+let recentlySlowed = false
 let inReverse = false
 
 function setup() {
@@ -111,8 +112,14 @@ function setup() {
     slowArea.h = tileSize
     slowArea.visible = true
     player.overlaps(slowArea, function () {
+        if (!recentlySlowed){
         slowed = !slowed
         alert(`Player slowed = ${slowed}`)
+        recentlySlowed = true
+        setTimeout(() => {
+            recentlySlowed = false
+        }, 1000);
+        }   
     })
 
     startSlowArea = new Group()
