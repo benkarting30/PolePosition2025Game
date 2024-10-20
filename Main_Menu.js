@@ -1,4 +1,4 @@
-const buttonWidth = 600
+const buttonWidth = 900
 const buttonHeight = 100
 
 let menuStage = 0
