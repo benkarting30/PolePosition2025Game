@@ -1,5 +1,5 @@
 let tileSize = 10
-let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed
+let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, removeSlow
 let resButton
 let maps = [map1, map2, map3]
 let debugInput = "map3"
@@ -110,7 +110,7 @@ function setup() {
     slowArea.color = "#969292"
     slowArea.w = tileSize
     slowArea.h = tileSize
-    slowArea.visible = true
+    slowArea.visible = false
     player.overlaps(slowArea, function () {
         slowed = true
     })
@@ -120,7 +120,7 @@ function setup() {
     removeSlow.tile = 'R'
     removeSlow.w = tileSize
     removeSlow.h = tileSize
-    removeSlow.visible = true
+    removeSlow.visible = false
     player.overlaps(removeSlow, function () {
         slowed = false
     })
@@ -330,13 +330,13 @@ function setup() {
                 [
                     "....................................................................................................",
                     ".......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............................................................",
-                    "......b.............................S..bbb..........................................................",
-                    ".....b..............................S....bbb........................................................",
-                    "....b...............................S......bb.......................................................",
-                    "...b................................S.......b.......................................................",
-                    "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbBBBBBbbbbbbbbbbbbbbbbbb......................................",
-                    "..b......bbbbb......................s...........R.B...bb..B..bb.....................................",
-                    "..bBBBBbb...........................s...........R.B....b..B...bb....................................",
+                    "......b.............................S.Bbbb..........................................................",
+                    ".....b..............................S.B..bbb........................................................",
+                    "....b...............................S.B....bb.......................................................",
+                    "...b................................S.B.....b.......................................................",
+                    "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
+                    "..bBBBBBBbbbbb......................s...........R.B...bb..B..bb.....................................",
+                    "..bRRRRbb...........................s...........R.B....b..B...bb....................................",
                     "..b.................................s...........R.B.......B..RBbbbbbbbbbbbbbbbbb....................",
                     ".b..................................s...........R.Bb......b.RR.................bbb..................",
                     ".b..........................x.......s...........R.bb.....bb.R....................bbb................",
