@@ -70,19 +70,21 @@ function draw() {
 
 function timeTrialMaps() {
     fill(122, 122, 122)
-    rect(width / 2 - buttonWidth / 2, 1 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 2 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 3 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 4 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 5 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 1 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 2 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 3 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 4 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 5 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 6 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Thunder Ridge Circuit", width / 2, 1 * height / 6)
-    text(`Viper’s Nest Circuit`, width / 2, 2 * height / 6)
-    text("Silver Sands Speedway", width / 2, 3 * height / 6)
-    text("Avus", width / 2, 4 * height / 6)
-    text("Back", width / 2, 5 * height / 6)
+    text("Thunder Ridge Circuit", width / 2, 1 * height / 7)
+    text(`Viper’s Nest Circuit`, width / 2, 2 * height / 7)
+    text("Silver Sands Speedway - w Chicane", width / 2, 3 * height / 7)
+    text("Silver Sands Speedway - w/o Chicane", width / 2, 4 * height / 7)
+    text("Avus", width / 2, 5 * height / 7)
+    text("Back", width / 2, 6 * height / 7)
 
 }
 
@@ -110,23 +112,27 @@ function mouseClicked() {
             }
         }
     } else {
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 6 - buttonHeight / 2 && mouseY < height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 7 - buttonHeight / 2 && mouseY < height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map1")
             window.location.assign("Time_Trial.html")
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 7 - buttonHeight / 2 && mouseY < 2 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map2")
             window.location.assign("Time_Trial.html")
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 6 - buttonHeight / 2 && mouseY < 3 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 7 - buttonHeight / 2 && mouseY < 3 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map3")
             window.location.assign("Time_Trial.html")
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 6 - buttonHeight / 2 && mouseY < 4 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 7 - buttonHeight / 2 && mouseY < 4 * height / 7 + buttonHeight / 2) {
+            window.sessionStorage.setItem("map", "map5")
+            window.location.assign("Time_Trial.html")
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 7 - buttonHeight / 2 && mouseY < 5 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map4")
             window.location.assign("Time_Trial.html")
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 6 - buttonHeight / 2 && mouseY < 5 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
             menuStage--
         }
     }
