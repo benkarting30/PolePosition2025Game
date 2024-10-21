@@ -780,11 +780,7 @@ function controls(){
                 sessionComplete = true
             }
         }
-        if (kb.presses("enter")) {
-        console.log([nodes[nodenum].x, nodes[nodenum].y])
-        player.moveTo(nodes[nodenum].x * tileSize, nodes[nodenum].y * tileSize, 4)
-        if (player.x / tileSize == nodes[nodenum].x && player.y / tileSize == nodes[nodenum].y) { nodenum++ }
-        }
+        
 
     }
     if (player.collides(trackLimit) && player.speed > 2) {
