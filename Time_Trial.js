@@ -711,8 +711,8 @@ function controls() {
                 }
                 player.direction = player.rotation;
             } else if (inReverse){
-                player.speed = 1
-                player.direction = -player.rotation
+                player.speed = -1
+                player.direction = player.rotation
             } else {
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
