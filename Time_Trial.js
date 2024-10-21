@@ -702,6 +702,8 @@ function draw() {
 }
 
 function controls() {
+    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+    player.rotation = (direction * 180) / Math.PI
     //Check whether the user has a gamepad connected
     if (contros[0]) {
         if (contro.pressing("rightTrigger") && !endGame) {
@@ -730,10 +732,6 @@ function controls() {
             }
 
         }
-
-        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-        player.rotation = (direction * 180) / Math.PI
-        player.direction = player.rotation
         
         if (contro.pressing("leftTrigger")) {
             player.drag = 10;
@@ -752,10 +750,8 @@ function controls() {
                 }
                 player.direction = player.rotation;
             } else if (inReverse){
-                if (player.speed < 1){
-                    player.speed += (10/120)
-                }
-                player.direction = -player.rotation
+                player.speed =-1
+                player.direction = -direction
             } else {
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
