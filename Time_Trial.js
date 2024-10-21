@@ -697,8 +697,8 @@ function draw() {
     } else {
         text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
     }
-    text(`Speed: ${(player.speed)}MPH`, width - 350, height - 30)
-    text(`Gear: ${currentGear}`, width - 350, height - 25)
+    text(`Speed: ${(player.speed)}MPH`, width - 350, height - 85)
+    text(`Gear: ${currentGear}`, width - 350, height - 50)
 }
 
 function controls() {
@@ -713,6 +713,7 @@ function controls() {
             } else if (inReverse){
                 player.speed = -1
                 player.direction = player.rotation
+                player.direction = -player.direction
             } else {
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
