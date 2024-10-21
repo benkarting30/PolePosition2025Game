@@ -771,9 +771,7 @@ function controls() {
             
 
         }
-        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-        player.rotation = (direction * 180) / Math.PI
-        player.direction = player.rotation
+
 
         if (kb.pressing("s")) {
             player.drag = 10;
