@@ -731,7 +731,9 @@ function controls() {
                 player.direction = player.rotation;
             }
         }
-
+        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+        player.rotation = (direction * 180) / Math.PI
+        player.direction = player.rotation
         if (contro.presses("a")){
             if (inReverse){
                 inReverse = false
@@ -749,8 +751,7 @@ function controls() {
             player.drag = 5;
             player.friction = 5;
         }
-        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-        player.rotation = (direction * 180) / Math.PI
+
     } else {
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
@@ -770,6 +771,9 @@ function controls() {
             
 
         }
+        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+        player.rotation = (direction * 180) / Math.PI
+        player.direction = player.rotation
 
         if (kb.pressing("s")) {
             player.drag = 10;
