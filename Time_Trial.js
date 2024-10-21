@@ -709,66 +709,49 @@ function draw() {
     text(`Speed: ${(player.speed)}MPH`, width - 350, height - 85)
     text(`Gear: ${currentGear}`, width - 350, height - 50)
 }
-
-function controls() {
-
-    //Check whether the user has a gamepad connected
+function controls(){
     if (contros[0]) {
         if (contro.pressing("rightTrigger") && !endGame) {
             if (slowed) {
                 if (player.speed < 1) {
-                    player.speed += (10 / 120)
+                    player.speed += (20 / 120)
                 }
-                player.direction = player.rotation;
-            } else if (inReverse){
-                player.speed = -1
-                player.direction = player.rotation
-                player.direction = -player.direction
             } else {
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
                 }
-                player.direction = player.rotation;
             }
+            player.direction = player.rotation;
         }
         let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
         player.rotation = (direction * 180) / Math.PI
         player.direction = player.rotation
-        if (contro.presses("a")){
-            if (inReverse){
-                inReverse = false
-            } else {
-                inReverse = true
-            }
-
-        }
-        
         if (contro.pressing("leftTrigger")) {
             player.drag = 10;
             player.friction = 10;
-            player.direction = player.rotation;        
+            player.direction = player.rotation;
         } else {
             player.drag = 5;
             player.friction = 5;
         }
-
+        
     } else {
+        if (kb.presses("w") && !endGame) {
+            player.speed = 0.5
+        }
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
                 if (player.speed < 1) {
-                    player.speed += (10 / 120)
+                    player.speed += (20 / 120)
                 }
-            } else if (inReverse){
-                player.speed =-1
             } else {
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
                 }
             }
-            
+            player.direction = player.rotation;
 
         }
-
 
         if (kb.pressing("s")) {
             player.drag = 10;
@@ -779,6 +762,7 @@ function controls() {
             player.friction = 5
 
         }
+
         if (kb.pressing("a")) {
             player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
             player.direction = player.rotation;
@@ -787,14 +771,7 @@ function controls() {
             player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
             player.direction = player.rotation;
         }
-        if (kb.presses("shift")){
-            if (inReverse){
-                inReverse = false
-            } else {
-                inReverse = true
-            }
 
-        }
         if (kb.presses("escape")) {
             timestartheld = PST
         }
@@ -803,10 +780,13 @@ function controls() {
                 sessionComplete = true
             }
         }
+        if (kb.presses("enter")) {
+        console.log([nodes[nodenum].x, nodes[nodenum].y])
+        player.moveTo(nodes[nodenum].x * tileSize, nodes[nodenum].y * tileSize, 4)
+        if (player.x / tileSize == nodes[nodenum].x && player.y / tileSize == nodes[nodenum].y) { nodenum++ }
+        }
 
     }
-    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-    player.rotation = (direction * 180) / Math.PI
     if (player.collides(trackLimit) && player.speed > 2) {
         //hasStalled = true
     }
