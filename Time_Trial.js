@@ -711,8 +711,7 @@ function draw() {
 }
 
 function controls() {
-    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-    player.rotation = (direction * 180) / Math.PI
+
     //Check whether the user has a gamepad connected
     if (contros[0]) {
         if (contro.pressing("rightTrigger") && !endGame) {
@@ -750,7 +749,8 @@ function controls() {
             player.drag = 5;
             player.friction = 5;
         }
-
+        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+        player.rotation = (direction * 180) / Math.PI
     } else {
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
@@ -806,6 +806,8 @@ function controls() {
         }
 
     }
+    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+    player.rotation = (direction * 180) / Math.PI
     if (player.collides(trackLimit) && player.speed > 2) {
         //hasStalled = true
     }
