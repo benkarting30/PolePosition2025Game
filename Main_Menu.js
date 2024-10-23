@@ -2,11 +2,18 @@ const buttonWidth = 900
 const buttonHeight = 100
 
 let menuStage = 0
+let Music1, Music2
+
+function preload(){
+    Music1 = loadSound('Audio/Fast Track.mp3')
+    Music2 = loadSound('Audio/Full Throttle.mp3')
+}
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
     colorMode(RGB)
     textSize(54)
+    Music1.play()
 }
 
 function playButton() {
