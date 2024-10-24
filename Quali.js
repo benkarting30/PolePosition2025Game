@@ -546,18 +546,17 @@ function draw() {
     camera.y = player.y
     camera.on()
     controls()
-    if (!sessionComplete) {
-        laptime += 1 / fps
-        if (timeRemaining > 0) {
-            timeRemaining -= 1 / fps
-        } else {A
-            if (countdown > 0) {
-                countdown--
-            } else {
-                endGame = true
-            }
+    laptime += 1 / fps
+    if (timeRemaining > 0) {
+        timeRemaining -= 1 / fps
+    } else {
+        if (countdown > 0) {
+            countdown--
+        } else {
+            endGame = true
         }
     }
+
     //console.log(laptime)
     //text(laptime, 0, 0)
     if (lapStarted) {
@@ -582,10 +581,10 @@ function draw() {
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
     if (endGame){
         setTimeout(() => {
-            // window.sessionStorage.setItem(times, qLaps)
-            // window.sessionStorage.setItem(track, mapSelected)
-            // window.location.assign("Race.html")
-            window.location.assign("Main_Menu.html")
+            window.sessionStorage.setItem(times, qLaps)
+            window.sessionStorage.setItem(track, mapSelected)
+            window.location.assign("Race.html")
+            // window.location.assign("Main_Menu.html")
 
         }, 10000);
     }
@@ -702,7 +701,7 @@ function StartLineOverlap() {
         FastestLapCalculation(laptime)
         laptime = 0
     }
-    if (timeRemaining == 0) {
+    if (timeRemaining <= 0) {
         sessionComplete = true
     }
     if (!lapStarted && sessionComplete) {

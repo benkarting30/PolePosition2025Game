@@ -4,7 +4,6 @@ const buttonHeight = 100
 let menuStage = 0
 let Music1, Music2
 function preload(){
-
     Music1 = loadSound('Fast Track.mp3')
     Music2 = loadSound('Full Throttle.mp3')
 }
@@ -62,6 +61,11 @@ function backButton() {
 }
 
 function draw() {
+    if (focused){
+        Music2.resume()
+    } else {
+        Music2.pause()
+    }
     background(255)
     if (menuStage === 0) {
         playButton()

@@ -80,7 +80,11 @@ function preload() {
 }
 
 function setup() {
-  mapSelected = window.sessionStorage.track
+  if (window.sessionStorage.track != undefined){
+    mapSelected = window.sessionStorage.track
+  } else {
+    window.location.assign("Quali.html")
+  }
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
   trackLimit.color = "red"
