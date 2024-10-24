@@ -5,15 +5,15 @@ let menuStage = 0
 let Music1, Music2
 
 function preload(){
-    Music1 = createSprite('Audio/Fast Track.mp3')
-    Music2 = createSprite('Audio/Full Throttle.mp3')
+    Music1 = createSprite('Fast Track.mp3')
+    Music2 = createSprite('Full Throttle.mp3')
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
     colorMode(RGB)
     textSize(54)
-    Music1.play()
+    Music2.play()
 }
 
 function playButton() {
