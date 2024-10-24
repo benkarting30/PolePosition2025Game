@@ -5,8 +5,8 @@ let menuStage = 0
 let Music1, Music2
 
 function preload(){
-    Music1 = createSprite('Fast Track.mp3')
-    Music2 = createSprite('Full Throttle.mp3')
+    Music1 = loadSound('Fast Track.mp3')
+    Music2 = laodSound('Full Throttle.mp3')
 }
 
 function setup() {
