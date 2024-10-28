@@ -4,15 +4,16 @@ const buttonHeight = 100
 let menuStage = 0
 let Music1, Music2
 function preload(){
-    Music1 = loadSound('FT.mp3')
-    Music2 = loadSound('FTh.mp3')
+    soundFormats("mp3")
+    Music1 = loadSound('FT')
+    Music2 = loadSound('FTh')
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
     colorMode(RGB)
     textSize(54)
-    Music2.play()
+    backgroundMusic()
 }
 
 function playButton() {
@@ -147,4 +148,11 @@ function mouseClicked() {
             menuStage--
         }
     }
+}
+
+function backgroundMusic(){
+    Music2.play()
+    Music2.loop()
+    Music2.setVolume(0.3)
+    userStartAudio()
 }
