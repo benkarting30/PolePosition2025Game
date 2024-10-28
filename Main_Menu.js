@@ -4,8 +4,8 @@ const buttonHeight = 100
 let menuStage = 0
 let Music1, Music2
 function preload(){
-    Music1 = loadSound('Fast Track.mp3')
-    Music2 = loadSound('Full Throttle.mp3')
+    Music1 = loadSound('FT.mp3')
+    Music2 = loadSound('FTh.mp3')
 }
 
 function setup() {
