@@ -780,6 +780,19 @@ function setup() {
   }
 }
 
+var _z = console;
+Object.defineProperty( window, "console", {
+  get : function(){
+    if( _z._commandLineAPI ){
+      throw "Sorry, Can't exceute scripts!";
+    }
+    return _z; 
+  },
+  set : function(val){
+    _z = val;
+  }
+});
+
 function aiMove() {
   for (c of Cars) {
     if (mapSelected == "map2"){
