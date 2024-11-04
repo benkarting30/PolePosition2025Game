@@ -87,6 +87,8 @@ let map2nodes = [
   { x: 13.028191317361163, y: 46.77300934866636 }
 ]
 let map3nodes = []
+let map4nodes = []
+let map5nodes = []
 let carImg1, carImg2, carImg3, carImg4, carImages
 
 let images = [carImages]
@@ -882,9 +884,9 @@ function controls() {
 
     }
     if (kb.presses("shift")) {
-      map1Nodes.push({x:player.x, y:player.y})
+      map3nodes.push({x:player.x, y:player.y})
       console.log({x:player.x, y:player.y})
-      console.log(map1Nodes)
+      console.log(map3nodes)
     }
     if (kb.pressing("a")) {
       console.log(UndersteerCalc(player.speed, -3, "Left"))
