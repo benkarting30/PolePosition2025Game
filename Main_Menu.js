@@ -62,11 +62,11 @@ function backButton() {
 }
 
 function draw() {
-    if (focused){
-        Music2.resume()
-    } else {
-        Music2.pause()
-    }
+    // if (focused){
+    //     Music2.resume()
+    // } else {
+    //     Music2.pause()
+    // }
     background(255)
     if (menuStage === 0) {
         playButton()
