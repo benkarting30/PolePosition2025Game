@@ -785,11 +785,12 @@ function aiMove() {
     if (mapSelected == "map2"){
     c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
     c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
+    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
     } else {
       c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
       c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3) 
+      if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
     }
-    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
     if (c.counter > usedNodes.length-1) { c.counter = 0 }
   }
 
