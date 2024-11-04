@@ -3,17 +3,17 @@ const buttonHeight = 100
 
 let menuStage = 0
 let Music1, Music2
-function preload(){
-    soundFormats("mp3")
-    Music1 = loadSound('FT')
-    Music2 = loadSound('FTh')
-}
+// function preload(){
+//     soundFormats("mp3")
+//     Music1 = loadSound('FT')
+//     Music2 = loadSound('FTh')
+// }
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
     colorMode(RGB)
     textSize(54)
-    backgroundMusic()
+    // backgroundMusic()
 }
 
 function playButton() {

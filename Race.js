@@ -90,6 +90,7 @@ let map3nodes = []
 let map4nodes = []
 let map5nodes = []
 let carImg1, carImg2, carImg3, carImg4, carImages
+let LapTotal = 10
 
 let images = [carImages]
 
@@ -939,6 +940,10 @@ function StartLineOverlap() {
     lapStarted = true
     ttLaps[lap] = laptime
     lap++
+    if (lap-1 == LapTotal){
+      sessionComplete = true
+      lapStarted = false
+    }
     FastestLapCalculation(laptime)
     laptime = 0
   }
