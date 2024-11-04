@@ -104,7 +104,7 @@ function setup() {
     mapSelected = window.sessionStorage.track
   } else {
     //window.location.assign("Quali.html")
-    mapSelected = "map1"
+    mapSelected = "map3"
   }
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
