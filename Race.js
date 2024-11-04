@@ -781,10 +781,10 @@ function setup() {
 
 function aiMove() {
   for (c of Cars) {
-    c.rotateMinTo({ x: map2nodes[c.counter].x * tileSize, y: map2nodes[c.counter].y * tileSize }, 10, 0)
-    c.moveTo(map2nodes[c.counter].x * tileSize, map2nodes[c.counter].y * tileSize, 3)
-    if (c.x / tileSize == map2nodes[c.counter].x && c.y / tileSize == map2nodes[c.counter].y) { c.counter++ }
-    if (c.counter > 39) { c.counter = 0 }
+    c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
+    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+    if (c.counter > usedNodes.length-1) { c.counter = 0 }
   }
 
 
