@@ -862,7 +862,7 @@ function controls() {
 
     }
     if (kb.presses("shift")) {
-      map1Nodes[nodenum].push({x:player.x, y:player.y})
+      map1Nodes.push({x:player.x, y:player.y})
       console.log({x:player.x, y:player.y})
       console.log(map1Nodes)
     }
