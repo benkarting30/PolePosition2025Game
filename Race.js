@@ -262,7 +262,7 @@ function setup() {
             tileSize,
             tileSize
         );
-        usedNodes = map1nodes
+        usedNodes = map1Nodes
         break
     case "2":
         map2 = new Tiles(
