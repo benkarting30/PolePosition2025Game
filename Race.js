@@ -161,7 +161,7 @@ function setup() {
   mapSelected = "map3"
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
-  trackLimit.color = "red"
+  trackLimit.color = (255, 0, 0)
   trackLimit.tile = 'b'
   trackLimit.collider = 's' //Collisions with the track limit will be processed as static
   trackLimit.w = tileSize
@@ -234,6 +234,7 @@ function setup() {
   removeSlow.w = tileSize
   removeSlow.h = tileSize
   removeSlow.visible = false
+  removeSlow.color = (255, 0, 0, 125)
   player.overlaps(removeSlow, function () {
       slowed = false
   })
@@ -473,11 +474,11 @@ function setup() {
                 "...b................................S.B.....b.......................................................",
                 "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
                 "..bBBBBBBbbbbb......................s...........R.B...bb..B..bb.....................................",
-                "..bRRRRbb...........................s...........R.B....b..B...bb....................................",
-                "..b.................................s...........R.B.......B..RRbbbbbbbbbbbbbbbbb....................",
+                "..bRRRRbb.............c...c...c...c.s...........R.B....b..B...bb....................................",
+                "..b...............c.................s...........R.B.......B..RRbbbbbbbbbbbbbbbbb....................",
                 ".b..................................s...........R.Bb......b.RR.................bbb..................",
-                ".b..........................x.......s...........R.bb.....bb.R....................bbb................",
-                ".b..................................s...........bbbbbbbbbbbb.......................bb...............",
+                ".b......................c...c...c...s...........R.bb.....bb.R....................bbb................",
+                ".b..............x...c...............s...........bbbbbbbbbbbb.......................bb...............",
                 "bb........................bbbbbbbbbbs...........b.......bbb.........................bb..............",
                 "b................bbbbbbbbbb........bbbbbbbb.....bb....bbb............................bb.............",
                 "b............bbbbb........................b......b...bb.........bbbbbbbbbbbb..........b.............",
