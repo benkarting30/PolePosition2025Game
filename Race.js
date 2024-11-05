@@ -210,7 +210,7 @@ function setup() {
 
 
 
-  switch (mapSelected) {
+  switch ("3") {
     case "1":
         map1 = new Tiles(
             [
