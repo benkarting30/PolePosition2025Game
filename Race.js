@@ -161,7 +161,7 @@ function setup() {
   mapSelected = "map3"
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
-  trackLimit.color = (255, 0, 0)
+  trackLimit.color = '#FF0000'
   trackLimit.tile = 'b'
   trackLimit.collider = 's' //Collisions with the track limit will be processed as static
   trackLimit.w = tileSize
@@ -234,7 +234,8 @@ function setup() {
   removeSlow.w = tileSize
   removeSlow.h = tileSize
   removeSlow.visible = false
-  removeSlow.color = (255, 0, 0, 125)
+  removeSlow.color = '#FF0000'
+  removeSlow.opacity = 0.5
   player.overlaps(removeSlow, function () {
       slowed = false
   })
