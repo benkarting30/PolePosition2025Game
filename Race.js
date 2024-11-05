@@ -233,7 +233,7 @@ function setup() {
   removeSlow.tile = 'R'
   removeSlow.w = tileSize
   removeSlow.h = tileSize
-  removeSlow.visible = false
+  removeSlow.visible = true
   removeSlow.color = '#FF0000'
   removeSlow.opacity = 0.5
   player.overlaps(removeSlow, function () {
