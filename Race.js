@@ -213,7 +213,7 @@ function preload() {
   carImg3 = loadImage('images/cars/cars_racer (3).png')
   carImg4 = loadImage('images/cars/cars_racer (4).png')
   carImages = [carImg1, carImg2, carImg3, carImg4]
-  music = loadSound('FTh.mp3')
+  music = loadSound('FT.mp3')
 }
 
 function setup() {
