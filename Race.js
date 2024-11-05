@@ -822,9 +822,9 @@ function setup() {
   node.radius = 10
   node.collider = 'n'
   node.visible = false
-  // for (no of usedNodes) {
-  //   new node.Sprite(no.x * tileSize, no.y * tileSize)
-  // }
+  for (no of usedNodes) {
+    new node.Sprite(no.x * tileSize, no.y * tileSize)
+  }
 
   // var grid = new PF.Grid(matrices)
   // var finder = new PF.AStarFinder({
@@ -999,9 +999,9 @@ function controls() {
       }
     }
     if (kb.presses("enter")) {
-      console.log([nodes[nodenum].x, nodes[nodenum].y])
-      player.moveTo(nodes[nodenum].x * tileSize, nodes[nodenum].y * tileSize, 4)
-      if (player.x / tileSize == nodes[nodenum].x && player.y / tileSize == nodes[nodenum].y) { nodenum++ }
+      console.log([usedNodes[nodenum].x, usedNodes[nodenum].y])
+      player.moveTo(usedNodes[nodenum].x, nodes[nodenum].y , 4)
+      if (player.x == usedNodes[nodenum].x && player.y == usedNodes[nodenum].y) { nodenum++ }
     }
 
   }
