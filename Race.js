@@ -23,6 +23,7 @@ let path, newpath
 let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
+let playerHasNotMoved = true
 let map1Nodes = [{x: 325.1746952803441, y: 53.78076408823799},
   {x: 454.15458541046894, y: 73.54622498061785},
   {x: 487.1521621179894, y: 212.55353684115443},
@@ -202,6 +203,7 @@ let map5nodes = [{x: 395.7841282878494, y: 74.50931730076722},
 let carImg1, carImg2, carImg3, carImg4, carImages
 let LapTotal = 10
 let finishingOrder = []
+let music
 
 let images = [carImages]
 
@@ -220,6 +222,7 @@ function setup() {
     //window.location.assign("Quali.html")
     mapSelected = "map3"
   }
+  music = loadSound('FTh.mp3')
   mapSelected = "map3"
   createCanvas(windowWidth, windowHeight)
   trackLimit = new Group()
@@ -1028,6 +1031,10 @@ function controls() {
   } else {
     if (kb.presses("w") && !endGame) {
       player.speed = 0.5
+      if (playerHasNotMoved){
+        music.play()
+        playerHasNotMoved = false
+      }
     }
     if (kb.pressing("w") && !endGame) {
       if (slowed) {
