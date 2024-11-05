@@ -175,6 +175,19 @@ function setup() {
   slowArea.w = tileSize
   slowArea.h = tileSize
   slowArea.visible = false
+  player.overlaps(slowArea, function () {
+      slowed = true
+  })
+
+  removeSlow = new Group()
+  removeSlow.collider = 'n'
+  removeSlow.tile = 'R'
+  removeSlow.w = tileSize
+  removeSlow.h = tileSize
+  removeSlow.visible = false
+  player.overlaps(removeSlow, function () {
+      slowed = false
+  })
 
   startSlowArea = new Group()
   startSlowArea.collider = "n"
@@ -184,7 +197,7 @@ function setup() {
   startSlowArea.w = tileSize
   startSlowArea.h = tileSize
   player.overlapping(startSlowArea, function () {
-    StartLineOverlap()
+      StartLineOverlap()
   })
 
   Cars = new Group()
