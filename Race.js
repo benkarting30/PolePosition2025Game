@@ -21,6 +21,7 @@ let endGame = false
 let timestartheld
 let path, newpath
 let nodenum = 0
+let aiIndentifier = 0
 let usedNodes
 let map1Nodes = [{x: 325.1746952803441, y: 53.78076408823799},
   {x: 454.15458541046894, y: 73.54622498061785},
@@ -200,6 +201,7 @@ let map5nodes = [{x: 395.7841282878494, y: 74.50931730076722},
   {x: 336.9458109083048, y: 84.58548066439425}]
 let carImg1, carImg2, carImg3, carImg4, carImages
 let LapTotal = 10
+let finishingOrder = []
 
 let images = [carImages]
 
@@ -320,6 +322,9 @@ function setup() {
   Cars.collider = 'd'
   Cars.image = random(carImages)
   Cars.scale = 0.045
+  Cars.lapCount = 0 
+  Cars.hasFinished = false
+  Cars.Indentifier = NaN
 
   gravel = new Group()
   gravel.tile = "G"
@@ -912,6 +917,8 @@ function setup() {
 
   for (c of Cars) {
     c.image = random(carImages)
+    c.Indentifier = aiIndentifier
+    aiIndentifier++
   }
   var _z = console;
   Object.defineProperty( window, "console", {
@@ -932,14 +939,20 @@ function aiMove() {
   for (c of Cars) {
     if (mapSelected == "map2"){
     c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
+    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
     if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
     } else {
       c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
-      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3) 
+      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
       if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
     }
-    if (c.counter > usedNodes.length-1) { c.counter = 0 }
+    if (c.counter > usedNodes.length-1) { 
+      c.counter = 0
+      c.lapCount++
+      if (c.lapCount == LapTotal-1){
+        finishingOrder.push(`car${Cars.Indentifier}`)
+      }
+    }
   }
 
 
