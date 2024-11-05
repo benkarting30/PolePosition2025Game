@@ -969,9 +969,9 @@ function controls() {
 
     }
     if (kb.presses("shift")) {
-      map3nodes.push({x:player.x, y:player.y})
+      map4nodes.push({x:player.x, y:player.y})
       console.log({x:player.x, y:player.y})
-      console.log(map3nodes)
+      console.log(map4nodes)
     }
     if (kb.pressing("a")) {
       console.log(UndersteerCalc(player.speed, -3, "Left"))
