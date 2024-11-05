@@ -61,7 +61,7 @@ function setup() {
     player.collider = 'd'
     player.tile = 'x'
     player.color = 'yellow'
-    //player.image = random(carImages)
+    player.image = random(carImages)
     player.scale = 0.045
     player.direction = Math.PI / 2
     if (mapSelected == "map2") {
