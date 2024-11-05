@@ -274,7 +274,7 @@ function setup() {
 
 
 
-  switch ("3") {
+  switch ("4") {
     case "1":
         map1 = new Tiles(
             [
@@ -686,7 +686,7 @@ function setup() {
             
         )
         player.rotation = 135
-        //usedNodes = map4nodes
+        usedNodes = map4nodes
         break
     case "5":
         new Tiles(
@@ -823,9 +823,9 @@ function setup() {
   node.radius = 10
   node.collider = 'n'
   node.visible = false
-  for (no of usedNodes) {
-    new node.Sprite(no.x * tileSize, no.y * tileSize)
-  }
+  // for (no of usedNodes) {
+  //   new node.Sprite(no.x * tileSize, no.y * tileSize)
+  // }
 
   // var grid = new PF.Grid(matrices)
   // var finder = new PF.AStarFinder({
@@ -842,20 +842,20 @@ function setup() {
   for (c of Cars) {
     c.image = random(carImages)
   }
+  var _z = console;
+  Object.defineProperty( window, "console", {
+    get : function(){
+      if( _z._commandLineAPI ){
+        throw "Sorry, Can't exceute scripts!";
+      }
+      return _z; 
+    },
+    set : function(val){
+      _z = val;
+    }
+  });
 }
 
-var _z = console;
-Object.defineProperty( window, "console", {
-  get : function(){
-    if( _z._commandLineAPI ){
-      throw "Sorry, Can't exceute scripts!";
-    }
-    return _z; 
-  },
-  set : function(val){
-    _z = val;
-  }
-});
 
 function aiMove() {
   for (c of Cars) {
