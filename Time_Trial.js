@@ -1,5 +1,5 @@
 let tileSize = 10
-let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, removeSlow
+let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, removeSlow, gravel
 let resButton
 let maps = [map1, map2, map3]
 let debugInput = "map3"
@@ -146,6 +146,14 @@ function setup() {
     player.overlapping(startSlowArea, function () {
         StartLineOverlap()
     })
+
+    gravel = new Group()
+    gravel.tile = "G"
+    gravel.color = '#e4b382'
+    gravel.collider = 'n'
+    gravel.visible = 'true'
+    gravel.w = tileSize
+    gravel.h = tileSize
 
 
     switch (storage[3]) {

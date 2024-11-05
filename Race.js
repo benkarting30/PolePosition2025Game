@@ -1,6 +1,6 @@
 var easystar = new EasyStar.js()
 let tileSize = 10
-let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, pathfinderDebug1, pathfinderDebug2
+let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, pathfinderDebug1, pathfinderDebug2, gravel
 let resButton
 let maps = [map1, map2, map3]
 let debugInput = "map2"
