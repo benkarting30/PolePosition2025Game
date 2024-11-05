@@ -509,7 +509,7 @@ function setup() {
             tileSize,
             tileSize
         )
-        //usedNodes = map3nodes
+        usedNodes = map3nodes
         break
     case "4":
         new Tiles(
@@ -754,11 +754,11 @@ function setup() {
   // easystar.setIterationsPerCalculation(1000);
   // easystar.calculate()
 
-  // node = new Group()
-  // node.visited = false
-  // node.radius = 10
-  // node.collider = 'n'
-  // node.visible = false
+  node = new Group()
+  node.visited = false
+  node.radius = 10
+  node.collider = 'n'
+  node.visible = false
   // for (no of usedNodes) {
   //   new node.Sprite(no.x * tileSize, no.y * tileSize)
   // }
