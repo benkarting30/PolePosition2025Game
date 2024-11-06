@@ -748,6 +748,7 @@ function controls(){
     } else {
         if (kb.presses("w") && !endGame) {
             player.speed = 0.5
+            gear = 1
         }
         if (kb.pressing("w") && !endGame) {
             if (slowed) {
@@ -764,8 +765,13 @@ function controls(){
         }
 
         if (kb.pressing("s")) {
-            player.drag = 10;
-            player.friction = 10;
+            if (player.speed > 0){
+                player.drag = 10;
+                player.friction = 10;
+            } else if (player.speed <= 0 ){
+                player.speed = -1
+                gear = "R"
+            }
             player.direction = player.rotation;
         } else {
             player.drag = 5
