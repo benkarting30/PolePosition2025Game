@@ -768,11 +768,13 @@ function controls(){
             if (player.speed > 0){
                 player.drag = 10;
                 player.friction = 10;
+                player.direction = player.rotation;
             } else if (player.speed <= 0 ){
                 player.speed = -1
                 gear = "R"
+                player.direction = 180 - player.rotation;
             }
-            player.direction = player.rotation;
+            
         } else {
             player.drag = 5
             player.friction = 5
