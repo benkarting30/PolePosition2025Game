@@ -716,7 +716,7 @@ function draw() {
     } else {
         text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
     }
-    text(`Speed: ${(floor(player.speed * 60))}MPH`, width - 350, height - 85)
+    text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
     text(`Gear: ${currentGear}`, width - 350, height - 50)
 }
 function controls(){
