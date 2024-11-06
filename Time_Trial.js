@@ -53,7 +53,7 @@ function setup() {
     trackLimit = new Group()
     trackLimit.color = "red"
     trackLimit.tile = 'b'
-    trackLimit.collider = 's' //Collisions with the track limit will be processed as static
+    trackLimit.collider = 'd' //Collisions with the track limit will be processed as static
     trackLimit.w = tileSize
     trackLimit.h = tileSize
 
