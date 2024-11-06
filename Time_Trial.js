@@ -770,7 +770,7 @@ function controls(){
                 player.friction = 10;
                 player.direction = player.rotation;
             } else if (player.speed <= 0 ){
-                player.speed = -1
+                player.speed = 1
                 gear = "R"
                 player.direction = 180 - player.rotation;
             }
