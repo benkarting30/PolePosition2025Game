@@ -21,6 +21,8 @@ let timestartheld
 let recentlySlowed = false
 let inReverse = false
 let carImages
+let EnTrackLimits
+let lapInvalid = false
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -28,6 +30,7 @@ function preload() {
     carImg3 = loadImage('images/cars/cars_racer (3).png')
     carImg4 = loadImage('images/cars/cars_racer (4).png')
     carImages = [carImg1, carImg2, carImg3, carImg4]
+    EnTrackLimits = loadSound("Engineer_Voice/Track_limits.mp3")
   }
 
 function setup() {
@@ -121,6 +124,7 @@ function setup() {
     slowArea.h = tileSize
     slowArea.visible = false
     player.overlaps(slowArea, function () {
+        lapInvalid = true
         slowed = true
     })
 
@@ -133,6 +137,9 @@ function setup() {
     removeSlow.color = '#FF0000'
     removeSlow.opacity = 0.5
     player.overlaps(removeSlow, function () {
+        if (slowed){
+            EnTrackLimits.play()
+        }
         slowed = false
     })
 
@@ -814,18 +821,20 @@ function StartLineOverlap() {
         laptime = 0
         lapStarted = true
         player.color = 'blue'
+        lapInvalid = false
     }
     if (!lapStarted && !sessionComplete) {
         lapStarted = true
         ttLaps[lap] = laptime
         lap++
-        FastestLapCalculation(laptime)
+        FastestLapCalculation(laptime, lapInvalid)
         laptime = 0
+        lapInvalid = false
     }
     if (!lapStarted && sessionComplete) {
         ttLaps[lap] = laptime
         lap++
-        FastestLapCalculation(laptime)
+        FastestLapCalculation(laptime, lapInvalid)
         laptime = 0
         endGame = true
     }
@@ -838,17 +847,19 @@ function TimingOverlap() {
 
 /**
  * @param {Float} prevLap - The laptime given as a comparison to the fastest lap
+ * @param {Boolean} InvalidLap - Is the player's current lap invalid?
  */
 
-function FastestLapCalculation(prevLap) {
-
-    if (fastestLap) {
-        if (prevLap < fastestLap) {
+function FastestLapCalculation(prevLap, InvalidLap) {
+    if (!InvalidLap){
+        if (fastestLap) {
+            if (prevLap < fastestLap) {
+                fastestLap = prevLap
+                fastestOnLap = lap - 1
+            }
+        } else {
             fastestLap = prevLap
-            fastestOnLap = lap - 1
         }
-    } else {
-        fastestLap = prevLap
     }
 }
 
