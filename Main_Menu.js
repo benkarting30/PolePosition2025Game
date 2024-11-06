@@ -5,8 +5,7 @@ let menuStage = 0
 let Music1, Music2
 function preload(){
     soundFormats("mp3")
-    Music1 = loadSound('FT')
-    Music2 = loadSound('FTh')
+    Music2 = loadSound('FTh [music]')
 }
 
 function setup() {
