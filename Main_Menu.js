@@ -103,9 +103,7 @@ function mouseClicked() {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 4 - buttonHeight / 2 && mouseY < height / 4 + buttonHeight / 2) {
             if (menuStage != 2) {
                 menuStage++
-                if (menuStage == 2){
-                    alert("This gamemode is currently experiencing bugs, sorry :(")
-                }
+
             } else if (menuStage === 2) {
                 window.sessionStorage.setItem("map", "map1")
                 window.location.assign("Time_Trial.html")
