@@ -218,10 +218,10 @@ function preload() {
 
 function setup() {
   if (window.sessionStorage.track != undefined){
-    //mapSelected = window.sessionStorage.track
+    mapSelected = window.sessionStorage.track
   } else {
-    //window.location.assign("Quali.html")
-    mapSelected = "map3"
+    window.location.assign("Quali.html")
+    //mapSelected = "map3"
   }
 
   mapSelected = "map3"
@@ -351,7 +351,7 @@ function setup() {
 
 
 
-  switch ("3") {
+  switch (mapSelected[3]) {
     case "1":
         map1 = new Tiles(
             [
@@ -995,6 +995,12 @@ function draw() {
     text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
   }
   text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
+  if (endGame){
+    let flJSON = {time: fastestLap, lap: fastestOnLap}
+    window.localStorage.setItem(order, finishingOrder)
+    window.localStorage.setItem(fastest, flJSON)
+    window.location.assign("Results.html")
+  }
 }
 
 function controls() {
@@ -1128,6 +1134,7 @@ function StartLineOverlap() {
     lap++
     FastestLapCalculation(laptime)
     laptime = 0
+    finishingOrder.push("player")
     endGame = true
   }
 }

@@ -5,6 +5,7 @@ let menuStage = 0
 let Music1, Music2
 function preload(){
     soundFormats("mp3")
+    Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
 }
 
@@ -148,8 +149,20 @@ function mouseClicked() {
 }
 
 function backgroundMusic(){
-    Music2.play()
-    Music2.loop()
-    Music2.setVolume(0.3)
-    userStartAudio()
+    if (floor(random(0, 9223372036854775807))==9223372036854775807){
+        Music1.play()
+        Music1.loop()
+        Music1.setVolume(0.3)
+        userStartAudio()
+    } else if (floor(random(0, 100))){
+        Music2.play()
+        Music2.loop()
+        Music2.setVolume(0.8)
+        userStartAudio()
+    } else {
+        Music2.play()
+        Music2.loop()
+        Music2.setVolume(0.3)
+        userStartAudio()
+    }
 }
