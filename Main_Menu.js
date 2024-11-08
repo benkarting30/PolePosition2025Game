@@ -72,6 +72,8 @@ function draw() {
         backButton()
     } else if (menuStage === 2) {
         timeTrialMaps()
+    } else if (menuStage === 3){
+        settingsButtons
     }
 }
 
@@ -98,8 +100,28 @@ function timeTrialMaps() {
 
 }
 
+function settingsButtons(){
+    fill(122, 122, 122)
+    rect(width / 2 - buttonWidth / 2, 2 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 3 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 4 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 5 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 6 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 7 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    fill(255)
+    textFont('Titillium Web')
+    textAlign(CENTER, CENTER)
+    text("Settings", width / 2, 1 * height / 8)
+    text(`Sensitivity ${sensitivityLevel}`, width / 2, 2 * height / 8)
+    text(`AI Difficulty ${AILevel}`, width / 2, 3 * height / 8)
+    text(`Qualifying Lenght ${qLength}`, width / 2, 4 * height / 8)
+    text(`Race Length ${rLength}`, width / 2, 5 * height / 8)
+    text(`Controls`, width / 2, 6 * height / 8)
+    text("Back", width / 2, 7 * height / 8)
+}
+
 function mouseClicked() {
-    if (menuStage != 2) {
+    if (menuStage < 2) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 4 - buttonHeight / 2 && mouseY < height / 4 + buttonHeight / 2) {
             if (menuStage != 2) {
                 menuStage++
@@ -122,7 +144,7 @@ function mouseClicked() {
                 menuStage--
             }
         }
-    } else {
+    } else if (menuStage === 2) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 7 - buttonHeight / 2 && mouseY < height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map1")
             window.location.assign("Time_Trial.html")
@@ -144,6 +166,31 @@ function mouseClicked() {
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
+            menuStage--
+        }
+    } else {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 8 - buttonHeight / 2 && mouseY < 2 * height / 8 + buttonHeight / 2) {
+            sensitivityLevel++
+            if (sensitivityLevel == 6){
+                sensitivityLevel = 1
+            }
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 8 - buttonHeight / 2 && mouseY < 3 * height / 8 + buttonHeight / 2) {
+            AILevel++ 
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
+            window.sessionStorage.setItem("map", "map5")
+            window.location.assign("Time_Trial.html")
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
+            window.sessionStorage.setItem("map", "map4")
+            window.location.assign("Time_Trial.html")
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
+            window.sessionStorage.setItem("map", "map4")
+            window.location.assign("Time_Trial.html")
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 7 * height / 8 - buttonHeight / 2 && mouseY < 7 * height / 8 + buttonHeight / 2) {
             menuStage--
         }
     }
