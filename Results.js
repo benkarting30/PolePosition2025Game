@@ -5,8 +5,8 @@ let names = ["Kourtney Rahman","Martina Wakefield","Willow Cross","Shelton Olsen
 function setup(){
     createCanvas(windowWidth, windowHeight)
     numberOfCars = window.localStorage
-    finalOrder = window.localStorage.getItem(order)
-    playerFLInfo = window.localStorage.getItem(fastest)
+    finalOrder = window.localStorage.getItem('order')
+    playerFLInfo = window.localStorage.getItem('fastest')
     username = prompt("Enter your name")
     if (username == null || username == ''){
 

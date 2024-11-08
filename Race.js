@@ -351,7 +351,7 @@ function setup() {
 
 
 
-  switch (mapSelected[3]) {
+  switch ((window.sessionStorage.track)[3]) {
     case "1":
         map1 = new Tiles(
             [
@@ -924,18 +924,9 @@ function setup() {
     c.Indentifier = aiIndentifier
     aiIndentifier++
   }
-  var _z = console;
-  Object.defineProperty( window, "console", {
-    get : function(){
-      if( _z._commandLineAPI ){
-        throw "Sorry, Can't exceute scripts!";
-      }
-      return _z; 
-    },
-    set : function(val){
-      _z = val;
-    }
-  });
+
+
+  window.sessionStorage.removeItem('track')
 }
 
 
@@ -997,8 +988,8 @@ function draw() {
   text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
   if (endGame){
     let flJSON = {time: fastestLap, lap: fastestOnLap}
-    window.localStorage.setItem(order, finishingOrder)
-    window.localStorage.setItem(fastest, flJSON)
+    window.localStorage.setItem('order', finishingOrder)
+    window.localStorage.setItem('fastest', flJSON)
     window.location.assign("Results.html")
   }
 }
