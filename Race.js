@@ -988,8 +988,8 @@ function draw() {
   text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
   if (endGame){
     let flJSON = {time: fastestLap, lap: fastestOnLap}
-    window.localStorage.setItem('order', finishingOrder)
-    window.localStorage.setItem('fastest', flJSON)
+    window.sessionStorage.setItem('order', finishingOrder)
+    window.sessionStorage.setItem('fastest', flJSON)
     window.location.assign("Results.html")
   }
 }
