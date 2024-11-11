@@ -203,7 +203,8 @@ let map5nodes = [{x: 395.7841282878494, y: 74.50931730076722},
 let carImg1, carImg2, carImg3, carImg4, carImages
 let LapTotal = 10
 let finishingOrder = []
-let music
+let music, finalLap, trackLimitsAudio, finished, engineidle, enginestart
+let engineOn = false
 
 let images = [carImages]
 
@@ -214,6 +215,11 @@ function preload() {
   carImg4 = loadImage('images/cars/cars_racer (4).png')
   carImages = [carImg1, carImg2, carImg3, carImg4]
   music = loadSound('FT.mp3')
+  finalLap = loadSound('Audio/Engineer_Voice/Final_Lap.mp3')
+  finished = loadSound('Audio/Engineer_Voice/Finish.mp3')
+  trackLimitsAudio = loadSound('Track_Limits.mp3')
+  engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
+  enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
 }
 
 function setup() {
@@ -303,7 +309,10 @@ function setup() {
   removeSlow.color = '#FF0000'
   removeSlow.opacity = 0.5
   player.overlaps(removeSlow, function () {
-      slowed = false
+    if (slowed){
+        trackLimitsAudio.play()
+    }
+    slowed = false
   })
 
   startSlowArea = new Group()
@@ -927,6 +936,7 @@ function setup() {
 
 
   window.sessionStorage.removeItem('track')
+  enginestart.play()
 }
 
 
@@ -957,6 +967,7 @@ function draw() {
   clear()
   SlowZone()
   background("#5a5348")
+
   camera.on()
   camera.zoom = 3
   camera.x = player.x
@@ -971,6 +982,7 @@ function draw() {
   if (lapStarted) {
     player.color = "green"
   }
+
   trackLimit.draw()
   track.draw()
   camera.off()
@@ -1113,6 +1125,9 @@ function StartLineOverlap() {
     lapStarted = true
     ttLaps[lap] = laptime
     lap++
+    if (lap-2 == LapTotal){
+      finalLap.play()
+    }
     if (lap-1 == LapTotal){
       sessionComplete = true
       lapStarted = false
@@ -1127,6 +1142,7 @@ function StartLineOverlap() {
     laptime = 0
     finishingOrder.push("player")
     endGame = true
+    finished.play()
   }
 }
 

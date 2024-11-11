@@ -22,6 +22,8 @@ let timeRemaining = 60
 let countdown = 30*60
 let carImages
 let images = [carImages]
+let secondsRemaining, trackLimitsAudio, engineidle, enginestart
+let engineOn = false
 
 function preload(){
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -29,6 +31,10 @@ function preload(){
     carImg3 = loadImage('images/cars/cars_racer (3).png')
     carImg4 = loadImage('images/cars/cars_racer (4).png')
     carImages = [carImg1, carImg2, carImg3, carImg4]
+    secondsRemaining = loadSound('Audio/Engineer_Voice/30_seconds.mp3')
+    trackLimitsAudio = loadSound('Track_Limits.mp3')
+    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
+    enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
 }
 function setup() {
     // Create Canvas and set background and frameRate
@@ -120,6 +126,9 @@ function setup() {
     removeSlow.color = '#FF0000'
     removeSlow.opacity = 0.5
     player.overlaps(removeSlow, function () {
+        if (slowed){
+            trackLimitsAudio.play()
+        }
         slowed = false
     })
 
@@ -657,7 +666,7 @@ function setup() {
             break
     }
     // Create Tiles from Tile map depending on the input
-
+    enginestart.play()
 }
 
 function draw() {
@@ -672,6 +681,14 @@ function draw() {
     camera.on()
     controls()
     laptime += 1 / fps
+    if (!enginestart.isPlaying() && !engineOn){
+        engineidle.play()
+        engineidle.loop()
+        engineOn = true
+    }
+    if (floor(laptime) == 30){
+        secondsRemaining.play()
+    }
     if (timeRemaining > 0) {
         timeRemaining -= 1 / fps
     } else {
