@@ -24,6 +24,7 @@ let carImages
 let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
+let hasPlayedRemaining = false
 
 function preload(){
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -686,8 +687,9 @@ function draw() {
         engineidle.loop()
         engineOn = true
     }
-    if (floor(laptime) == 30){
+    if (floor(laptime) == 30 && !hasPlayedRemaining){
         secondsRemaining.play()
+        hasPlayedRemaining = true
     }
     if (timeRemaining > 0) {
         timeRemaining -= 1 / fps
