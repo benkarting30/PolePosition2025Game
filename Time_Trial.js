@@ -37,9 +37,6 @@ function preload() {
   }
 
 function setup() {
-    window.addEventListener('beforeunload', function(){
-        this.window.localStorage.setItem('PrevFast', fastestLap)
-    })
     // Create Canvas and set background and frameRate
     createCanvas(windowWidth, windowHeight);
     background(255);
@@ -48,14 +45,7 @@ function setup() {
     let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
-    try {
-        fastestLap = window.localStorage.getItem('PrevFast')
-        if (fastestLap){
-            console.log("true")
-        }
-    } catch (error) {
-        throw error
-    }
+
 
     // mapSelected = localStorage.getItem(map)
     // if (!mapSelected) {
