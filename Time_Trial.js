@@ -21,8 +21,9 @@ let timestartheld
 let recentlySlowed = false
 let inReverse = false
 let carImages
-let EnTrackLimits
+let EnTrackLimits, engineidle, enginestart
 let lapInvalid = false
+let engineOn = true
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -31,6 +32,8 @@ function preload() {
     carImg4 = loadImage('images/cars/cars_racer (4).png')
     carImages = [carImg1, carImg2, carImg3, carImg4]
     EnTrackLimits = loadSound("Track_Limits.mp3")
+    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
+    enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
   }
 
 function setup() {
@@ -45,7 +48,6 @@ function setup() {
     let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
-
     try {
         fastestLap = window.localStorage.getItem('PrevFast')
         if (fastestLap){
@@ -268,12 +270,12 @@ function setup() {
                     "....................bBBBBBBBBb....bbbbbbbbb.....bbb..................................bb.....b.......",
                     "....................bBBBBBBBBbbbbbb...............bbb................................b.......b......",
                     "....................bBBBBBBB........................bb...............................b........b.....",
-                    "....................bBBBBB............................bb.............................b.........b....",
-                    "....................bBBB...............................bbb..........................bb.........b....",
-                    "....................bBB..................................bb...bb..bbbbbbbbbbbbbb....b..........b....",
-                    "....................b.....................................bbbb..bb..............b..bb....bb....b....",
-                    "...................bb........................................bbb................b.bb.....bb....b....",
-                    "...................b.............................................................b.......b.....b....",
+                    "....................bBBBBB............................bb...........................bbb.........b....",
+                    "....................bBBB...............................bbb........................bb...........b....",
+                    "....................bBB..................................bb...bb..bbbbbbbbbbbbbbbbb............b....",
+                    "....................b.....................................bbbb..bb......................b......b....",
+                    "...................bb........................................bbb.........................bb....b....",
+                    "...................b.....................................................................b.....b....",
                     "...................b...................bbbbbbbb.........................bb..............bb....bb....",
                     "..................bb................bbbb......bbb......................b..b............bbb....b.....",
                     "..................b.............bbbbb...........bbbb...................b..bb..........bbb.....b.....",
@@ -697,6 +699,7 @@ function setup() {
             break
     }
     // Create Tiles from Tile map depending on the input
+    enginestart.play()
 }
 
 function draw() {
@@ -714,6 +717,11 @@ function draw() {
     //text(laptime, 0, 0)
     if (lapStarted) {
         player.color = "green"
+    }
+    if (!enginestart.isPlaying() && !engineOn){
+        engineidle.play()
+        engineidle.loop()
+        engineOn = true
     }
     trackLimit.draw()
     track.draw()
