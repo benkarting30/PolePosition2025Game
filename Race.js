@@ -1131,6 +1131,7 @@ function StartLineOverlap() {
     if (lap-1 == LapTotal){
       sessionComplete = true
       lapStarted = false
+      finished.play()
     }
     FastestLapCalculation(laptime)
     laptime = 0
