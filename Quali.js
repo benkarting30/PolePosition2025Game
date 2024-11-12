@@ -19,14 +19,14 @@ let PST = 0
 let endGame = false
 let timestartheld
 let timeRemaining = 60
-let countdown = 30*60
+let countdown = 30 * 60
 let carImages
 let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
 let hasPlayedRemaining = false
 let sensitivityPlayer
-function preload(){
+function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
@@ -129,7 +129,7 @@ function setup() {
     removeSlow.color = '#FF0000'
     removeSlow.opacity = 0.5
     player.overlaps(removeSlow, function () {
-        if (slowed){
+        if (slowed) {
             trackLimitsAudio.play()
         }
         slowed = false
@@ -553,7 +553,7 @@ function setup() {
                 0,
                 tileSize,
                 tileSize
-                
+
             )
             player.rotation = 135
             break
@@ -684,12 +684,12 @@ function draw() {
     camera.on()
     controls()
     laptime += 1 / fps
-    if (!enginestart.isPlaying() && !engineOn){
+    if (!enginestart.isPlaying() && !engineOn) {
         engineidle.play()
         engineidle.loop()
         engineOn = true
     }
-    if (floor(laptime) == 30 && !hasPlayedRemaining){
+    if (floor(laptime) == 30 && !hasPlayedRemaining) {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
@@ -711,7 +711,7 @@ function draw() {
     trackLimit.draw()
     track.draw()
     camera.off()
-    
+
     rect(width - 350, height - 100, width, height, 20, 0, 0, 0)
     textAlign(LEFT, TOP)
     textFont('Titillium Web')
@@ -719,13 +719,13 @@ function draw() {
     textSize(24)
     if (fastestLap) {
         rect(0, 0, 250, 125, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining/60)}:${floor(timeRemaining%60)}\nTime: ${floor(laptime/60)}:${(laptime%60).toFixed(3)}\nFastest: ${floor(fastestLap/60)}:${(fastestLap%60).toFixed(3)} (${fastestOnLap})`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(laptime / 60)}:${(laptime % 60).toFixed(3)}\nFastest: ${floor(fastestLap / 60)}:${(fastestLap % 60).toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
         rect(0, 0, 250, 100, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining/60)}:${floor(timeRemaining%60)}\nTime: ${floor(laptime/60)}:${(laptime%60).toFixed(3)}`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(laptime / 60)}:${(laptime % 60).toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
-    if (endGame){
+    if (endGame) {
         setTimeout(() => {
             //window.sessionStorage.setItem("times", qLaps)
             window.sessionStorage.setItem("track", mapSelected)

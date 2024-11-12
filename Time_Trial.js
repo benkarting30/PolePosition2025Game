@@ -54,6 +54,7 @@ function setup() {
     } else {
         colState = undefined
     }
+    playerSensitivity = settingsJSON.sen
 
 
     // mapSelected = localStorage.getItem(map)
@@ -918,11 +919,11 @@ function controls(){
         }
 
         if (kb.pressing("a")) {
-            player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
+            player.rotate(UndersteerCalc(player.speed, -playerSensitivity, "Left"), playerSensitivity);
             player.direction = player.rotation;
         }
         if (kb.pressing("d")) {
-            player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
+            player.rotate(UndersteerCalc(player.speed, playerSensitivity, "Right"), playerSensitivity);
             player.direction = player.rotation;
         }
 
@@ -933,7 +934,7 @@ function controls(){
                 if (escHeld){
                     window.sessionStorage.setItem("fastest", ttLaps)
                 }
-            })
+            }, 3000)
             
         } else {
             escHeld = false
@@ -1006,11 +1007,14 @@ function FastestLapCalculation(prevLap, InvalidLap) {
 
 
 
-function UndersteerCalc(speed, sensitivity, direction) {
+function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     let turnSpeed, finalsensitivity
     if (speed > 1) {
         if (direction == "Left") {
             turnSpeed = -1 * (abs(sensitivity) - (speed - 1) / 3)
+            return turnSpeed
+        } else if (direction == "Right") {
+            turnSpeed = (abs(sensitivity) - (speed - 1) / 3)
             return turnSpeed
         } else {
             turnSpeed = (abs(sensitivity) - (speed - 1) / 3)

@@ -7,12 +7,12 @@ let collisionStat = false
 let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
 
-function settingsPackager(){
-    let selectedSettings = {sen: sensitivityLevel, AiDif: AILevel, qL: qLength, rL: rLength, noCol: collisionStat, DyCol: dynamicStat}
+function settingsPackager() {
+    let selectedSettings = { sen: sensitivityLevel, AiDif: AILevel, qL: qLength, rL: rLength, noCol: collisionStat, DyCol: dynamicStat }
     window.sessionStorage.assign("Settings", selectedSettings)
 }
 
-function preload(){
+function preload() {
     soundFormats("mp3")
     Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
@@ -82,9 +82,9 @@ function draw() {
         backButton()
     } else if (menuStage === 2) {
         timeTrialMaps()
-    } else if (menuStage === 3){
+    } else if (menuStage === 3) {
         settingsButtons()
-    } else if (menuStage === 4){
+    } else if (menuStage === 4) {
         superSettingsButtons()
     }
 }
@@ -112,7 +112,7 @@ function timeTrialMaps() {
 
 }
 
-function settingsButtons(){
+function settingsButtons() {
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 2 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 3 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -132,7 +132,7 @@ function settingsButtons(){
     text("Next", width / 2, 7 * height / 8)
 }
 
-function superSettingsButtons(){
+function superSettingsButtons() {
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 2 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 3 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -197,25 +197,25 @@ function mouseClicked() {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
             menuStage--
         }
-    } else if (menuStage==3){
+    } else if (menuStage == 3) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 8 - buttonHeight / 2 && mouseY < 2 * height / 8 + buttonHeight / 2) {
             sensitivityLevel++
-            if (sensitivityLevel == 6){
+            if (sensitivityLevel == 6) {
                 sensitivityLevel = 1
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 8 - buttonHeight / 2 && mouseY < 3 * height / 8 + buttonHeight / 2) {
             AILevel++
-            if (AILevel == 6){
+            if (AILevel == 6) {
                 AILevel = 1
-            } 
+            }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
             let tempQLength = prompt("Please enter a length for Qualifying", "2")
-            if (Number.isSafeInteger(tempQLength)){
+            if (Number.isSafeInteger(tempQLength)) {
                 warn("Invalid Input")
             } else {
-                if (tempQLength > 0 && tempQLength < 15){
+                if (tempQLength > 0 && tempQLength < 15) {
                     warn("Invalid Input")
                 } else {
                     tempQLength = qLength
@@ -224,10 +224,10 @@ function mouseClicked() {
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
             let tempRLength = prompt("Please enter a length for the Race", "15")
-            if (Number.isSafeInteger(tempRLength)){
+            if (Number.isSafeInteger(tempRLength)) {
                 warn("Invalid Input")
             } else {
-                if (tempRLength > 0 && tempRLength < 100){
+                if (tempRLength > 0 && tempRLength < 100) {
                     warn("Invalid Input")
                 } else {
                     tempRLength = rLength
@@ -236,21 +236,21 @@ function mouseClicked() {
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
             ImageMode(CENTER)
-            image(controls, width/2, height/2)
+            image(controls, width / 2, height / 2)
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 7 * height / 8 - buttonHeight / 2 && mouseY < 7 * height / 8 + buttonHeight / 2) {
             menuStage++
         }
     } else {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
-            if (dynamicStat){
+            if (dynamicStat) {
                 alert("Please disable dynamic collisions to enable this!")
             } else {
                 collisionStat = !collisionStat
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 6 - buttonHeight / 2 && mouseY < 3 * height / 6 + buttonHeight / 2) {
-            if (collisionStat){
+            if (collisionStat) {
                 alert("Please disable no collisions to enable this!")
             } else {
                 dynamicStat = !dynamicStat
@@ -267,13 +267,13 @@ function mouseClicked() {
     }
 }
 
-function backgroundMusic(){
-    if (floor(random(0, 9223372036854775807))==9223372036854775807){
+function backgroundMusic() {
+    if (floor(random(0, 9223372036854775807)) == 9223372036854775807) {
         Music1.play()
         Music1.loop()
         Music1.setVolume(0.3)
         userStartAudio()
-    } else if (floor(random(0, 100))){
+    } else if (floor(random(0, 100))) {
         Music2.play()
         Music2.loop()
         Music2.setVolume(0.8)
