@@ -165,6 +165,7 @@ function mouseClicked() {
                 menuStage = 3
             } else if (menuStage === 1) {
                 //alert("The Following Gamemode is work in progress. You will currently be able to play qualifying only.")
+                settingsPackager()
                 window.location.assign("Quali.html")
             }
         }
@@ -176,22 +177,27 @@ function mouseClicked() {
     } else if (menuStage === 2) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 7 - buttonHeight / 2 && mouseY < height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map1")
+            settingsPackager()
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 7 - buttonHeight / 2 && mouseY < 2 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map2")
+            settingsPackager()
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 7 - buttonHeight / 2 && mouseY < 3 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map3")
+            settingsPackager()
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 7 - buttonHeight / 2 && mouseY < 4 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map5")
+            settingsPackager()
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 7 - buttonHeight / 2 && mouseY < 5 * height / 7 + buttonHeight / 2) {
             window.sessionStorage.setItem("map", "map4")
+            settingsPackager()
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
