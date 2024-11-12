@@ -8,7 +8,7 @@ let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
 
 function settingsPackager() {
-    let selectedSettings = { sen: sensitivityLevel, AiDif: AILevel, qL: qLength, rL: rLength, noCol: collisionStat, DyCol: dynamicStat }
+    let selectedSettings = [sensitivityLevel, AILevel, qLength, rLength, collisionStat, dynamicStat ]
     window.sessionStorage.setItem("Settings", selectedSettings)
 }
 
