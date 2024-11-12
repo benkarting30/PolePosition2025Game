@@ -1,19 +1,13 @@
-let finalOrder, playerFLInfo
-let username
-let names = ["Kourtney Rahman","Martina Wakefield","Willow Cross","Shelton Olsen","Haylee Sharp","Marcella Akins","Dina Dagostino","Maddie Duvall","Elsie Foley","Lina Durbin","Lauren Pease","Gage Langdon","Coleton Romano","Rashad Serna","Hailey Tsai"]
+let playerFLInfo, laps
 function preload(){
-    table = loadTable('Race.csv', 'csv', 'header');
+    table = loadTable('TT.csv', 'csv', 'header');
 }
 function setup(){
     createCanvas(windowWidth, windowHeight)
-    numberOfCars = window.sessionStorage.getItem('order').length
-    finalOrder = window.sessionStorage.getItem('order')
+
     playerFLInfo = window.sessionStorage.getItem('fastest')
-    username = prompt("Enter your name")
-    if (username == null || username == ''){
-        username = 'Player'
-    }
-    for (let i = 0; i < numberOfCars; i++){
+    laps
+    for (let i = 1; i < laps; i++){
         if (finalOrder[i] == "player"){
             let newRow = table.addRow();
             newRow.setString('id', table.getRowCount());

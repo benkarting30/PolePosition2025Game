@@ -4,7 +4,14 @@ const buttonHeight = 100
 let menuStage = 0
 let Music1, Music2, controls
 let collisionStat = false
-let dynamicStat
+let dynamicStat = false
+let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
+
+function settingsPackager(){
+    let selectedSettings = {sen: sensitivityLevel, AiDif: AILevel, qL: qLength, rL: rLength, noCol: collisionStat, DyCol: dynamicStat}
+    window.sessionStorage.assign("Settings", selectedSettings)
+}
+
 function preload(){
     soundFormats("mp3")
     Music1 = loadSound('FT')
@@ -220,7 +227,7 @@ function mouseClicked() {
             if (Number.isSafeInteger(tempRLength)){
                 warn("Invalid Input")
             } else {
-                if (tempRLength > 0 && tempRLength < 15){
+                if (tempRLength > 0 && tempRLength < 100){
                     warn("Invalid Input")
                 } else {
                     tempRLength = rLength
@@ -254,6 +261,8 @@ function mouseClicked() {
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 6 - buttonHeight / 2 && mouseY < 5 * height / 6 + buttonHeight / 2) {
             menuStage = 0
+            window.sessionStorage.removeItem("settings")
+            settingsPackager()
         }
     }
 }

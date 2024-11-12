@@ -24,6 +24,7 @@ let carImages
 let EnTrackLimits, engineidle, enginestart
 let lapInvalid = false
 let engineOn = true
+let colState, PlayerSensitivity
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -45,6 +46,14 @@ function setup() {
     let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
+    let settingsJSON = window.sessionStorage.settings
+    if (settingsJSON.noCol){
+        colState = 'n'
+    } else if (settingsJSON.dyCol){
+        colState = 'd'
+    } else {
+        colState = undefined
+    }
 
 
     // mapSelected = localStorage.getItem(map)
@@ -55,116 +64,226 @@ function setup() {
 
 
 
+    if (colState != undefined){
 
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = colState //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
 
-    trackLimit = new Group()
-    trackLimit.color = "red"
-    trackLimit.tile = 'b'
-    trackLimit.collider = 's' //Collisions with the track limit will be processed as static
-    trackLimit.w = tileSize
-    trackLimit.h = tileSize
-
-    player = new Sprite()
-    player.collider = 'd'
-    player.tile = 'x'
-    player.color = 'yellow'
-    player.image = random(carImages)
-    player.scale = 0.045
-    player.direction = Math.PI / 2
-    if (mapSelected == "map2") {
-        player.rotation = 0
-    }
-    if (mapSelected == "map4"){
-        player.rotation = 138
-    }
-    player.w = 11
-    player.h = 6
-
-    track = new Group()
-    track.tile = '.'
-    track.w = tileSize;
-    track.h = tileSize;
-    track.collider = "n";
-    track.color = "#5a5348";
-    track.visible = true;
-    player.overlapping(track, function(){
-        slowed = false
-    })
-
-    start = new Group()
-    start.collider = "n"
-    start.tile = "s"
-    start.visible = true
-    start.w = tileSize
-    start.h = tileSize
-    player.overlapping(start, function () {
-        StartLineOverlap()
-    })
-
-    timingLine = new Group();
-    timingLine.collider = "n";
-    timingLine.tile = "t";
-    timingLine.visible = false;
-    timingLine.color = "orange";
-    timingLine.w = tileSize;
-    timingLine.h = tileSize;
-    player.overlapping(timingLine, function () {
-        TimingOverlap()
-    })
-
-    testing = new Group();
-    testing.collider = "n";
-    testing.tile = "=";
-    testing.visible = true;
-    testing.color = "orange";
-    testing.w = tileSize;
-    testing.h = tileSize;
-
-    slowArea = new Group()
-    slowArea.collider = "n"
-    slowArea.tile = "B"
-    slowArea.color = "#969292"
-    slowArea.w = tileSize
-    slowArea.h = tileSize
-    slowArea.visible = false
-    player.overlaps(slowArea, function () {
-        lapInvalid = true
-        slowed = true
-    })
-
-    removeSlow = new Group()
-    removeSlow.collider = 'n'
-    removeSlow.tile = 'R'
-    removeSlow.w = tileSize
-    removeSlow.h = tileSize
-    removeSlow.visible = true
-    removeSlow.color = '#FF0000'
-    removeSlow.opacity = 0.5
-    player.overlaps(removeSlow, function () {
-        if (slowed){
-            EnTrackLimits.play()
+        player = new Sprite()
+        player.collider = colState
+        player.tile = 'x'
+        player.color = 'yellow'
+        player.image = random(carImages)
+        player.scale = 0.045
+        player.direction = Math.PI / 2
+        if (mapSelected == "map2") {
+            player.rotation = 0
         }
-        slowed = false
-    })
+        if (mapSelected == "map4"){
+            player.rotation = 138
+        }
+        player.w = 11
+        player.h = 6
 
-    startSlowArea = new Group()
-    startSlowArea.collider = "n"
-    startSlowArea.tile = "S"
-    startSlowArea.color = "#969292"
-    startSlowArea.visible = false
-    startSlowArea.w = tileSize
-    startSlowArea.h = tileSize
-    player.overlapping(startSlowArea, function () {
-        StartLineOverlap()
-    })
+        track = new Group()
+        track.tile = '.'
+        track.w = tileSize;
+        track.h = tileSize;
+        track.collider = colState;
+        track.color = "#5a5348";
+        track.visible = true;
+        player.overlapping(track, function(){
+            slowed = false
+        })
 
-    gravel = new Group()
-    gravel.tile = "G"
-    gravel.color = '#e4b382'
-    gravel.collider = 'n'
-    gravel.visible = 'true'
-    gravel.w = tileSize
-    gravel.h = tileSize
+        start = new Group()
+        start.collider = colState
+        start.tile = "s"
+        start.visible = true
+        start.w = tileSize
+        start.h = tileSize
+        player.overlapping(start, function () {
+            StartLineOverlap()
+        })
+
+        timingLine = new Group();
+        timingLine.collider = colState;
+        timingLine.tile = "t";
+        timingLine.visible = false;
+        timingLine.color = "orange";
+        timingLine.w = tileSize;
+        timingLine.h = tileSize;
+        player.overlapping(timingLine, function () {
+            TimingOverlap()
+        })
+
+        testing = new Group();
+        testing.collider = colState;
+        testing.tile = "=";
+        testing.visible = true;
+        testing.color = "orange";
+        testing.w = tileSize;
+        testing.h = tileSize;
+
+        slowArea = new Group()
+        slowArea.collider = colState
+        slowArea.tile = "B"
+        slowArea.color = "#969292"
+        slowArea.w = tileSize
+        slowArea.h = tileSize
+        slowArea.visible = false
+        player.overlaps(slowArea, function () {
+            lapInvalid = true
+            slowed = true
+        })
+
+        removeSlow = new Group()
+        removeSlow.collider = colState
+        removeSlow.tile = 'R'
+        removeSlow.w = tileSize
+        removeSlow.h = tileSize
+        removeSlow.visible = true
+        removeSlow.color = '#FF0000'
+        removeSlow.opacity = 0.5
+        player.overlaps(removeSlow, function () {
+            if (slowed){
+                EnTrackLimits.play()
+            }
+            slowed = false
+        })
+
+        startSlowArea = new Group()
+        startSlowArea.collider = colState
+        startSlowArea.tile = "S"
+        startSlowArea.color = "#969292"
+        startSlowArea.visible = false
+        startSlowArea.w = tileSize
+        startSlowArea.h = tileSize
+        player.overlapping(startSlowArea, function () {
+            StartLineOverlap()
+        })
+
+        gravel = new Group()
+        gravel.tile = "G"
+        gravel.color = '#e4b382'
+        gravel.collider = colState
+        gravel.visible = 'true'
+        gravel.w = tileSize
+        gravel.h = tileSize
+    } else {
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = 's' //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
+
+        player = new Sprite()
+        player.collider = 'd'
+        player.tile = 'x'
+        player.color = 'yellow'
+        player.image = random(carImages)
+        player.scale = 0.045
+        player.direction = Math.PI / 2
+        if (mapSelected == "map2") {
+            player.rotation = 0
+        }
+        if (mapSelected == "map4"){
+            player.rotation = 138
+        }
+        player.w = 11
+        player.h = 6
+
+        track = new Group()
+        track.tile = '.'
+        track.w = tileSize;
+        track.h = tileSize;
+        track.collider = "n";
+        track.color = "#5a5348";
+        track.visible = true;
+        player.overlapping(track, function(){
+            slowed = false
+        })
+
+        start = new Group()
+        start.collider = "n"
+        start.tile = "s"
+        start.visible = true
+        start.w = tileSize
+        start.h = tileSize
+        player.overlapping(start, function () {
+            StartLineOverlap()
+        })
+
+        timingLine = new Group();
+        timingLine.collider = "n";
+        timingLine.tile = "t";
+        timingLine.visible = false;
+        timingLine.color = "orange";
+        timingLine.w = tileSize;
+        timingLine.h = tileSize;
+        player.overlapping(timingLine, function () {
+            TimingOverlap()
+        })
+
+        testing = new Group();
+        testing.collider = "n";
+        testing.tile = "=";
+        testing.visible = true;
+        testing.color = "orange";
+        testing.w = tileSize;
+        testing.h = tileSize;
+
+        slowArea = new Group()
+        slowArea.collider = "n"
+        slowArea.tile = "B"
+        slowArea.color = "#969292"
+        slowArea.w = tileSize
+        slowArea.h = tileSize
+        slowArea.visible = false
+        player.overlaps(slowArea, function () {
+            lapInvalid = true
+            slowed = true
+        })
+
+        removeSlow = new Group()
+        removeSlow.collider = 'n'
+        removeSlow.tile = 'R'
+        removeSlow.w = tileSize
+        removeSlow.h = tileSize
+        removeSlow.visible = true
+        removeSlow.color = '#FF0000'
+        removeSlow.opacity = 0.5
+        player.overlaps(removeSlow, function () {
+            if (slowed){
+                EnTrackLimits.play()
+            }
+            slowed = false
+        })
+
+        startSlowArea = new Group()
+        startSlowArea.collider = "n"
+        startSlowArea.tile = "S"
+        startSlowArea.color = "#969292"
+        startSlowArea.visible = false
+        startSlowArea.w = tileSize
+        startSlowArea.h = tileSize
+        player.overlapping(startSlowArea, function () {
+            StartLineOverlap()
+        })
+
+        gravel = new Group()
+        gravel.tile = "G"
+        gravel.color = '#e4b382'
+        gravel.collider = 'n'
+        gravel.visible = 'true'
+        gravel.w = tileSize
+        gravel.h = tileSize
+    }
 
 
     switch (storage[3]) {
@@ -807,13 +926,17 @@ function controls(){
             player.direction = player.rotation;
         }
 
-        if (kb.presses("escape")) {
-            timestartheld = PST
-        }
+
         if (kb.pressing("escape")) {
-            if (PST - timestartheld > 3) {
-                sessionComplete = true
-            }
+            escHeld = true;
+            setTimeout(() => {
+                if (escHeld){
+                    window.sessionStorage.setItem("fastest", ttLaps)
+                }
+            })
+            
+        } else {
+            escHeld = false
         }
         
 

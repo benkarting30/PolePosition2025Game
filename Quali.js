@@ -25,7 +25,7 @@ let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
 let hasPlayedRemaining = false
-
+let sensitivityPlayer
 function preload(){
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
@@ -46,7 +46,9 @@ function setup() {
     mapSelected = random(["map1", "map2", "map3", "map4"])
     // Create tile types
 
-
+    let settingsJSON = window.sessionStorage.settings
+    timeRemaining = settingsJSON.qL * 60
+    sensitivityPlayer = settingsJSON.sen
 
 
 
