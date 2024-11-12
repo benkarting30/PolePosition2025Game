@@ -27,7 +27,7 @@
 
 ## Super Not-So-Secret Secret Settings Explained
 ### Turn off collisions
-> Nothing has collision, kinda obvious imo ¯\_(ツ)_/¯
+> Nothing has collision, kinda obvious imo ```¯\_(ツ)_/¯```
 
 ## Dynamic Collision on everything
 > Everything can move. Even the walls.

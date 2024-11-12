@@ -2,11 +2,14 @@ const buttonWidth = 900
 const buttonHeight = 100
 
 let menuStage = 0
-let Music1, Music2
+let Music1, Music2, controls
+let collisionStat = false
+let dynamicStat
 function preload(){
     soundFormats("mp3")
     Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
+    controls = loadImage('images/pixil-frame-0 (2).png')
 }
 
 function setup() {
@@ -73,7 +76,9 @@ function draw() {
     } else if (menuStage === 2) {
         timeTrialMaps()
     } else if (menuStage === 3){
-        settingsButtons
+        settingsButtons()
+    } else if (menuStage === 4){
+        superSettingsButtons()
     }
 }
 
@@ -117,7 +122,24 @@ function settingsButtons(){
     text(`Qualifying Lenght ${qLength}`, width / 2, 4 * height / 8)
     text(`Race Length ${rLength}`, width / 2, 5 * height / 8)
     text(`Controls`, width / 2, 6 * height / 8)
-    text("Back", width / 2, 7 * height / 8)
+    text("Next", width / 2, 7 * height / 8)
+}
+
+function superSettingsButtons(){
+    fill(122, 122, 122)
+    rect(width / 2 - buttonWidth / 2, 2 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 3 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 4 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 5 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    fill(255)
+    textFont('Titillium Web')
+    textAlign(CENTER, CENTER)
+    text("Super Not-So-Secret Secret Settings", width / 2, 1 * height / 6)
+    text(`Disable Collisions ${collisionStat}`, width / 2, 2 * height / 6)
+    text(`Turn on Dymanic Collision ${dynamicStat}`, width / 2, 3 * height / 6)
+    text(`Back to Settibgs`, width / 2, 4 * height / 6)
+    text(`Back to Menu`, width / 2, 5 * height / 6)
+
 }
 
 function mouseClicked() {
@@ -168,7 +190,7 @@ function mouseClicked() {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
             menuStage--
         }
-    } else {
+    } else if (menuStage==3){
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 8 - buttonHeight / 2 && mouseY < 2 * height / 8 + buttonHeight / 2) {
             sensitivityLevel++
             if (sensitivityLevel == 6){
@@ -176,22 +198,62 @@ function mouseClicked() {
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 8 - buttonHeight / 2 && mouseY < 3 * height / 8 + buttonHeight / 2) {
-            AILevel++ 
+            AILevel++
+            if (AILevel == 6){
+                AILevel = 1
+            } 
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map5")
-            window.location.assign("Time_Trial.html")
+            let tempQLength = prompt("Please enter a length for Qualifying", "2")
+            if (Number.isSafeInteger(tempQLength)){
+                warn("Invalid Input")
+            } else {
+                if (tempQLength > 0 && tempQLength < 15){
+                    warn("Invalid Input")
+                } else {
+                    tempQLength = qLength
+                }
+            }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map4")
-            window.location.assign("Time_Trial.html")
+            let tempRLength = prompt("Please enter a length for the Race", "15")
+            if (Number.isSafeInteger(tempRLength)){
+                warn("Invalid Input")
+            } else {
+                if (tempRLength > 0 && tempRLength < 15){
+                    warn("Invalid Input")
+                } else {
+                    tempRLength = rLength
+                }
+            }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map4")
-            window.location.assign("Time_Trial.html")
+            ImageMode(CENTER)
+            image(controls, width/2, height/2)
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 7 * height / 8 - buttonHeight / 2 && mouseY < 7 * height / 8 + buttonHeight / 2) {
+            menuStage++
+        }
+    } else {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
+            if (dynamicStat){
+                alert("Please disable dynamic collisions to enable this!")
+            } else {
+                collisionStat = !collisionStat
+            }
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 6 - buttonHeight / 2 && mouseY < 3 * height / 6 + buttonHeight / 2) {
+            if (collisionStat){
+                alert("Please disable no collisions to enable this!")
+            } else {
+                dynamicStat = !dynamicStat
+            }
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 6 - buttonHeight / 2 && mouseY < 4 * height / 6 + buttonHeight / 2) {
             menuStage--
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 6 - buttonHeight / 2 && mouseY < 5 * height / 6 + buttonHeight / 2) {
+            menuStage = 0
         }
     }
 }
