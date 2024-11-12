@@ -10,7 +10,7 @@ function setup() {
     let fastest = sorted[0]
 
     laps
-    for (let i = 1; i < laps; i++) {
+    for (let i = 0; i < laps; i++) {
         let newRow = table.addRow();
         newRow.setString('Lap', table.getRowCount());
         newRow.setString('time', playerFLInfo[i]);
