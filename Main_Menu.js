@@ -2,7 +2,7 @@ const buttonWidth = 900
 const buttonHeight = 100
 
 let menuStage = 0
-let Music1, Music2, controls
+let Music1, Music2, controls, RobotRock, ThickOfIt
 let collisionStat = false
 let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
@@ -16,6 +16,8 @@ function preload() {
     soundFormats("mp3")
     Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
+    RobotRock = loadSound('Audio/Robot Rock')
+    ThickOfIt = loadSound('Audio/Thick Of It')
     controls = loadImage('images/pixil-frame-0 (2).png')
 }
 
@@ -279,11 +281,15 @@ function backgroundMusic() {
         Music1.loop()
         Music1.setVolume(0.3)
         userStartAudio()
-    } else if (floor(random(0, 100))) {
+    } else if (floor(random(0, 100))==0) {
         Music2.play()
         Music2.loop()
         Music2.setVolume(0.8)
         userStartAudio()
+    } else if (floor(random(0, 200)) ==0){
+        RobotRock.play()
+        RobotRock.loop()
+        RobotRock.setVolume(0.5)
     } else {
         Music2.play()
         Music2.loop()

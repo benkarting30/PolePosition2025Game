@@ -24,7 +24,7 @@ let carImages
 let EnTrackLimits, engineidle, enginestart
 let lapInvalid = false
 let engineOn = true
-let colState, PlayerSensitivity
+let colState=undefined, PlayerSensitivity
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -47,14 +47,14 @@ function setup() {
     console.log(storage)
     mapSelected = storage
     let settingsJSON = window.sessionStorage.settings
-    if (settingsJSON.noCol){
-        colState = 'n'
-    } else if (settingsJSON.dyCol){
-        colState = 'd'
-    } else {
-        colState = undefined
-    }
-    playerSensitivity = settingsJSON.sen
+    // if (settingsJSON.noCol){
+    //     colState = 'n'
+    // } else if (settingsJSON.dyCol){
+    //     colState = 'd'
+    // } else {
+    //     colState = undefined
+    // }
+    // playerSensitivity = settingsJSON.sen
 
 
     // mapSelected = localStorage.getItem(map)
