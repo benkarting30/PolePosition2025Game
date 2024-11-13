@@ -26,6 +26,7 @@ function setup() {
     colorMode(RGB)
     textSize(54)
     backgroundMusic()
+    backgroundMusic = undefined
 }
 
 function playButton() {
