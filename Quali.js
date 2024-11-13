@@ -20,7 +20,7 @@ let endGame = false
 let timestartheld
 let timeRemaining = 60
 let countdown = 30 * 60
-let carImages
+let carImages = []
 let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
@@ -48,7 +48,7 @@ function setup() {
 
     let settingsJSON = window.sessionStorage.settings
     timeRemaining = settingsJSON.qL * 60
-    sensitivityPlayer = settingsJSON.sen
+    sensitivityPlayer = 3
 
 
 
@@ -63,7 +63,7 @@ function setup() {
     player.collider = 'd'
     player.tile = 'x'
     player.color = 'yellow'
-    player.image = random(carImages)
+    player.image = random([carImg1, carImg2, carImg3, carImg4])
     player.scale = 0.045
     player.direction = Math.PI / 2
     if (mapSelected == "map2") {
