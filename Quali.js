@@ -25,7 +25,7 @@ let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
 let hasPlayedRemaining = false
-let sensitivityPlayer
+let PlayerSensitivity
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
@@ -48,7 +48,7 @@ function setup() {
 
     let settingsJSON = window.sessionStorage.settings
     timeRemaining = settingsJSON.qL * 60
-    sensitivityPlayer = 3
+    PlayerSensitivity = 3
 
 
 

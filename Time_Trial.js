@@ -919,11 +919,11 @@ function controls(){
         }
 
         if (kb.pressing("a")) {
-            player.rotate(UndersteerCalc(player.speed, -playerSensitivity, "Left"), playerSensitivity);
+            player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
             player.direction = player.rotation;
         }
         if (kb.pressing("d")) {
-            player.rotate(UndersteerCalc(player.speed, playerSensitivity, "Right"), playerSensitivity);
+            player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
             player.direction = player.rotation;
         }
 
