@@ -228,8 +228,8 @@ function mouseClicked() {
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
-            let tempQLength = prompt("Please enter a length for Qualifying", "2")
-            if (Number.isSafeInteger(tempQLength)) {
+            let tempQLength = parseInt(prompt("Please enter a length for Qualifying"))
+            if (Number.isInteger(tempQLength)) {
                 console.warn("Invalid Input")
             } else {
                 if (!(tempQLength > 0 && tempQLength < 15)) {
@@ -240,8 +240,8 @@ function mouseClicked() {
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
-            let tempRLength = prompt("Please enter a length for the Race", "15")
-            if (Number.isSafeInteger(tempRLength)) {
+            let tempRLength = parseInt(prompt("Please enter a length for the Race"))
+            if (Number.isInteger(tempRLength)) {
                 console.warn("Invalid Input")
             } else {
                 if (tempRLength < 0 || tempRLength > 100) {
@@ -251,6 +251,7 @@ function mouseClicked() {
                 }
             }
         }
+        prompt()
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
             menuStage = 5
         }
