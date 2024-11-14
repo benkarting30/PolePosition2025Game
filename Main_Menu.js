@@ -156,6 +156,7 @@ function superSettingsButtons() {
 
 function controlsScreen(){
     imageMode(CENTER)
+    noSmooth()
     image(controls, width / 2, height / 4, width/2, 2*height/4)
 }
 
