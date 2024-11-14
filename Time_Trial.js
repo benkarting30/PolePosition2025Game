@@ -47,13 +47,14 @@ function setup() {
     console.log(storage)
     mapSelected = storage
     let settingsJSON = window.sessionStorage.settings
-    // if (settingsJSON.noCol){
-    //     colState = 'n'
-    // } else if (settingsJSON.dyCol){
-    //     colState = 'd'
-    // } else {
-    //     colState = undefined
-    // }
+    PlayerSensitivity = settingsJSON[0]
+    if (settingsJSON[4]){
+        colState = 'n'
+    } else if (settingsJSON[5]){
+        colState = 'd'
+    } else {
+        colState = undefined
+    }
     // playerSensitivity = settingsJSON.sen
 
 
@@ -919,11 +920,11 @@ function controls(){
         }
 
         if (kb.pressing("a")) {
-            player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
+            player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
             player.direction = player.rotation;
         }
         if (kb.pressing("d")) {
-            player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
+            player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
             player.direction = player.rotation;
         }
 
