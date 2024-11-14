@@ -89,6 +89,8 @@ function draw() {
         settingsButtons()
     } else if (menuStage === 4) {
         superSettingsButtons()
+    } else if (menuStage === 5){
+        controlsScreen()
     }
 }
 
@@ -150,6 +152,11 @@ function superSettingsButtons() {
     text(`Back to Settibgs`, width / 2, 4 * height / 6)
     text(`Back to Menu`, width / 2, 5 * height / 6)
 
+}
+
+function controlsScreen(){
+    imageMode(CENTER)
+    image(controls, width / 2, height / 4, width/2, 2*height/4)
 }
 
 function mouseClicked() {
@@ -222,10 +229,10 @@ function mouseClicked() {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
             let tempQLength = prompt("Please enter a length for Qualifying", "2")
             if (Number.isSafeInteger(tempQLength)) {
-                warn("Invalid Input")
+                console.warn("Invalid Input")
             } else {
                 if (!(tempQLength > 0 && tempQLength < 15)) {
-                    warn("Invalid Input")
+                    console.warn("Invalid Input")
                 } else {
                     tempQLength = qLength
                 }
@@ -234,23 +241,24 @@ function mouseClicked() {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
             let tempRLength = prompt("Please enter a length for the Race", "15")
             if (Number.isSafeInteger(tempRLength)) {
-                warn("Invalid Input")
+                console.warn("Invalid Input")
             } else {
                 if (tempRLength < 0 || tempRLength > 100) {
-                    warn("Invalid Input")
+                    console.warn("Invalid Input")
                 } else {
                     tempRLength = rLength
                 }
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
-            ImageMode(CENTER)
-            image(controls, width / 2, height / 2)
+            menuStage = 5
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 7 * height / 8 - buttonHeight / 2 && mouseY < 7 * height / 8 + buttonHeight / 2) {
             menuStage++
         }
-    } else {
+    } else if (menuStage===5){
+        menuStage = 3
+    }else {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
             if (dynamicStat) {
                 alert("Please disable dynamic collisions to enable this!")
