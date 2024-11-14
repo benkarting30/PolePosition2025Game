@@ -224,7 +224,7 @@ function mouseClicked() {
             if (Number.isSafeInteger(tempQLength)) {
                 warn("Invalid Input")
             } else {
-                if (tempQLength > 0 && tempQLength < 15) {
+                if (!(tempQLength > 0 && tempQLength < 15)) {
                     warn("Invalid Input")
                 } else {
                     tempQLength = qLength
@@ -236,7 +236,7 @@ function mouseClicked() {
             if (Number.isSafeInteger(tempRLength)) {
                 warn("Invalid Input")
             } else {
-                if (tempRLength > 0 && tempRLength < 100) {
+                if (tempRLength < 0 || tempRLength > 100) {
                     warn("Invalid Input")
                 } else {
                     tempRLength = rLength
