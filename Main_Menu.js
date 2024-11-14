@@ -157,7 +157,7 @@ function superSettingsButtons() {
 function controlsScreen(){
     imageMode(CENTER)
     noSmooth()
-    image(controls, width / 2, height / 4, width/2, 2*height/4)
+    image(controls, width / 2, height / 4, width, 3*height/4)
 }
 
 function mouseClicked() {
