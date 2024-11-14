@@ -46,16 +46,16 @@ function setup() {
     let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
-    let settingsJSON = window.sessionStorage.settings
-    PlayerSensitivity = settingsJSON[0]
-    if (settingsJSON[4]){
+    let settingsArray = window.sessionStorage.settings
+    PlayerSensitivity = settingsArray[0]
+    if (settingsArray[4]){
         colState = 'n'
-    } else if (settingsJSON[5]){
+    } else if (settingsArray[5]){
         colState = 'd'
     } else {
         colState = undefined
     }
-    // playerSensitivity = settingsJSON.sen
+    // playerSensitivity = settingsArray.sen
 
 
     // mapSelected = localStorage.getItem(map)

@@ -8,6 +8,7 @@ let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
 
 function settingsPackager() {
+    window.sessionStorage.clear()
     let selectedSettings = [sensitivityLevel, AILevel, qLength, rLength, collisionStat, dynamicStat ]
     window.sessionStorage.setItem("Settings", selectedSettings)
 }
