@@ -50,7 +50,7 @@ function setup() {
     mapSelected = storage
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
-    let debug = settingsJSON.debug
+    let debuged = settingsJSON.debug
     if (settingsJSON.noCol){
         colState = 'n'
     } else if (settingsJSON.dyColD){
@@ -1019,10 +1019,10 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     let turnSpeed, finalsensitivity
     if (speed > 1) {
         if (direction == "Left") {
-            turnSpeed = -1 * (abs(sensitivity) - (speed - 1) / sensitivity)
+            turnSpeed = -1 * abs(abs(sensitivity) - (speed - 1) / (6-sensitivity))
             return turnSpeed
         } else if (direction == "Right") {
-            turnSpeed = (abs(sensitivity) - (speed - 1) / sensitivity)
+            turnSpeed = abs(abs(sensitivity) - (speed - 1) / (6-sensitivity))
             return turnSpeed
         } else {
             turnSpeed = (abs(sensitivity) - (speed - 1) / sensitivity)
