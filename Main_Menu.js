@@ -9,7 +9,8 @@ let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
 
 function settingsPackager(Playermap = undefined) {
     window.sessionStorage.clear()
-    let selectedSettings = [sensitivityLevel, AILevel, qLength, rLength, collisionStat, dynamicStat]
+    let selectedSettings = {sens: sensitivityLevel, diff:AILevel, qL: qLength, rL: rLength, noCol:collisionStat, dyCol: dynamicStat}
+    let JSONSettings = JSON.stringify(selectedSettings)
     if (Playermap){
         window.sessionStorage.setItem("map", Playermap)
     }
