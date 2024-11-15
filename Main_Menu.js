@@ -255,7 +255,6 @@ function mouseClicked() {
                 }
             }
         }
-        prompt()
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 8 - buttonHeight / 2 && mouseY < 6 * height / 8 + buttonHeight / 2) {
             menuStage = 5
         }

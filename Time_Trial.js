@@ -1012,13 +1012,13 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     let turnSpeed, finalsensitivity
     if (speed > 1) {
         if (direction == "Left") {
-            turnSpeed = -1 * (abs(sensitivity) - (speed - 1) / 3)
+            turnSpeed = -1 * (abs(sensitivity) - (speed - 1) / sensitivity)
             return turnSpeed
         } else if (direction == "Right") {
-            turnSpeed = (abs(sensitivity) - (speed - 1) / 3)
+            turnSpeed = (abs(sensitivity) - (speed - 1) / sensitivity)
             return turnSpeed
         } else {
-            turnSpeed = (abs(sensitivity) - (speed - 1) / 3)
+            turnSpeed = (abs(sensitivity) - (speed - 1) / sensitivity)
             return turnSpeed
         }
     } else {
