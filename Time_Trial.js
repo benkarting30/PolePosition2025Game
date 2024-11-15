@@ -66,7 +66,7 @@ function setup() {
 
 
 
-    if (colState != undefined){
+    if (colState){
 
         trackLimit = new Group()
         trackLimit.color = "red"

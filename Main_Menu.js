@@ -230,7 +230,7 @@ function mouseClicked() {
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
             let tempQLength = parseInt(prompt("Please enter a length for Qualifying"))
-            if (Number.isInteger(tempQLength)) {
+            if (!Number.isInteger(tempQLength)) {
                 console.warn("Invalid Input")
             } else {
                 if (!(tempQLength > 0 && tempQLength < 15)) {
@@ -242,7 +242,7 @@ function mouseClicked() {
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
             let tempRLength = parseInt(prompt("Please enter a length for the Race"))
-            if (Number.isInteger(tempRLength)) {
+            if (!Number.isInteger(tempRLength)) {
                 console.warn("Invalid Input")
             } else {
                 if (tempRLength < 0 || tempRLength > 100) {
