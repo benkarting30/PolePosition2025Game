@@ -46,7 +46,7 @@ function setup() {
     let storage = sessionStorage.map
     console.log(storage)
     mapSelected = storage
-    let settingsArray = window.sessionStorage.settings
+    let settingsArray = window.sessionStorage.Settings
     PlayerSensitivity = settingsArray[0]
     if (settingsArray[4]){
         colState = 'n'
