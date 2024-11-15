@@ -7,11 +7,18 @@ let collisionStat = false
 let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
 
-function settingsPackager() {
+function settingsPackager(Playermap = undefined) {
     window.sessionStorage.clear()
-    let selectedSettings = [sensitivityLevel, AILevel, qLength, rLength, collisionStat, dynamicStat ]
+    let selectedSettings = [sensitivityLevel, AILevel, qLength, rLength, collisionStat, dynamicStat]
+    if (Playermap){
+        window.sessionStorage.setItem("map", Playermap)
+    }
     window.sessionStorage.setItem("Settings", selectedSettings)
 }
+
+/***
+ * @param {string} - Takes Player Map as an input, if undefined, map data is not store.
+ */
 
 function preload() {
     soundFormats("mp3")
@@ -188,28 +195,23 @@ function mouseClicked() {
         }
     } else if (menuStage === 2) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 7 - buttonHeight / 2 && mouseY < height / 7 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map1")
-            settingsPackager()
+            settingsPackager("map1")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 7 - buttonHeight / 2 && mouseY < 2 * height / 7 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map2")
-            settingsPackager()
+            settingsPackager("map2")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 7 - buttonHeight / 2 && mouseY < 3 * height / 7 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map3")
-            settingsPackager()
+            settingsPackager("map3")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 7 - buttonHeight / 2 && mouseY < 4 * height / 7 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map5")
-            settingsPackager()
+            settingsPackager("map5")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 7 - buttonHeight / 2 && mouseY < 5 * height / 7 + buttonHeight / 2) {
-            window.sessionStorage.setItem("map", "map4")
-            settingsPackager()
+            settingsPackager("map4")
             window.location.assign("Time_Trial.html")
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
