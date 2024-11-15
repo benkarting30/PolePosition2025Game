@@ -50,7 +50,7 @@ function setup() {
     PlayerSensitivity = settingsJSON.sens
     if (settingsJSON.noCol){
         colState = 'n'
-    } else if (settingsArray.dyCol){
+    } else if (settingsJSON.dyColD){
         colState = 'd'
     } else {
         colState = undefined

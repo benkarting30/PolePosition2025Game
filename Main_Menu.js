@@ -14,7 +14,7 @@ function settingsPackager(Playermap = undefined) {
     if (Playermap){
         window.sessionStorage.setItem("map", Playermap)
     }
-    window.sessionStorage.setItem("Settings", selectedSettings)
+    window.sessionStorage.setItem("Settings", JSONSettings)
 }
 
 /***
