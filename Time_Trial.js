@@ -25,12 +25,14 @@ let EnTrackLimits, engineidle, enginestart
 let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
+let carImg1, carImg2, carImg3, carImg4, boatImg
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
     carImg4 = loadImage('images/cars/cars_racer (4).png')
+    boatImg = loadImage('images/cars/boat.png')
     carImages = [carImg1, carImg2, carImg3, carImg4]
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
@@ -48,6 +50,7 @@ function setup() {
     mapSelected = storage
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
+    let debug = settingsJSON.debug
     if (settingsJSON.noCol){
         colState = 'n'
     } else if (settingsJSON.dyColD){
@@ -79,7 +82,11 @@ function setup() {
         player.collider = colState
         player.tile = 'x'
         player.color = 'yellow'
-        player.image = random(carImages)
+        if (debuged){
+            player.image = boatImg
+        } else {
+            player.image = random(carImages)
+        }
         player.scale = 0.045
         player.direction = Math.PI / 2
         if (mapSelected == "map2") {
