@@ -106,7 +106,11 @@ function setup() {
         track.w = tileSize;
         track.h = tileSize;
         track.collider = colState;
-        track.color = "#5a5348";
+        if (PlayerSensitivity == 1){
+            track.color = "#2074bc"
+        } else {
+            track.color = "#5a5348";
+        }
         track.visible = true;
         player.overlapping(track, function(){
             slowed = false
