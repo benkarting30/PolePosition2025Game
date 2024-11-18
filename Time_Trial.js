@@ -82,7 +82,7 @@ function setup() {
         player.collider = colState
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged){
+        if (debuged || PlayerSensitivity == 1){
             player.image = boatImg
         } else {
             player.image = random(carImages)
