@@ -33,6 +33,8 @@ function preload() {
     carImg3 = loadImage('images/cars/cars_racer (3).png')
     carImg4 = loadImage('images/cars/cars_racer (4).png')
     boatImg = loadImage('images/cars/boat.png')
+    boatImg.height = 240
+    boatImg.width = 300
     carImages = [carImg1, carImg2, carImg3, carImg4]
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
@@ -84,10 +86,11 @@ function setup() {
         player.color = 'yellow'
         if (debuged || PlayerSensitivity == 1){
             player.image = boatImg
+            player.scale = 0.75
         } else {
             player.image = random(carImages)
+            player.scale = 0.045
         }
-        player.scale = 0.045
         player.direction = Math.PI / 2
         if (mapSelected == "map2") {
             player.rotation = 0
@@ -195,8 +198,13 @@ function setup() {
         player.collider = 'd'
         player.tile = 'x'
         player.color = 'yellow'
-        player.image = random(carImages)
-        player.scale = 0.045
+        if (debuged || PlayerSensitivity == 1){
+            player.image = boatImg
+            player.scale = 0.75
+        } else {
+            player.image = random(carImages)
+            player.scale = 0.045
+        }
         player.direction = Math.PI / 2
         if (mapSelected == "map2") {
             player.rotation = 0
@@ -900,10 +908,14 @@ function controls(){
                 if (player.speed < 1) {
                     player.speed += (20 / 120)
                 }
-            } else {
+            } else if (PlayerSensitivity != 1){
                 if (player.speed < 3) {
                     player.speed += (45 / 120)
                 }
+            } else {
+                if (player.speed < 1) {
+                    player.speed += (1 / 120)
+                }  
             }
             player.direction = player.rotation;
 
