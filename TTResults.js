@@ -6,15 +6,21 @@ function setup() {
     createCanvas(windowWidth, windowHeight)
 
     playerFLInfo = window.sessionStorage.getItem('fastest')
-    let sorted = playerFLInfo.sort()
+    let data = []
+    for(lap of playerFLInfo){
+        if (lap != ''){
+            data.push(lap)
+        }
+    }
+    let sorted = data.sort()
     let fastest = sorted[0]
 
     laps
     for (let i = 0; i < laps; i++) {
         let newRow = table.addRow();
         newRow.setString('Lap', table.getRowCount());
-        newRow.setString('time', playerFLInfo[i]);
-        newRow.setString('Delta', playerFLInfo[1]-fastest);
+        newRow.setString('time', data[i]);
+        newRow.setString('Delta', data[i]-fastest);
 
     }
 

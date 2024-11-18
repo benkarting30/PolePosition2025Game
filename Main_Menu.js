@@ -140,7 +140,7 @@ function settingsButtons() {
     text("Settings", width / 2, 1 * height / 8)
     text(`Sensitivity ${sensitivityLevel}`, width / 2, 2 * height / 8)
     text(`AI Difficulty ${AILevel}`, width / 2, 3 * height / 8)
-    text(`Qualifying Lenght ${qLength}`, width / 2, 4 * height / 8)
+    text(`Qualifying Length ${qLength}`, width / 2, 4 * height / 8)
     text(`Race Length ${rLength}`, width / 2, 5 * height / 8)
     text(`Controls`, width / 2, 6 * height / 8)
     text("Next", width / 2, 7 * height / 8)
@@ -158,7 +158,7 @@ function superSettingsButtons() {
     text("Super Not-So-Secret Secret Settings", width / 2, 1 * height / 6)
     text(`Disable Collisions ${collisionStat}`, width / 2, 2 * height / 6)
     text(`Turn on Dymanic Collision ${dynamicStat}`, width / 2, 3 * height / 6)
-    text(`Back to Settibgs`, width / 2, 4 * height / 6)
+    text(`Back to Settings`, width / 2, 4 * height / 6)
     text(`Back to Menu`, width / 2, 5 * height / 6)
 
 }
