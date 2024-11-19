@@ -1,7 +1,5 @@
 // Functs.js
-
-let fastestLap = null;
-const LapTimeModule = (function(){
+window.LapTimeModule = (function(){
     let laptime = 0;
     let fastestLap = null;
     return {

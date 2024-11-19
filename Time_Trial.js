@@ -39,8 +39,8 @@ function preload() {
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
-    console.log(LapTimeModule.GetLaptime())
-    console.log(LapTimeModule.GetFL())
+    console.log(window.LapTimeModule.GetLaptime())
+    console.log(window.LapTimeModule.GetFL())
     
   }
 
@@ -848,7 +848,7 @@ function preload() {
     camera.y = player.y
     camera.on()
     controls()
-    LapTimeModule.UpdateData(frameRate())
+    window.LapTimeModule.UpdateData(frameRate())
     //console.log(laptime)
     //text(laptime, 0, 0)
     if (lapStarted) {
@@ -874,10 +874,10 @@ function preload() {
     } else {
         currentGear = "1"
     }
-    if (LapTimeModule.GetFL()) {
-        text(`Lap: ${lap}\nTime: ${LapTimeModule.GetLaptime().toFixed(3)}\nFastest: ${LapTimeModule.GetFL().toFixed(3)} (${fastestOnLap})`, 10, 10)
+    if (window.LapTimeModule.GetFL()) {
+        text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}\nFastest: ${window.LapTimeModule.GetFL().toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
-        text(`Lap: ${lap}\nTime: ${LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
+        text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
     text(`Gear: ${currentGear}`, width - 350, height - 50)
@@ -982,24 +982,24 @@ function StartLineOverlap() {
     if (!sessionStarted) {
         sector = 1
         sessionStarted = true
-        LapTimeModule.ResetLaptime()
+        window.LapTimeModule.ResetLaptime()
         lapStarted = true
         player.color = 'blue'
         lapInvalid = false
     }
     if (!lapStarted && !sessionComplete) {
         lapStarted = true
-        ttLaps[lap] = LapTimeModule.GetLaptime()
+        ttLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
-        FastestLapCalculation(LapTimeModule.GetLaptime(), lapInvalid)
-        LapTimeModule.ResetLaptime()
+        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
+        window.LapTimeModule.ResetLaptime()
         lapInvalid = false
     }
     if (!lapStarted && sessionComplete) {
-        ttLaps[lap] = LapTimeModule.GetLaptime()
+        ttLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
-        FastestLapCalculation(LapTimeModule.GetLaptime(), lapInvalid)
-        LapTimeModule.ResetLaptime()
+        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
+        window.LapTimeModule.ResetLaptime()
         endGame = true
     }
 }
@@ -1015,7 +1015,7 @@ function TimingOverlap() {
  */
 
 function FastestLapCalculation(prevLap, InvalidLap) {
-    let fast = LapTimeModule.GetFL()
+    let fast = window.LapTimeModule.GetFL()
     if (!InvalidLap){
         if (fast) {
             if (prevLap < fast) {
