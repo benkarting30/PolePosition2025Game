@@ -4,20 +4,20 @@ window.LapTimeModule = {
     fastestLap: null,
     GetLaptime: function(){
         console.log("GetLaptime active");
-        return laptime
+        return LapTimeModule.laptime
     },
     ResetLaptime: function(){
-        laptime = 0;
+        LapTimeModule.laptime = 0;
         console.log("ResetLaptime running") 
     },
     UpdateData: function(frames){
-        laptime += 1/frames
+        LapTimeModule.laptime += 1/frames
     },
     SetFL: function(time){
-        fastestLap = time
+        LapTimeModule.fastestLap = time
     },
     GetFL: function(){
-        return fastestLap
+        return LapTimeModule.fastestLap
     }
   
 }
