@@ -24,10 +24,10 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
+//import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
-export function preload() {
+function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
@@ -39,12 +39,12 @@ export function preload() {
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
-    console.log(GetLaptime)
-    console.log(GetFL)
+    console.log(GetLaptime())
+    console.log(GetFL())
     
   }
 
-export function setup() {
+ function setup() {
     // Create Canvas and set background and frameRate
     createCanvas(windowWidth, windowHeight);
     background(255);
@@ -839,7 +839,7 @@ export function setup() {
     enginestart.play()
 }
 
-export function draw() {
+ function draw() {
     clear()
     background("#5a5348")
     camera.on()
