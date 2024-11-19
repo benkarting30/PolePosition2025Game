@@ -24,6 +24,8 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
+let laptime = 0
+let fastestLap = 0
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
@@ -1019,11 +1021,11 @@ function FastestLapCalculation(prevLap, InvalidLap) {
     if (!InvalidLap){
         if (fast) {
             if (prevLap < fast) {
-                SetFL(prevLap)
+                window.LapTimeModule.SetFL(prevLap)
                 fastestOnLap = lap - 1
             }
         } else {
-            SetFL(prevLap)
+            window.LapTimeModule.SetFL(prevLap)
         }
     }
 }
@@ -1062,3 +1064,7 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     }
 }
 
+function AntiCheat(){
+    
+    window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+}
