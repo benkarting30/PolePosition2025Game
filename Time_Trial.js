@@ -873,7 +873,7 @@ function draw() {
     } else {
         currentGear = "1"
     }
-    if (fastestLap) {
+    if (getFL()) {
         text(`Lap: ${lap}\nTime: ${GetLaptime().toFixed(3)}\nFastest: ${getFL().toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
         text(`Lap: ${lap}\nTime: ${GetLaptime().toFixed(3)}`, 10, 10)
