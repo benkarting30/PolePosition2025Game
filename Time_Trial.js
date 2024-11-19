@@ -8,8 +8,6 @@ let lapStarted = false
 let sessionStarted = false
 let sessionComplete = false
 let lap = 1
-let laptime = 0
-let fastestLap = null
 let fastestOnLap = 1
 let ttLaps = []
 let fastestLapInfo = []
@@ -26,7 +24,7 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Functs.js"
+import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Functs.js";
 
 
 function preload() {
