@@ -26,7 +26,7 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Module"
+import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Functs.js"
 
 
 function preload() {
