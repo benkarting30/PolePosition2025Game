@@ -26,6 +26,8 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
+import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Module"
+
 
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
@@ -845,8 +847,7 @@ function draw() {
     camera.y = player.y
     camera.on()
     controls()
-    laptime += 1 / frameRate()
-    PST += 1 / 60
+    UpdateData(framerate())
     //console.log(laptime)
     //text(laptime, 0, 0)
     if (lapStarted) {
@@ -873,9 +874,9 @@ function draw() {
         currentGear = "1"
     }
     if (fastestLap) {
-        text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}\nFastest: ${fastestLap.toFixed(3)} (${fastestOnLap})`, 10, 10)
+        text(`Lap: ${lap}\nTime: ${GetLaptime().toFixed(3)}\nFastest: ${getFL().toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
-        text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
+        text(`Lap: ${lap}\nTime: ${GetLaptime().toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
     text(`Gear: ${currentGear}`, width - 350, height - 50)
@@ -980,7 +981,7 @@ function StartLineOverlap() {
     if (!sessionStarted) {
         sector = 1
         sessionStarted = true
-        laptime = 0
+        ResetLaptime()
         lapStarted = true
         player.color = 'blue'
         lapInvalid = false
@@ -990,14 +991,14 @@ function StartLineOverlap() {
         ttLaps[lap] = laptime
         lap++
         FastestLapCalculation(laptime, lapInvalid)
-        laptime = 0
+        ResetLaptime()
         lapInvalid = false
     }
     if (!lapStarted && sessionComplete) {
         ttLaps[lap] = laptime
         lap++
         FastestLapCalculation(laptime, lapInvalid)
-        laptime = 0
+        ResetLaptime()
         endGame = true
     }
 }
@@ -1013,14 +1014,15 @@ function TimingOverlap() {
  */
 
 function FastestLapCalculation(prevLap, InvalidLap) {
+    let fast = getFL()
     if (!InvalidLap){
-        if (fastestLap) {
-            if (prevLap < fastestLap) {
-                fastestLap = prevLap
+        if (fast) {
+            if (prevLap < fast) {
+                SetFL(prevLap)
                 fastestOnLap = lap - 1
             }
         } else {
-            fastestLap = prevLap
+            SetFL(prevLap)
         }
     }
 }
