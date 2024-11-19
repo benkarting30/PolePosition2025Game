@@ -27,7 +27,7 @@ let carImg1, carImg2, carImg3, carImg4, boatImg
 import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
-function preload() {
+export function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
@@ -44,7 +44,7 @@ function preload() {
     
   }
 
-function setup() {
+export function setup() {
     // Create Canvas and set background and frameRate
     createCanvas(windowWidth, windowHeight);
     background(255);
@@ -839,7 +839,7 @@ function setup() {
     enginestart.play()
 }
 
-function draw() {
+export function draw() {
     clear()
     background("#5a5348")
     camera.on()
