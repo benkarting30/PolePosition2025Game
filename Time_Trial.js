@@ -988,16 +988,16 @@ function StartLineOverlap() {
     }
     if (!lapStarted && !sessionComplete) {
         lapStarted = true
-        ttLaps[lap] = laptime
+        ttLaps[lap] = GetLaptime()
         lap++
-        FastestLapCalculation(laptime, lapInvalid)
+        FastestLapCalculation(GetLaptime(), lapInvalid)
         ResetLaptime()
         lapInvalid = false
     }
     if (!lapStarted && sessionComplete) {
-        ttLaps[lap] = laptime
+        ttLaps[lap] = GetLaptime()
         lap++
-        FastestLapCalculation(laptime, lapInvalid)
+        FastestLapCalculation(GetLaptime(), lapInvalid)
         ResetLaptime()
         endGame = true
     }
