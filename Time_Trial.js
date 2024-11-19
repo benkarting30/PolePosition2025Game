@@ -848,7 +848,7 @@ function preload() {
     camera.y = player.y
     camera.on()
     controls()
-    UpdateData(framerate())
+    UpdateData(frameRate())
     //console.log(laptime)
     //text(laptime, 0, 0)
     if (lapStarted) {
