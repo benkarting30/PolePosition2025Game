@@ -24,7 +24,7 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-import { UpdateData, SetFL, GetLaptime, ResetLaptime } from "./Functs.js";
+import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
 function preload() {
@@ -39,6 +39,9 @@ function preload() {
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
+    console.log(GetLaptime)
+    console.log(GetFL)
+    
   }
 
 function setup() {
