@@ -43,7 +43,10 @@ function preload() {
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     console.log(window.LapTimeModule.GetLaptime())
     console.log(window.LapTimeModule.GetFL())
-    
+    console.log(user.browser.name)
+    if (window.localStorage.getItem("Cheated")){
+        
+    }
   }
 
  function setup() {
@@ -1065,6 +1068,9 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 }
 
 function AntiCheat(){
-    
-    window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+    if (laptime != 0 || fastestLap != 0){
+        alert("You have attempted to cheat!")
+        window.localStorage.getItem("Cheated", true)
+        window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+    }
 }
