@@ -43,9 +43,9 @@ function preload() {
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     console.log(window.LapTimeModule.GetLaptime())
     console.log(window.LapTimeModule.GetFL())
-    console.log(user.browser.name)
+    console.log(navigator.userAgent.includes("Chrome"))
     if (window.localStorage.getItem("Cheated")){
-        
+        throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
     }
   }
 
