@@ -1078,7 +1078,8 @@ function AntiCheat(){
     if (laptime != 0 || fastestLap != 0 || player.speed > 4){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
-        window.localStorage.setItem("Time", Date.now)
+        let time = Date.now()
+        window.localStorage.setItem("Time", time)
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
