@@ -1075,7 +1075,7 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 }
 
 function AntiCheat(){
-    if (laptime != 0 || fastestLap != 0 || player.speed > 3){
+    if (laptime != 0 || fastestLap != 0 || player.speed > 4){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
         window.localStorage.setItem("Time", Date.now)
