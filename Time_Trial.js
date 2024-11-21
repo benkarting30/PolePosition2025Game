@@ -846,7 +846,7 @@ function preload() {
 
  function draw() {
     clear()
-    background("#5a5348")
+    background(track.color)
     AntiCheat()
     camera.on()
     camera.zoom = 3
