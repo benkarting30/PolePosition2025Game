@@ -361,8 +361,8 @@ function preload() {
         WallBTrigger.h = tileSize
         WallBTrigger.w = tileSize
         player.overlaps(WallBTrigger, () =>{
-            WallsA.collider = 'n'
-            WallsA.visible = false
+            wallsA.collider = 'n'
+            wallsA.visible = false
             WallsB.collider = 's'
             WallsB.visible = true
         })
