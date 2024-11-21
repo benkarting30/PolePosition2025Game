@@ -5,5 +5,5 @@ function preload(){
 
 function setup(){
     createCanvas(windowWidth, windowHeight)
-    youare.positon(0,0)   
+    youare.positon(0,0)
 }
