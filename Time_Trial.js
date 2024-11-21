@@ -41,9 +41,9 @@ function preload() {
     EnTrackLimits = loadSound("Track_Limits.mp3")
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
-    console.log(window.LapTimeModule.GetLaptime())
-    console.log(window.LapTimeModule.GetFL())
-    console.log(navigator.userAgent.includes("Chrome"))
+    // console.log(window.LapTimeModule.GetLaptime())
+    // console.log(window.LapTimeModule.GetFL())
+    // console.log(navigator.userAgent.includes("Chrome"))
     if (window.localStorage.getItem("Cheated")){
         throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
     }
@@ -847,6 +847,7 @@ function preload() {
  function draw() {
     clear()
     background("#5a5348")
+    AntiCheat()
     camera.on()
     camera.zoom = 3
     camera.x = player.x
