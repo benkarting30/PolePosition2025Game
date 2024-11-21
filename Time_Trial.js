@@ -45,7 +45,11 @@ function preload() {
     // console.log(window.LapTimeModule.GetFL())
     // console.log(navigator.userAgent.includes("Chrome"))
     if (window.localStorage.getItem("Cheated")){
+        setup() = undefined
+        draw() = undefined
+        window.location.assign("Anti.html")
         throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
+        
     }
   }
 
