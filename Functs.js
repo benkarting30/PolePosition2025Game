@@ -22,7 +22,7 @@ window.LapTimeModule = {
   
 }
 
-window.AntiCheat(laptime, fastestLap, speed){
+window.AntiCheat = function(laptime, fastestLap, speed){
     if (laptime != 0 || fastestLap != 0 || speed > 4){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
