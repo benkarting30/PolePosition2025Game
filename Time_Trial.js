@@ -47,7 +47,10 @@ function preload() {
     if (window.localStorage.getItem("Cheated")){
         setup() = undefined
         draw() = undefined
-        window.location.assign("Anti.html")
+        let time = Date.now()
+        if (time - window.localStorage.getItem("Time") < 86400){
+            window.localStorage.clear()
+        }
         throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
         
     }
@@ -947,9 +950,8 @@ function controls(){
                 player.friction = 10;
                 player.direction = player.rotation;
             } else if (player.speed <= 0 ){
-                player.speed = 1
+                player.speed = -1
                 gear = "R"
-                player.direction = 180 - player.rotation;
             }
             
         } else {
@@ -1073,9 +1075,10 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 }
 
 function AntiCheat(){
-    if (laptime != 0 || fastestLap != 0){
+    if (laptime != 0 || fastestLap != 0 || player.speed > 3){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
+        window.localStorage.setItem("Time", Date.now)
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
