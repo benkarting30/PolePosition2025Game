@@ -855,7 +855,7 @@ function preload() {
  function draw() {
     clear()
     background(track.color)
-    AntiCheat()
+    AntiCheat(laptime, fastestLap, player.speed)
     camera.on()
     camera.zoom = 3
     camera.x = player.x
@@ -953,6 +953,8 @@ function controls(){
             } else if (player.speed <= 0 ){
                 player.speed = -1
                 gear = "R"
+                player.drag = 0
+                player.friction = 0
             }
             
         } else {
@@ -1075,12 +1077,12 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     }
 }
 
-function AntiCheat(){
-    if (laptime != 0 || fastestLap != 0 || player.speed > 4){
-        alert("You have attempted to cheat!")
-        window.localStorage.setItem("Cheated", true)
-        let time = Date.now()
-        window.localStorage.setItem("Time", time)
-        window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-    }
-}
+// function AntiCheat(){
+//     if (laptime != 0 || fastestLap != 0 || player.speed > 4){
+//         alert("You have attempted to cheat!")
+//         window.localStorage.setItem("Cheated", true)
+//         let time = Date.now()
+//         window.localStorage.setItem("Time", time)
+//         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+//     }
+// }

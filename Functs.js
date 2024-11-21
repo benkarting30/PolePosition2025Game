@@ -22,8 +22,8 @@ window.LapTimeModule = {
   
 }
 
-export function AntiCheat(){
-    if (laptime != 0 || fastestLap != 0 || player.speed > 4){
+export function AntiCheat(laptime, fastestLap, speed){
+    if (laptime != 0 || fastestLap != 0 || speed > 4){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
         let time = Date.now()
