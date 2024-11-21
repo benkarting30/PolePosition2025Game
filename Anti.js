@@ -1,9 +1,12 @@
 let youare;
 function preload(){
-    youare = createImage("youare.gif")
+    youare = loadImage("youare.gif")
 }
 
 function setup(){
     createCanvas(windowWidth, windowHeight)
-    youare.positon(0,0)
+}
+
+function draw(){
+    image(youare)
 }
