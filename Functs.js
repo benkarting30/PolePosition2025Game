@@ -22,7 +22,7 @@ window.LapTimeModule = {
   
 }
 
-export function AntiCheat(laptime, fastestLap, speed){
+window.AntiCheat(laptime, fastestLap, speed){
     if (laptime != 0 || fastestLap != 0 || speed > 4){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
@@ -31,3 +31,9 @@ export function AntiCheat(laptime, fastestLap, speed){
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
+
+/**
+ * @param {Integer} laptime - The 'laptime' variable
+ * @param {Integer} fastestLap - The 'fastest lap' variable
+ * @param {Float} speed - The player's current speed
+ */

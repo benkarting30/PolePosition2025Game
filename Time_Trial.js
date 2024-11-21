@@ -26,7 +26,6 @@ let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
 let laptime = 0
 let fastestLap = 0
-import { AntiCheat } from "./Functs.js";
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
