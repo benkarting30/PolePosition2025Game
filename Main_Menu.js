@@ -121,7 +121,6 @@ function timeTrialMaps() {
     text(`Viper’s Nest Circuit`, width / 2, 2 * height / 7)
     text("Silver Sands Speedway - w Chicane", width / 2, 3 * height / 7)
     push()
-    fill()
     text("Silver Sands Speedway - w/o Chicane", width / 2, 4 * height / 7)
     pop()
     text("Avus", width / 2, 5 * height / 7)

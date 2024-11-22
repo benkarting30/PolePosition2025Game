@@ -1,4 +1,4 @@
-let tileSize = 20
+let tileSize = 10
 let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, removeSlow, gravel
 let resButton
 let maps = [map1, map2, map3]
@@ -90,13 +90,6 @@ function preload() {
 
     if (colState){
 
-        trackLimit = new Group()
-        trackLimit.color = "red"
-        trackLimit.tile = 'b'
-        trackLimit.collider = colState //Collisions with the track limit will be processed as static
-        trackLimit.w = tileSize
-        trackLimit.h = tileSize
-
         player = new Sprite()
         player.collider = colState
         player.tile = 'x'
@@ -117,6 +110,15 @@ function preload() {
         }
         player.w = 11
         player.h = 6
+
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = colState //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
+
+
 
         track = new Group()
         track.tile = '.'
@@ -208,12 +210,6 @@ function preload() {
         gravel.w = tileSize
         gravel.h = tileSize
     } else {
-        trackLimit = new Group()
-        trackLimit.color = "red"
-        trackLimit.tile = 'b'
-        trackLimit.collider = 's' //Collisions with the track limit will be processed as static
-        trackLimit.w = tileSize
-        trackLimit.h = tileSize
 
         player = new Sprite()
         player.collider = 'd'
@@ -235,6 +231,15 @@ function preload() {
         }
         player.w = 11
         player.h = 6
+        
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = 's' //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
+
+
 
         track = new Group()
         track.tile = '.'
