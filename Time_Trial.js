@@ -1,4 +1,4 @@
-let tileSize = 1
+let tileSize = 20
 let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, removeSlow, gravel
 let resButton
 let maps = [map1, map2, map3]
