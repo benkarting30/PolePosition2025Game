@@ -1073,6 +1073,10 @@ function preload() {
     camera.x = player.x
     camera.y = player.y
     camera.on()
+    if (window.localStorage.getItem("Cheated")){
+        player.collider = 'd'
+        trackLimit.collider = 's'
+    }
     controls()
     window.LapTimeModule.UpdateData(frameRate())
     //console.log(laptime)
