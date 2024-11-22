@@ -231,7 +231,7 @@ function preload() {
         }
         player.w = 11
         player.h = 6
-        
+
         trackLimit = new Group()
         trackLimit.color = "red"
         trackLimit.tile = 'b'
@@ -383,6 +383,7 @@ function preload() {
         cheaterTrigger = new Group()
         cheaterTrigger.tile = 'f'
         cheaterTrigger.collider = 'n'
+        cheaterTrigger.visible = false
         cheaterTrigger.h = tileSize
         cheaterTrigger.w = tileSize
         player.collides(cheaterTrigger, () => {
