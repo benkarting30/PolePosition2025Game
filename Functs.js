@@ -28,6 +28,12 @@ window.AntiCheat = function(laptime, fastestLap, speed){
         window.localStorage.setItem("Cheated", true)
         let time = Date.now()
         window.localStorage.setItem("Time", time)
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
