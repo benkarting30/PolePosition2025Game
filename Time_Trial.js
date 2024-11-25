@@ -24,8 +24,8 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-let laptime = 0
-let fastestLap = 0
+let laptime = undefined
+let fastestLap = undefined
 let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger  
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
@@ -47,7 +47,7 @@ function preload() {
     // console.log(navigator.userAgent.includes("Chrome"))
     if (window.localStorage.getItem("Cheated")){
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400){
+        if (time - window.localStorage.getItem("Time") < 86400000){
             window.localStorage.clear()
         }
         sessionStorage.map = "mapC"
@@ -1067,7 +1067,7 @@ function preload() {
  function draw() {
     clear()
     background(track.color)
-    AntiCheat(laptime, fastestLap, player.speed)
+    AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     camera.on()
     camera.zoom = 3
     camera.x = player.x

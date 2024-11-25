@@ -22,8 +22,8 @@ window.LapTimeModule = {
   
 }
 
-window.AntiCheat = function(laptime, fastestLap, speed){
-    if (laptime != 0 || fastestLap != 0 || speed > 4){
+window.AntiCheat = function(laptime, fastestLap, speed, sensitivity){
+    if (laptime || fastestLap || speed > 4 || 0 < sensitivity < 6){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
         let time = Date.now()
@@ -42,4 +42,5 @@ window.AntiCheat = function(laptime, fastestLap, speed){
  * @param {Integer} laptime - The 'laptime' variable
  * @param {Integer} fastestLap - The 'fastest lap' variable
  * @param {Float} speed - The player's current speed
+ * @param {Integer} sensitivity - The set player sensitivity
  */
