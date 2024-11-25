@@ -38,7 +38,7 @@ function preload() {
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     if (window.localStorage.getItem("Cheated")){
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400){
+        if (time - window.localStorage.getItem("Time") < 86400000){
             window.localStorage.clear()
         }
         sessionStorage.map = "mapC"
@@ -1045,7 +1045,7 @@ function setup() {
 function draw() {
     clear()
     background(track.color)
-    AntiCheat(laptime, fastestLap, player.speed)
+    AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     background("#5a5348")
     let fps = 60
     camera.on()
