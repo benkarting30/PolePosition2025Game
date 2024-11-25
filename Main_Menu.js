@@ -6,19 +6,24 @@ let Music1, Music2, controls, RobotRock, ThickOfIt
 let collisionStat = false
 let dynamicStat = false
 let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
-
+// Settings packager is responsible for making settings accessable to the other files so it can be applied
 function settingsPackager(Playermap = undefined) {
     window.sessionStorage.clear()
+    // sessionStorage is cleared to prevent an override
     let selectedSettings = {sens: sensitivityLevel, diff:AILevel, qL: qLength, rL: rLength, noCol:collisionStat, dyCol: dynamicStat}
     let JSONSettings = JSON.stringify(selectedSettings)
+    // The JSONObject is stringified so it can be used in local storage
+
+    // If the player has selected time trial and a map on it, the packager also sends the map data
     if (Playermap){
         window.sessionStorage.setItem("map", Playermap)
     }
+    // The settings are then saved in session storage
     window.sessionStorage.setItem("Settings", JSONSettings)
 }
 
 /***
- * @param {string} - Takes Player Map as an input, if undefined, map data is not store.
+ * @param {string} - Takes Player Map as an input, if undefined, map data is not stored.
  */
 
 function preload() {
@@ -26,7 +31,6 @@ function preload() {
     Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
     RobotRock = loadSound('Audio/Robot Rock')
-    ThickOfIt = loadSound('Audio/Thick Of It')
     controls = loadImage('images/pixil-frame-0 (2).png')
 }
 
@@ -71,7 +75,7 @@ function NormalGameButton() {
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Race", width / 2, 2 * height / 4)
+    text("Grand Prix (WIP)", width / 2, 2 * height / 4)
 }
 
 function backButton() {
@@ -84,26 +88,30 @@ function backButton() {
 }
 
 function draw() {
+    /** The menu is placed into stages 
+     * These stages determine what buttons are shown to the player
+    */
     background(255)
-    if (menuStage === 0) {
+    if (menuStage === 0) { // The First stage visible to the player is the default stage of the menu
         playButton()
         settingsButton()
-    } else if (menuStage === 1) {
+    } else if (menuStage === 1) { // The second stage shows the gamemode options to the player
         NormalGameButton()
         timeTrialButton()
         backButton()
-    } else if (menuStage === 2) {
+    } else if (menuStage === 2) { //  The third stage displays the maps to the player in time trial
         timeTrialMaps()
-    } else if (menuStage === 3) {
+    } else if (menuStage === 3) { //  The fourth stage displays the main settings buttons to the player
         settingsButtons()
-    } else if (menuStage === 4) {
+    } else if (menuStage === 4) { // The fifth stage displays the game altering settings to the player
         superSettingsButtons()
-    } else if (menuStage === 5){
+    } else if (menuStage === 5){ // The fifth stage shows the controls to the player
         controlsScreen()
     }
 }
 
 function timeTrialMaps() {
+    // Create a custom button with text on it containing the name with each map
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 1 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 2 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -116,7 +124,7 @@ function timeTrialMaps() {
     textAlign(CENTER, CENTER)
     push()
     fill('gold')
-    text("Vortex Velocity Raceway", width / 2, 1 * height / 7)
+    text("Vortex Velocity Raceway", width / 2, 1 * height / 7) // The track used in the weekly championship is highlighted in gold
     pop()
     text(`Viper’s Nest Circuit`, width / 2, 2 * height / 7)
     text("Silver Sands Speedway - w Chicane", width / 2, 3 * height / 7)
@@ -129,6 +137,7 @@ function timeTrialMaps() {
 }
 
 function settingsButtons() {
+    // create a custom button with text on it containing the value of each variable
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 2 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 3 * height / 8 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -141,7 +150,7 @@ function settingsButtons() {
     textAlign(CENTER, CENTER)
     text("Settings", width / 2, 1 * height / 8)
     text(`Sensitivity ${sensitivityLevel}`, width / 2, 2 * height / 8)
-    text(`AI Difficulty ${AILevel}`, width / 2, 3 * height / 8)
+    text(`AI Difficulty ${AILevel}`, width / 2, 3 * height / 8) // Has no effect
     text(`Qualifying Length ${qLength}`, width / 2, 4 * height / 8)
     text(`Race Length ${rLength}`, width / 2, 5 * height / 8)
     text(`Controls`, width / 2, 6 * height / 8)
@@ -149,6 +158,7 @@ function settingsButtons() {
 }
 
 function superSettingsButtons() {
+    // create a custom button with text on it containing the value of each variable
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 2 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 3 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -165,6 +175,7 @@ function superSettingsButtons() {
 
 }
 
+//display the controls image
 function controlsScreen(){
     imageMode(CENTER)
     noSmooth()
@@ -172,6 +183,13 @@ function controlsScreen(){
 }
 
 function mouseClicked() {
+    /**
+     * The mouseClicked() function is a mess. I know.
+     * Each outer if statement is dedicated to a stage of the menu seen above
+     * Inner if statements check to see if the user has clicked within the boundary of a button.
+     */
+
+
     if (menuStage < 2) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > height / 4 - buttonHeight / 2 && mouseY < height / 4 + buttonHeight / 2) {
             if (menuStage != 2) {
@@ -292,6 +310,11 @@ function mouseClicked() {
 }
 
 function backgroundMusic() {
+    /*The backgroundMusic function contains easter eggs for the player to find
+    1. There is 1 in the 64 bit ingeter limit chance that the incorrect music plays (music1)
+    2. There is a 1/100 chance that the correct music plays but louder 
+    3. There is a 1/200 chance that "Daft Punk - Robot Rock" plays instead of the correct music
+    */
     if (floor(random(0, 9223372036854775807)) == 9223372036854775807) {
         Music1.play()
         Music1.loop()
