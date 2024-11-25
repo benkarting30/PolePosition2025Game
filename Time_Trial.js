@@ -24,8 +24,8 @@ let lapInvalid = false
 let engineOn = true
 let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
-let laptime = undefined
-let fastestLap = undefined
+let laptime = 0
+let fastestLap = 0
 let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger  
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 

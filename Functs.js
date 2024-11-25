@@ -23,7 +23,7 @@ window.LapTimeModule = {
 }
 
 window.AntiCheat = function(laptime, fastestLap, speed, sensitivity){
-    if (laptime || fastestLap || speed > 4 || 0 < sensitivity < 6){
+    if (laptime || fastestLap || speed > 4 || 6 < sensitivity < 0){
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true)
         let time = Date.now()
