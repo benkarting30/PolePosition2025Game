@@ -1061,7 +1061,7 @@ function draw() {
         engineidle.loop()
         engineOn = true
     }
-    if (floor(window.LapTimeModule.getLaptime()) == 30 && !hasPlayedRemaining) {
+    if (floor(window.LapTimeModule.GetLaptime()) == 30 && !hasPlayedRemaining) {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
@@ -1094,10 +1094,10 @@ function draw() {
     textSize(24)
     if (window.LapTimeModule.GetFL()) {
         rect(0, 0, 250, 125, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.getLaptime() / 60)}:${(window.LapTimeModule.getLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(fastestLap % 60).toFixed(3)} (${window.LapTimeModule.getFL()})`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(fastestLap % 60).toFixed(3)} (${window.LapTimeModule.getFL()})`, 10, 10)
     } else {
         rect(0, 0, 250, 100, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.getLaptime() / 60)}:${(window.LapTimeModule.getLaptime() % 60).toFixed(3)}`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
     if (endGame) {
