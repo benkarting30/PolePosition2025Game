@@ -1,4 +1,3 @@
-var easystar = new EasyStar.js()
 let tileSize = 10
 let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, pathfinderDebug1, pathfinderDebug2, gravel
 let resButton
@@ -24,26 +23,7 @@ let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
 let playerHasNotMoved = true
-let map1Nodes = [{x: 325.1746952803441, y: 53.78076408823799},
-  {x: 454.15458541046894, y: 73.54622498061785},
-  {x: 487.1521621179894, y: 212.55353684115443},
-  {x: 452.26690592745774, y: 293.4279651047699},
-  {x: 467.80264714988965, y: 358.14149385053094},
-  {x: 493.22589037241636, y: 475.55485313211557},
-  {x: 562.6997338815032, y: 486.66790715908604},
-  {x: 608.0528786625838, y: 538.8408289101872},
-  {x: 593.9527993770171, y: 604.6261326203155},
-  {x: 549.3165174450747, y: 621.1110743079184},
-  {x: 428.3633993404803, y: 623.4455656805211},
-  {x: 357.76089991852075, y: 601.444053317555},
-  {x: 375.78219117862716, y: 504.9814310418086},
-  {x: 378.56320760671224, y: 428.7229151057332},
-  {x: 361.975963257027, y: 410.57084253942406},
-  {x: 60.217517142867095, y: 385.54964896232525},
-  {x: 33.907759021852684, y: 287.1437001535496},
-  {x: 39.68673898644716, y: 119.1793833252282}, 
-  {x: 62.387297228907016, y: 62.82875829374666},
-  {x: 230.36462766982532, y: 64.52690301939735}]
+let map1Nodes = []
 let map2nodes = [
   {x: 152.14940131517432, y: 395.01923002173186},
 {x: 209.35889354890654, y: 237.83744193108805},
@@ -225,213 +205,449 @@ function preload() {
 }
 
 function setup() {
-  if (window.sessionStorage.track != undefined){
-    mapSelected = window.sessionStorage.track
-  } else {
-    window.location.assign("Quali.html")
-    //mapSelected = "map3"
-  }
+    // Create Canvas and set background and frameRate
+    createCanvas(windowWidth, windowHeight);
+    background(255);
+    frameRate(60);
+    defaultFont = textFont()
+    mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
+    // Create tile types
 
-  mapSelected = "map3"
-  createCanvas(windowWidth, windowHeight)
-  trackLimit = new Group()
-  trackLimit.color = '#FF0000'
-  trackLimit.tile = 'b'
-  trackLimit.collider = 's' //Collisions with the track limit will be processed as static
-  trackLimit.w = tileSize
-  trackLimit.h = tileSize
-
-  player = new Sprite()
-  player.collider = 'd'
-  player.tile = 'x'
-  player.color = 'yellow'
-  player.image = random(carImages)
-  player.scale = 0.045
-  player.direction = Math.PI / 2
-  if (mapSelected == "map2") {
-    player.direction = -90
-  }
-  player.w = 11
-  player.h = 6
-
-  track = new Group()
-  track.tile = '.'
-  track.w = tileSize;
-  track.h = tileSize;
-  track.collider = "n";
-  track.color = "#5a5348";
-  track.visible = true;
-
-  start = new Group()
-  start.collider = "n"
-  start.tile = "s"
-  start.visible = true
-  start.w = tileSize
-  start.h = tileSize
-  player.overlapping(start, function () {
-    StartLineOverlap()
-  })
-
-  timingLine = new Group();
-  timingLine.collider = "n";
-  timingLine.tile = "t";
-  timingLine.visible = false;
-  timingLine.color = "orange";
-  timingLine.w = tileSize;
-  timingLine.h = tileSize;
-  player.overlapping(timingLine, function () {
-    TimingOverlap()
-  })
-
-  testing = new Group();
-  testing.collider = "n";
-  testing.tile = "=";
-  testing.visible = true;
-  testing.color = "orange";
-  testing.w = tileSize;
-  testing.h = tileSize;
-
-  slowArea = new Group()
-  slowArea.collider = "n"
-  slowArea.tile = "B"
-  slowArea.color = "#969292"
-  slowArea.w = tileSize
-  slowArea.h = tileSize
-  slowArea.visible = false
-  player.overlaps(slowArea, function () {
-      slowed = true
-  })
-
-  removeSlow = new Group()
-  removeSlow.collider = 'n'
-  removeSlow.tile = 'R'
-  removeSlow.w = tileSize
-  removeSlow.h = tileSize
-  removeSlow.visible = true
-  removeSlow.color = '#FF0000'
-  removeSlow.opacity = 0.5
-  player.overlaps(removeSlow, function () {
-    if (slowed){
-        trackLimitsAudio.play()
+    let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+    PlayerSensitivity = settingsJSON.sens
+    console.log(PlayerSensitivity)
+    let debuged = settingsJSON.debug
+    if (settingsJSON.noCol){
+        colState = 'n'
+    } else if (settingsJSON.dyColD){
+        colState = 'd'
+    } else {
+        colState = undefined
     }
-    slowed = false
-  })
-
-  startSlowArea = new Group()
-  startSlowArea.collider = "n"
-  startSlowArea.tile = "S"
-  startSlowArea.color = "#969292"
-  startSlowArea.visible = false
-  startSlowArea.w = tileSize
-  startSlowArea.h = tileSize
-  player.overlapping(startSlowArea, function () {
-      StartLineOverlap()
-  })
-
-  Cars = new Group()
-  Cars.tile = "c"
-  Cars.w = 11
-  Cars.h = 6
-  Cars.counter = 0
-  Cars.speed = 0
-  Cars.collider = 'd'
-  Cars.image = random(carImages)
-  Cars.scale = 0.045
-  Cars.lapCount = 0 
-  Cars.hasFinished = false
-  Cars.Indentifier = NaN
-
-  gravel = new Group()
-  gravel.tile = "G"
-  gravel.color = '#e4b382'
-  gravel.collider = 'n'
-  gravel.visible = 'true'
-  gravel.w = tileSize
-  gravel.h = tileSize
 
 
-  // pathfinderDebug1 = new Group()
-  // pathfinderDebug1.collider = "n"
-  // pathfinderDebug1.tile = "E"
-  // console.log(pathfinderDebug1.x, pathfinderDebug1.y)
 
-  // pathfinderDebug2 = new Group()
-  // pathfinderDebug2.collider = "n"
-  // pathfinderDebug2.tile = "e"
-  // console.log(pathfinderDebug2.x, pathfinderDebug2.y)
+    if (colState){
 
+        player = new Sprite()
+        player.collider = colState
+        player.tile = 'x'
+        player.color = 'yellow'
+        if (debuged || PlayerSensitivity == 1){
+            player.image = boatImg
+            player.scale = 0.75
+        } else {
+            player.image = random(carImages)
+            player.scale = 0.045
+        }
+        player.direction = Math.PI / 2
+        if (mapSelected == "map2") {
+            player.rotation = 0
+        }
+        if (mapSelected == "map4"){
+            player.rotation = 138
+        }
+        player.w = 11
+        player.h = 6
+
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = colState //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
+
+
+
+        track = new Group()
+        track.tile = '.'
+        track.w = tileSize;
+        track.h = tileSize;
+        track.collider = colState;
+        if (PlayerSensitivity == 1){
+            track.color = "#2074bc"
+        } else {
+            track.color = "#5a5348";
+        }
+        track.visible = true;
+        player.overlapping(track, function(){
+            slowed = false
+        })
+
+        start = new Group()
+        start.collider = colState
+        start.tile = "s"
+        start.visible = true
+        start.w = tileSize
+        start.h = tileSize
+        player.overlapping(start, function () {
+            StartLineOverlap()
+        })
+
+        timingLine = new Group();
+        timingLine.collider = colState;
+        timingLine.tile = "t";
+        timingLine.visible = false;
+        timingLine.color = "orange";
+        timingLine.w = tileSize;
+        timingLine.h = tileSize;
+        player.overlapping(timingLine, function () {
+            TimingOverlap()
+        })
+
+        testing = new Group();
+        testing.collider = colState;
+        testing.tile = "=";
+        testing.visible = true;
+        testing.color = "orange";
+        testing.w = tileSize;
+        testing.h = tileSize;
+
+        slowArea = new Group()
+        slowArea.collider = colState
+        slowArea.tile = "B"
+        slowArea.color = "#969292"
+        slowArea.w = tileSize
+        slowArea.h = tileSize
+        slowArea.visible = false
+        player.overlaps(slowArea, function () {
+            lapInvalid = true
+            slowed = true
+        })
+
+        removeSlow = new Group()
+        removeSlow.collider = colState
+        removeSlow.tile = 'R'
+        removeSlow.w = tileSize
+        removeSlow.h = tileSize
+        removeSlow.visible = true
+        removeSlow.color = '#FF0000'
+        removeSlow.opacity = 0.5
+        player.overlaps(removeSlow, function () {
+            if (slowed){
+                EnTrackLimits.play()
+            }
+            slowed = false
+        })
+
+        startSlowArea = new Group()
+        startSlowArea.collider = colState
+        startSlowArea.tile = "S"
+        startSlowArea.color = "#969292"
+        startSlowArea.visible = false
+        startSlowArea.w = tileSize
+        startSlowArea.h = tileSize
+        player.overlapping(startSlowArea, function () {
+            StartLineOverlap()
+        })
+
+        gravel = new Group()
+        gravel.tile = "G"
+        gravel.color = '#e4b382'
+        gravel.collider = colState
+        gravel.visible = 'true'
+        gravel.w = tileSize
+        gravel.h = tileSize
+    } else {
+
+        player = new Sprite()
+        player.collider = 'd'
+        player.tile = 'x'
+        player.color = 'yellow'
+        if (debuged || PlayerSensitivity == 1){
+            player.image = boatImg
+            player.scale = 0.75
+        } else {
+            player.image = random(carImages)
+            player.scale = 0.045
+        }
+        player.direction = Math.PI / 2
+        if (mapSelected == "map2") {
+            player.rotation = 0
+        }
+        if (mapSelected == "map4"){
+            player.rotation = 138
+        }
+        player.w = 11
+        player.h = 6
+
+        trackLimit = new Group()
+        trackLimit.color = "red"
+        trackLimit.tile = 'b'
+        trackLimit.collider = 's' //Collisions with the track limit will be processed as static
+        trackLimit.w = tileSize
+        trackLimit.h = tileSize
+
+
+
+        track = new Group()
+        track.tile = '.'
+        track.w = tileSize;
+        track.h = tileSize;
+        track.collider = "n";
+        if (PlayerSensitivity == 1){
+            track.color = "#2074bc"
+        } else {
+            track.color = "#5a5348";
+        }
+        track.visible = true;
+        player.overlapping(track, function(){
+            slowed = false
+        })
+
+        start = new Group()
+        start.collider = "n"
+        start.tile = "s"
+        start.visible = true
+        start.w = tileSize
+        start.h = tileSize
+        player.overlapping(start, function () {
+            StartLineOverlap()
+        })
+
+        timingLine = new Group();
+        timingLine.collider = "n";
+        timingLine.tile = "t";
+        timingLine.visible = false;
+        timingLine.color = "orange";
+        timingLine.w = tileSize;
+        timingLine.h = tileSize;
+        player.overlapping(timingLine, function () {
+            TimingOverlap()
+        })
+
+        testing = new Group();
+        testing.collider = "n";
+        testing.tile = "=";
+        testing.visible = true;
+        testing.color = "orange";
+        testing.w = tileSize;
+        testing.h = tileSize;
+
+        slowArea = new Group()
+        slowArea.collider = "n"
+        slowArea.tile = "B"
+        slowArea.color = "#969292"
+        slowArea.w = tileSize
+        slowArea.h = tileSize
+        slowArea.visible = false
+        player.overlaps(slowArea, function () {
+            lapInvalid = true
+            slowed = true
+        })
+
+        removeSlow = new Group()
+        removeSlow.collider = 'n'
+        removeSlow.tile = 'R'
+        removeSlow.w = tileSize
+        removeSlow.h = tileSize
+        removeSlow.visible = true
+        removeSlow.color = '#FF0000'
+        removeSlow.opacity = 0.5
+        player.overlaps(removeSlow, function () {
+            if (slowed){
+                EnTrackLimits.play()
+            }
+            slowed = false
+        })
+
+        startSlowArea = new Group()
+        startSlowArea.collider = "n"
+        startSlowArea.tile = "S"
+        startSlowArea.color = "#969292"
+        startSlowArea.visible = false
+        startSlowArea.w = tileSize
+        startSlowArea.h = tileSize
+        player.overlapping(startSlowArea, function () {
+            StartLineOverlap()
+        })
+
+        gravel = new Group()
+        gravel.tile = "G"
+        gravel.color = '#e4b382'
+        gravel.collider = 'n'
+        gravel.visible = true
+        gravel.w = tileSize
+        gravel.h = tileSize
+        
+        wallsA = new Group()
+        wallsA.tile = "Y"
+        wallsA.color = "red"
+        wallsA.collider = 's'
+        wallsA.visible = true
+        wallsA.w = tileSize
+        wallsA.h = tileSize
+
+        WallsB = new Group()
+        WallsB.tile = 'y'
+        WallsB.color = 'red'
+        WallsB.collider = 's'
+        WallsB.visible = true   
+        WallsB.w = tileSize
+        WallsB.h = tileSize
+
+        WallATrigger = new Group()
+        WallATrigger.tile = 'V'
+        WallATrigger.collider = 'n'
+        WallATrigger.visible = false
+        WallATrigger.h = tileSize
+        WallATrigger.w = tileSize
+        player.overlaps(WallATrigger, () =>{
+            WallsB.collider = 'n'
+            WallsB.visible = false
+            wallsA.collider = 's'
+            wallsA.visible = true
+        })
+
+        WallBTrigger = new Group()
+        WallBTrigger.tile = 'v'
+        WallBTrigger.collider = 'n'
+        WallBTrigger.visible = false
+        WallBTrigger.h = tileSize
+        WallBTrigger.w = tileSize
+        player.overlaps(WallBTrigger, () =>{
+            wallsA.collider = 'n'
+            wallsA.visible = false
+            WallsB.collider = 's'
+            WallsB.visible = true
+        })
+
+      }
+
+      Cars = new Group()
+        Cars.tile = "c"
+        Cars.w = 11
+        Cars.h = 6
+        Cars.counter = 0
+        Cars.speed = 0
+        Cars.collider = 'd'
+        Cars.image = random(carImages)
+        Cars.scale = 0.045
+        Cars.lapCount = 0 
+        Cars.hasFinished = false
+        Cars.Indentifier = NaN
+      
+      AiATrigger = new Group()
+      AiATrigger.tile = 'P'
+      Cars.overlaps(AiATrigger, removeAiCol)
+      AiATrigger.visible = false
+      AiATrigger.collider = 'n'
+      AiATrigger.w = tileSize
+      AiATrigger.h = tileSize
+
+      AiBTrigger = new Group()
+      AiBTrigger.tile = 'p'
+      Cars.overlaps(AiBTrigger, addAiCol)
+      AiBTrigger.visible = false
+      AiBTrigger.collider = 'n'
+      AiBTrigger.w = tileSize
+      AiBTrigger.h = tileSize
 
 
   switch ((window.sessionStorage.track)[3]) {
     case "1":
         map1 = new Tiles(
             [
-                ".................................................................",
-                ".....b...........................................................",
-                "...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.............",
-                ".bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............",
-                ".bbbb.......................s..................bbbbbb............",
-                ".bbb.......x...c...c...c....s....................bbbbb...........",
-                ".bb.........................s.....................bbbbb..........",
-                ".b..........................s......................bbbb..........",
-                ".b...........c...c...c...c..s......................bbbb..........",
-                ".b..........................s......................bbbb..........",
-                ".b.....bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".b.....b....................................b......bbb...........",
-                ".bb...bb....................................b......bbb...........",
-                "..b...b.....................................b......bbb...........",
-                "..b...b.....................................b......bbb...........",
-                "..b...b.....................................b......bbb...........",
-                ".bb...bb....................................b.....bbbb...........",
-                ".b.....b...................................b.....bbbb............",
-                ".b.....b..................................b.....bbbb.............",
-                ".b.....b..................................b.....bbb..............",
-                ".b.....b..................................b.....bbb..............",
-                ".b.....b..................................b.....bbb..............",
-                ".b.....b..................................b.....bbb..............",
-                ".b.....b..................................b.....bbbb.............",
-                ".b.....b.................................bb......bbbb............",
-                ".b.....b..................................bb.....bbbb............",
-                ".b.....b...................................bb....bbbb............",
-                ".b.....bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb....bb.....bb............",
-                ".b.....bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb..bb.....bb............",
-                ".b.....................................bbbb.bb.....bb............",
-                ".bb.....................................bbb.bb.....bb............",
-                "..b.......................................b.bb.....bbb...........",
-                "..bb......................................b.bb.....bb............",
-                "...bbb....................................b.bb.....bb............",
-                ".....bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb......b.bb.....bb............",
-                "................................bbbb......b.bb.....bbbbbbbbbbbbb.",
-                "................................bbbb......b.bb.....bbbbbbbbbbbbbb",
-                ".................................bbb......b.bb...............bbbb",
-                "..................................bb......b.bb................bbb",
-                "..................................bb......b.bb................bbb",
-                "..................................bb......b.bbb................bb",
-                "..................................bb......b.bbbbb..............bb",
-                "..................................bb......b.bbbbbbbbbbbbb......bb",
-                "..................................bb......b.bbbbbbbbbbbbb......bb",
-                ".................................bbb.....bb.bbbbbbbbbbbbb......bb",
-                "..............................bbbbb.....bbb....bbbbbbbbbb......bb",
-                "..............................bbbb.....bbbb......bbbbbbbb......bb",
-                "..............................bbbb.....bbbbbbbbbbbbbbbbbb......bb",
-                "..............................bbbb.....bbbbbbbbbbbbbbbbbb......bb",
-                "..............................bbbb.....bbbbbbbbbbbbbbbbbb......bb",
-                "..............................bbbb..............t..............bb",
-                "..............................bbbb..............t..............bb",
-                "..............................bbbb..............t..............bb",
-                "..............................bbbbb.............t.............bbb",
-                ".............................bbbbbbbb...........t...........bbbbb",
-                "..............................bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-                "...............................bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "............................................................................bbbbbbbbbbbbb...........",
+                "..............................bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb......bb.............bbb........",
+                "............................bb........................s.............bb...bb................bb.......",
+                "..........................bb................c.c.c.c.c.s...............bb.b..................bb......",
+                "........................bb............................s................b.b...................b......",
+                "......................bb..............................s................b.b...................b......",
+                "....................bb.....................x.c.c.c.c..s................bb....................b......",
+                "...................b..................................s........................bbb...........b......",
+                ".................bb.......................bbbbbbbbbbbbbbbbbbbbbbbbb............b.bb..........b......",
+                "...............bb......................bbbb.......................bb..........bb..b..........b......",
+                ".............bb.....................bbbb...........................b.........bb...b..........b......",
+                "...........bb......................bb..............................b........bb....b..........b......",
+                ".........bb......................bbb...............................bb......bb.....bvvvvvvvvvvb......",
+                ".......bb.......................bb..................................bb....bb......b.........bb......",
+                "......b.....................bbbb.....................................bbbbbb......bb.........b.......",
+                "......b...................bbb....................................................b..........b.......",
+                "......b................bbb......................................................bb.........bb.......",
+                "......b.........bbbbbbb........................................................bb..........b........",
+                "......b........bb..............................................................b..........bb........",
+                "......b........b..............................................................bb..........b.........",
+                ".....b.........b..............................................................b..........bb.........",
+                ".....b.........b.............................................................bb..........b..........",
+                ".....b.........b............................................................bb...........b..........",
+                ".....b.........bb..........................................................bb............b..........",
+                ".....b..........bb........................................................bb............b...........",
+                ".....b...........bb.....................................................bbb.............b...........",
+                ".....b.............b..................................................bbb..............bb...........",
+                "......b.............bb..............................................bbb................b............",
+                ".......b..............bb.........................................bbb.................bb.............",
+                "........b.............Vbbb...................................bbbbb.................bbb..............",
+                "........b............V...bb................................bbb....................bb................",
+                ".........b..........V......bb.............................bb.....................bb.................",
+                "..........b........V.........b...........................bb....................bbb..................",
+                "...........b.....VV...........b.........................bb.....................b....................",
+                "............b...V..............bb......................bb....................bbb....................",
+                ".............b.V.................bb....................b....................bb......................",
+                ".............bV...................bbb.................bbP.................bbb.......................",
+                "..............b.....................bbbb..............b..P...............bb.........................",
+                "...............b......................pbb.............b...P.............bb..........................",
+                "................b....................p.bb............bb....P..........bbb...........................",
+                ".................bb.................p...bbbbbbbbbbbbbbY.....PP......bbb.............................",
+                "...................bb..............p.....yy...........YYY.....P....bb...............................",
+                ".....................bb...........p......y..............Y......P..bb................................",
+                ".......................bb.........p.....yy..............YYY.....Pbb.................................",
+                ".........................bb......p.....yy.................YY...bbb..................................",
+                "...........................bb...p.....yy...................YY.bb....................................",
+                ".............................bbp......y.....................Ybb.....................................",
+                "...............................bb...yyy.....................bb......................................",
+                ".................................bb.y...................yyyb........................................",
+                "...................................b.................yyyy.bb........................................",
+                ".................................bbYY..............yyy.....bbbb.....................................",
+                "................................b...YY............yy.........Pbbbbb.................................",
+                "...............................b.....YYY.....bbbbb..........P......bbbbb............................",
+                ".............................bbp.......YY...bb...bb........P...........bbb..........................",
+                "............................b...p.......Ybbbb.....bb......P...............bbb.......................",
+                "...........................b.....p......bb.........bb....P..................bbb.....................",
+                ".........................bb......p.....bb............bbbP.....................bbbb..................",
+                "........................b.........p...bb................bbb......................bbb................",
+                "......................bb...........pbb....................bbb......................bbb..............",
+                ".....................b.............bb.......................bbb......................bb.............",
+                "....................b.............b............................bb......................b............",
+                "..................bb...........bbb..............................bbb....................bb...........",
+                ".................b...........bbb................bbbbbbbb..........bbb...................b...........",
+                "..............bbb...........bb...............bbb.......bbb...........bbb................b...........",
+                "..............b............bb...............bb...........bbb...........bbbb..............b..........",
+                "..............b...........b................bb..............bbbb...........bbb............b..........",
+                "..............b..........b................bbt................Vbbbb..........bb...........b..........",
+                ".............b..........bb...............bb..t...............V...bbbb........bbb.........b..........",
+                ".............b..........b...............bb...t...............V......bbbb.......bb........b..........",
+                ".............b..........b..............bb.....t..............V.........bbbbbbbbbb........b..........",
+                ".............b..........b.............bb......t..............V...........................b..........",
+                "............bb..........bb............b........t.............V...........................b..........",
+                "............b............bbb.........bb........t.............V...........................b..........",
+                "............b..............bb........b..........t.......bbbbbV...........................b..........",
+                "............b...............bbbbbb..bb..........t...bbbb....bbbbbb.......................b..........",
+                "............b...................vbbbb............tbbb............bbb.....................b..........",
+                "............b...................v................bb................bbbb................bb...........",
+                "............bb.................v................bb....................bbb..............b............",
+                ".............b.................v...............bb.......................bbbb..........bb............",
+                "..............b...............v................b...........................bbbbb....bbb.............",
+                "..............bb..............v...............bb................................bbbbb...............",
+                "................b.............v...............b.....................................................",
+                "................b............v...............bb.....................................................",
+                ".................bb..........v...............b......................................................",
+                "...................b........v...............bb......................................................",
+                "....................bb......v..............b........................................................",
+                ".....................bbb...v.............bbb........................................................",
+                ".......................bbbbv...........bbb..........................................................",
+                "..........................bbbbbbbbbbbbbb............................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
+                "....................................................................................................",
             ],
             0,
             0,
@@ -1207,4 +1423,12 @@ function SlowZone() {
   } else {
     slowed = false
   }
+}
+
+function removeAiCol(car, AiATrigger){
+  car.collider = 'n'
+}
+
+function addAiCol(car, AiBTrigger){
+  car.collider = 'd'
 }
