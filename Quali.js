@@ -40,9 +40,10 @@ function preload() {
         let time = Date.now()
         if (time - window.localStorage.getItem("Time") < 86400000 || true){
             window.localStorage.clear()
-        }
+        } else {
         sessionStorage.map = "mapC"
         throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
+        }
         
     }
 }
