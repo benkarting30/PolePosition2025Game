@@ -57,6 +57,7 @@ function setup() {
 
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
+    console.log(PlayerSensitivity)
     let debuged = settingsJSON.debug
     if (settingsJSON.noCol){
         colState = 'n'
