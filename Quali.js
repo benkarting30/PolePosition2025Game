@@ -1094,7 +1094,7 @@ function draw() {
     textSize(24)
     if (window.LapTimeModule.GetFL()) {
         rect(0, 0, 250, 125, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(fastestLap % 60).toFixed(3)} (${window.LapTimeModule.getFL()})`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(window.LapTimeModule.GetFL() % 60).toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
         rect(0, 0, 250, 100, 0, 0, 20, 0)
         text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}`, 10, 10)
@@ -1211,25 +1211,28 @@ function StartLineOverlap() {
     if (!sessionStarted) {
         sector = 1
         sessionStarted = true
-        laptime = 0
+        window.LapTimeModule.ResetLaptime()
         lapStarted = true
         player.color = 'blue'
+        lapInvalid = false
     }
     if (!lapStarted && !sessionComplete) {
         lapStarted = true
-        qLaps[lap] = laptime
+        qLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
-        FastestLapCalculation(laptime)
-        laptime = 0
-    }
-    if (timeRemaining <= 0) {
-        sessionComplete = true
+        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
+        window.LapTimeModule.ResetLaptime()
+        lapInvalid = false
+        if (timeRemaining <= 0){
+            sessionComplete = true
+            lapStarted = false
+        }
     }
     if (!lapStarted && sessionComplete) {
-        qLaps[lap] = laptime
+        qLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
-        FastestLapCalculation(laptime)
-        laptime = 0
+        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
+        window.LapTimeModule.ResetLaptime()
         endGame = true
     }
 }
@@ -1241,17 +1244,20 @@ function TimingOverlap() {
 
 /**
  * @param {Float} prevLap - The laptime given as a comparison to the fastest lap
+ * @param {Boolean} InvalidLap - Is the player's current lap invalid?
  */
 
-function FastestLapCalculation(prevLap) {
-
-    if (fastestLap) {
-        if (prevLap < fastestLap) {
-            fastestLap = prevLap
-            fastestOnLap = lap - 1
+function FastestLapCalculation(prevLap, InvalidLap) {
+    let fast = window.LapTimeModule.GetFL()
+    if (!InvalidLap){
+        if (fast) {
+            if (prevLap < fast) {
+                window.LapTimeModule.SetFL(prevLap)
+                fastestOnLap = lap - 1
+            }
+        } else {
+            window.LapTimeModule.SetFL(prevLap)
         }
-    } else {
-        fastestLap = prevLap
     }
 }
 
