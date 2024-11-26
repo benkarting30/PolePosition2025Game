@@ -1047,6 +1047,7 @@ function setup() {
 function draw() {
     clear()
     background(track.color)
+    debugger
     AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     background("#5a5348")
     let fps = 60
