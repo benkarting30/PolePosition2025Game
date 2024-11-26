@@ -1041,6 +1041,7 @@ function setup() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
+    debugger
 }
 
 function draw() {
