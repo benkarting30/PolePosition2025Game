@@ -259,7 +259,11 @@ function preload() {
         start = new Group()
         start.collider = "n"
         start.tile = "s"
-        start.visible = true
+        if (PlayerSensitivity == 1){
+            start.visible = false
+        } else {
+            start.visible = true
+        }
         start.w = tileSize
         start.h = tileSize
         player.overlapping(start, function () {
