@@ -31,7 +31,7 @@ window.AntiCheat = function(laptime, fastestLap, speed, sensitivity){
     console.log(sensitivity)
     debugger
     // check whether the state of the fake laptime and fastest lap variables and whether speed and sensitivity are in a certain range
-    if (laptime != 24.231 || fastestLap != 22.342 || speed > 4 || (6>sensitivity || 0<sensitivity)){
+    if (laptime != 24.231 || fastestLap != 22.342 || speed > 4 || (6<sensitivity || 0<sensitivity)){
         // inform the player that they have been caught cheating
         alert("You have attempted to cheat!")
         window.localStorage.setItem("Cheated", true) // Create a item in local storage which informs the code the player cheated upon attempting to resume

@@ -1049,25 +1049,24 @@ function draw() {
     background(track.color)
     AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     background("#5a5348")
-    let fps = 60
     camera.on()
     camera.zoom = 3
     camera.x = player.x
     camera.y = player.y
     camera.on()
     controls()
-    laptime += 1 / fps
+    window.LapTimeModule.UpdateData(frameRate())
     if (!enginestart.isPlaying() && !engineOn) {
         engineidle.play()
         engineidle.loop()
         engineOn = true
     }
-    if (floor(laptime) == 30 && !hasPlayedRemaining) {
+    if (floor(window.LapTimeModule.getLaptime()) == 30 && !hasPlayedRemaining) {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
     if (timeRemaining > 0) {
-        timeRemaining -= 1 / fps
+        timeRemaining -= 1 / frameRate()
     } else {
         if (countdown > 0) {
             countdown--
@@ -1093,12 +1092,12 @@ function draw() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
-    if (fastestLap) {
+    if (window.LapTimeModule.GetFL()) {
         rect(0, 0, 250, 125, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(laptime / 60)}:${(laptime % 60).toFixed(3)}\nFastest: ${floor(fastestLap / 60)}:${(fastestLap % 60).toFixed(3)} (${fastestOnLap})`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.getLaptime() / 60)}:${(window.LapTimeModule.getLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(fastestLap % 60).toFixed(3)} (${window.LapTimeModule.getFL()})`, 10, 10)
     } else {
         rect(0, 0, 250, 100, 0, 0, 20, 0)
-        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(laptime / 60)}:${(laptime % 60).toFixed(3)}`, 10, 10)
+        text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.getLaptime() / 60)}:${(window.LapTimeModule.getLaptime() % 60).toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
     if (endGame) {
