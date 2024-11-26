@@ -38,7 +38,7 @@ function preload() {
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     if (window.localStorage.getItem("Cheated")){
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400000){
+        if (time - window.localStorage.getItem("Time") < 86400000 || true){
             window.localStorage.clear()
         }
         sessionStorage.map = "mapC"
@@ -1041,7 +1041,6 @@ function setup() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
-    debugger
 }
 
 function draw() {
