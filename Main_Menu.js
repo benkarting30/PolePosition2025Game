@@ -41,6 +41,9 @@ function setup() {
     textSize(54)
     backgroundMusic()
     backgroundMusic = undefined
+    flag.position(0,0)
+    flag.width = width
+    flag.height = height
 }
 
 function playButton() {
@@ -102,6 +105,8 @@ function draw() {
      * These stages determine what buttons are shown to the player
     */
     background(255)
+    flag.updatePixels()
+    flag.draw()
     image(flag, 0, 0, width, height)
     if (menuStage === 0) { // The First stage visible to the player is the default stage of the menu
         playButton()
