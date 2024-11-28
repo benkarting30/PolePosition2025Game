@@ -50,10 +50,13 @@ function playButton() {
     textAlign(CENTER, CENTER)
     text("Play", width / 2, height / 4)
     push()
-    textSize(60)
+    textSize(80)
     textAlign(CENTER, TOP)
-    color("black")
-    text("Pole Position 2025", width/2, 0)
+    fill("black")
+    textStyle(BOLDITALIC)
+    text("Pole                  2025", width/2, 0)
+    fill("grey")
+    text("Position  ", width/2, 0)
     pop()
 }
 
