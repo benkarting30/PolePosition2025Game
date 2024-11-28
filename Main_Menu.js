@@ -316,20 +316,20 @@ function mouseClicked() {
 function backgroundMusic() {
     /*The backgroundMusic function contains easter eggs for the player to find
     1. There is 1 in the 64 bit ingeter limit chance that the incorrect music plays (music1)
-    2. There is a 1/100 chance that the correct music plays but louder 
-    3. There is a 1/200 chance that "Daft Punk - Robot Rock" plays instead of the correct music
+    2. There is a 1/50 chance that the correct music plays but louder 
+    3. There is a 1/100 chance that "Daft Punk - Robot Rock" plays instead of the correct music
     */
     if (floor(random(0, 9223372036854775807)) == 9223372036854775807) {
         Music1.play()
         Music1.loop()
         Music1.setVolume(0.3)
         userStartAudio()
-    } else if (floor(random(0, 100))==0) {
+    } else if (floor(random(0, 50))==0) {
         Music2.play()
         Music2.loop()
         Music2.setVolume(0.8)
         userStartAudio()
-    } else if (floor(random(0, 200)) ==0){
+    } else if (floor(random(0, 100)) ==0){
         RobotRock.play()
         RobotRock.loop()
         RobotRock.setVolume(0.5)
