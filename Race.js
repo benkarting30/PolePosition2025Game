@@ -1158,28 +1158,26 @@ function setup() {
 }
 
 
-function aiMove() {
-  for (c of Cars) {
-    if (mapSelected == "map2"){
-    c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
-    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
-    } else {
-      c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
-      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
-      if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
-    }
-    if (c.counter > usedNodes.length-1) { 
-      c.counter = 0
-      c.lapCount++
-      if (c.lapCount == LapTotal-1){
-        finishingOrder.push(`car${Cars.Indentifier}`)
-      }
-    }
-  }
-
-
-}
+// function aiMove() {
+//   for (c of Cars) {
+//     if (mapSelected == "map2"){
+//     c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+//     c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
+//     if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+//     } else {
+//       c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
+//       c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
+//       if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
+//     }
+//     if (c.counter > usedNodes.length-1) { 
+//       c.counter = 0
+//       c.lapCount++
+//       if (c.lapCount == LapTotal-1){
+//         finishingOrder.push(`car${Cars.Indentifier}`)
+//       }
+//     }
+//   }
+// }
 
 function draw() {
   clear()
@@ -1288,9 +1286,9 @@ function controls() {
 
     }
     if (kb.presses("shift")) {
-      map2nodes.push({x:player.x, y:player.y})
+      map1nodes.push({x:player.x, y:player.y})
       console.log({x:player.x, y:player.y})
-      console.log(map2nodes)
+      console.log(map1nodes)
     }
     if (kb.pressing("a")) {
       console.log(UndersteerCalc(player.speed, -3, "Left"))

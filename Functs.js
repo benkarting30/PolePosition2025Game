@@ -25,11 +25,6 @@ window.LapTimeModule = {
 }
 // Create an anti-cheat function
 window.AntiCheat = function(LT, FL, speed, sensitivity){
-    console.log(LT)
-    console.log(FL)
-    console.log(speed)
-    console.log(sensitivity)
-    debugger // Run the debugger before the if statement is called to investigate the scope.
     // check whether the state of the fake laptime and fastest lap variables and whether speed and sensitivity are in a certain range
     if (LT != 24.231 || FL != 22.342 || speed > 4 || (6<sensitivity || 0>sensitivity)){
         // inform the player that they have been caught cheating
@@ -38,13 +33,13 @@ window.AntiCheat = function(LT, FL, speed, sensitivity){
         let time = Date.now()
         window.localStorage.setItem("Time", time) // Create a timestamp of when the player was caught
         // Open 7 windows of the youareanidiot on youtube
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
-        // window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.open("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
+        window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
 

@@ -1077,7 +1077,7 @@ function preload() {
     camera.x = player.x
     camera.y = player.y
     camera.on()
-    if (window.localStorage.getItem("Cheated")){
+    if (mapSelected == "mapC"){
         player.collider = 'd'
         trackLimit.collider = 's'
     }
@@ -1088,10 +1088,8 @@ function preload() {
     if (lapStarted) {
         player.color = "green"
     }
-    if (!enginestart.isPlaying() && !engineOn){
+    if (!enginestart.isPlaying()){
         engineidle.play()
-        engineidle.loop()
-        engineOn = true
     }
     trackLimit.draw()
     track.draw()
