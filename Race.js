@@ -1257,7 +1257,7 @@ function draw() {
       let flJSON = {time: fastestLap, lap: fastestOnLap}
       window.sessionStorage.setItem('order', finishingOrder)
       window.sessionStorage.setItem('fastest', flJSON)
-      window.location.assign("Menu.html")
+      window.location.assign("Main_Menu.html")
     }, 15000);
   }
 }

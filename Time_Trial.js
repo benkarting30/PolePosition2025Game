@@ -1068,10 +1068,10 @@ function preload() {
     // Create Tiles from Tile map depending on the input
     enginestart.play()
     setInterval(() => {
-        if (nitroTime < 10*60){
-            nitroTime++
+        if (nitroTime < 10){
+            nitroTime += 1/200
         }
-    }, 4000);
+    }, 500);
 }
 
  function draw() {
