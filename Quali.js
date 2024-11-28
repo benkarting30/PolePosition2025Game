@@ -1068,7 +1068,7 @@ function draw() {
     camera.y = player.y
     camera.on()
     controls()
-    window.LapTimeModule.UpdateData(framesRate())
+    window.LapTimeModule.UpdateData(frameRate())
     if (!enginestart.isPlaying() && !engineOn) {
         engineidle.play()
         engineidle.loop()
