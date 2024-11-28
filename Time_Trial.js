@@ -1121,7 +1121,7 @@ function preload() {
         text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
-    text(`SOC: ${SofC()}`, width - 350, height - 50)
+    text(`SOC: ${SofC().toFixed(3)}`, width - 350, height - 50)
 }
 function controls(){
     if (contros[0]) {
@@ -1160,10 +1160,12 @@ function controls(){
                     player.speed += (20 / 120)
                 }
             } else if (PlayerSensitivity != 1){
-                if (player.speed < 3) {
+                if (nitroActive){
+                    player.speed = 4
+                } else if (player.speed < 3) {
                     player.speed += (45 / 120)
                 }
-            } else {
+            } else{
                 if (player.speed < 1) {
                     player.speed += (1 / 120)
                 }  
@@ -1198,7 +1200,7 @@ function controls(){
             player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
             player.direction = player.rotation;
         }
-        if (kb.pressing('shift')){
+        if (kb.pressing('shift') && nitroTime > 0){
             nitroActive = true
         } else {
             nitroActive = false
@@ -1311,7 +1313,7 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 
 
 function SofC(){
-    if (nitroTime > 2){
+    if (nitroTime < 2){
         return `Empty (${(nitroTime.toFixed(3))*10}%)`
     } else if (nitroTime >= 10){
         nitroTime = 10
