@@ -1107,7 +1107,7 @@ function preload() {
     textStyle(BOLD)
     textSize(24)
     if (nitroActive){
-        nitroTime -= 1/frameRate
+        nitroTime -= 1/frameRate()
     }
     let currentGear
     if (inReverse){
