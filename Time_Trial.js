@@ -26,7 +26,8 @@ let colState, PlayerSensitivity
 let carImg1, carImg2, carImg3, carImg4, boatImg
 let laptime = 24.231
 let fastestLap = 22.342
-let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger  
+let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger
+let nitroTime = 10, nitroActive = false
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
@@ -1066,6 +1067,11 @@ function preload() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
+    setInterval(() => {
+        if (nitroTime < 10*60){
+            nitroTime++
+        }
+    }, 4000);
 }
 
  function draw() {
@@ -1100,6 +1106,9 @@ function preload() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
+    if (nitroActive){
+        nitroTime -= 1/frameRate
+    }
     let currentGear
     if (inReverse){
         currentGear = "R"
@@ -1112,7 +1121,7 @@ function preload() {
         text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
-    text(`Gear: ${currentGear}`, width - 350, height - 50)
+    text(`SOC: ${SofC()}`, width - 350, height - 50)
 }
 function controls(){
     if (contros[0]) {
@@ -1188,6 +1197,11 @@ function controls(){
         if (kb.pressing("d")) {
             player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
             player.direction = player.rotation;
+        }
+        if (kb.pressing('shift')){
+            nitroActive = true
+        } else {
+            nitroActive = false
         }
 
 
@@ -1292,6 +1306,18 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
             finalsensitivity = sensitivity
             return finalsensitivity
         }
+    }
+}
+
+
+function SofC(){
+    if (nitroTime > 2){
+        return `Empty (${(nitroTime.toFixed(3))*10}%)`
+    } else if (nitroTime >= 10){
+        nitroTime = 10
+        return `Full (100%)`
+    } else if (2<=nitroTime<10 && nitroActive){
+        return `Discharging (${(nitroTime.toFixed(3))*10}%)`
     }
 }
 
