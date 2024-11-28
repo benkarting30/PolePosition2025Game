@@ -580,7 +580,7 @@ function setup() {
       AiBTrigger.h = tileSize
 
 
-  switch ("1") {
+  switch (window.sessionStorage.getItem("track")[3]) {
     /*
     case "1":
         map1 = new Tiles(
