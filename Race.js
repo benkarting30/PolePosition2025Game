@@ -23,7 +23,43 @@ let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
 let playerHasNotMoved = true
-let map1Nodes = []
+let map1nodes = [{x: 592.9889081564344, y: 68.94656899678571},
+  {x: 693.8093291544558, y: 93.15223422078996},
+  {x: 710.8852730834348, y: 109.83738908823243},
+  {x: 733.5068916753524, y: 114.78364620348331},
+  {x: 762.3051394042675, y: 93.77551596025228},
+  {x: 802.0123458931909, y: 63.38553701115763},
+  {x: 842.6350066133057, y: 78.07858841731978},
+  {x: 869.920184476642, y: 100.81496373648935},
+  {x: 873.7038075748176, y: 163.11565355542226},
+  {x: 852.0969725207023, y: 216.29860960915462},
+  {x: 825.9682376655351, y: 266.27880162918984},
+  {x: 765.9025283340843, y: 326.4942598730531},
+  {x: 642.4146719531866, y: 398.60693229800535},
+  {x: 537.3727707463212, y: 465.02483829085486},
+  {x: 311.92883778422805, y: 589.9750658758597},
+  {x: 211.0492819353355, y: 706.2081191785911},
+  {x: 204.60192688390535, y: 776.95195361974},
+  {x: 247.41742834494477, y: 824.1622848099208},
+  {x: 315.5353591614642, y: 840.7943393701105},
+  {x: 380.1048194630614, y: 799.6340113398404},
+  {x: 454.08890742878356, y: 746.6885431756901},
+  {x: 537.2245443476721, y: 706.145844162602},
+  {x: 632.9661199780683, y: 733.2236129261785},
+  {x: 731.6036504779843, y: 782.14990958115},
+  {x: 814.8182398669794, y: 758.7427880914411},
+  {x: 836.2222940733782, y: 680.9606934984411},
+  {x: 779.2130542180754, y: 649.8380182854443},
+  {x: 571.6501457619953, y: 565.3313557968045},
+  {x: 527.8688986971089, y: 539.593930775258},
+  {x: 381.7063136498682, y: 488.02027784526723},
+  {x: 265.74335569201077, y: 428.5281199071196},
+  {x: 172.27556836051664, y: 360.814029947001},
+  {x: 109.27870789713096, y: 290.5475753005452},
+  {x: 103.61817325849006, y: 218.28588264094662},
+  {x: 170.7411007115927, y: 161.34462964957785},
+  {x: 288.60369853342183, y: 121.6184443284802},
+  {x: 386.7715965098251, y: 88.53045730236252}]
 let map2nodes = [
   {x: 152.14940131517432, y: 395.01923002173186},
 {x: 209.35889354890654, y: 237.83744193108805},
@@ -545,6 +581,7 @@ function setup() {
 
 
   switch ("1") {
+    /*
     case "1":
         map1 = new Tiles(
             [
@@ -656,6 +693,7 @@ function setup() {
         );
         usedNodes = map1Nodes
         break
+      */
     case "2":
         map2 = new Tiles(
           [
@@ -1158,26 +1196,26 @@ function setup() {
 }
 
 
-// function aiMove() {
-//   for (c of Cars) {
-//     if (mapSelected == "map2"){
-//     c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-//     c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
-//     if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
-//     } else {
-//       c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
-//       c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
-//       if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
-//     }
-//     if (c.counter > usedNodes.length-1) { 
-//       c.counter = 0
-//       c.lapCount++
-//       if (c.lapCount == LapTotal-1){
-//         finishingOrder.push(`car${Cars.Indentifier}`)
-//       }
-//     }
-//   }
-// }
+function aiMove() {
+  for (c of Cars) {
+    if (mapSelected == "map2"){
+    c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
+    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+    } else {
+      c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
+      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
+      if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
+    }
+    if (c.counter > usedNodes.length-1) { 
+      c.counter = 0
+      c.lapCount++
+      if (c.lapCount == LapTotal-1){
+        finishingOrder.push(`car${Cars.Indentifier}`)
+      }
+    }
+  }
+}
 
 function draw() {
   clear()
@@ -1190,7 +1228,7 @@ function draw() {
   camera.y = player.y
   camera.on()
   controls()
-  //aiMove()
+  aiMove()
   laptime += 1 / 60
   PST += 1 / 60
   //console.log(laptime)

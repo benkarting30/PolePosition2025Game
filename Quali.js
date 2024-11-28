@@ -38,11 +38,11 @@ function preload() {
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     if (window.localStorage.getItem("Cheated")){
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400000 || true){
+        if (time - window.localStorage.getItem("Time") < 86400000){
             window.localStorage.clear()
         } else {
-        sessionStorage.map = "mapC"
-        throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
+            sessionStorage.map = "mapC"
+            throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
         }
         
     }
@@ -376,7 +376,7 @@ function setup() {
 
 
     switch (mapSelected[3]) {
-        case "1":
+        /*case "1":
             map1 = new Tiles(
                 [
                     "....................................................................................................",
@@ -486,6 +486,7 @@ function setup() {
                 tileSize
             );
             break
+        */
         case "2":
             map2 = new Tiles(
                 [
@@ -1050,6 +1051,7 @@ function draw() {
     AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     background("#5a5348")
     camera.on()
+    console.log(timeRemaining)
     camera.zoom = 3
     camera.x = player.x
     camera.y = player.y
