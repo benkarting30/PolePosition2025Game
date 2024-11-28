@@ -1318,6 +1318,8 @@ function SofC(){
         return `Full (100%)`
     } else if (2<=nitroTime<10 && nitroActive){
         return `Discharging (${(nitroTime.toFixed(3))*10}%)`
+    } else {
+        return `Recharging (${(nitroTime.toFixed(3))*10}%)`
     }
 }
 
