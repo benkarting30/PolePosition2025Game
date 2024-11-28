@@ -544,7 +544,7 @@ function setup() {
       AiBTrigger.h = tileSize
 
 
-  switch ((window.sessionStorage.track)[3]) {
+  switch ("1") {
     case "1":
         map1 = new Tiles(
             [
@@ -1190,7 +1190,7 @@ function draw() {
   camera.y = player.y
   camera.on()
   controls()
-  aiMove()
+  //aiMove()
   laptime += 1 / 60
   PST += 1 / 60
   //console.log(laptime)
