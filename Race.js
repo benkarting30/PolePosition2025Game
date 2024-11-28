@@ -1200,11 +1200,11 @@ function aiMove() {
   for (c of Cars) {
     if (mapSelected == "map2"){
     c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 4)
+    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
     if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
     } else {
       c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
-      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 4) 
+      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3) 
       if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
     }
     if (c.counter > usedNodes.length-1) { 
@@ -1253,116 +1253,108 @@ function draw() {
   }
   text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
   if (endGame){
-    let flJSON = {time: fastestLap, lap: fastestOnLap}
-    window.sessionStorage.setItem('order', finishingOrder)
-    window.sessionStorage.setItem('fastest', flJSON)
-    window.location.assign("Results.html")
+    setTimeout(() => {
+      let flJSON = {time: fastestLap, lap: fastestOnLap}
+      window.sessionStorage.setItem('order', finishingOrder)
+      window.sessionStorage.setItem('fastest', flJSON)
+      window.location.assign("Menu.html")
+    }, 15000);
   }
 }
 
-function controls() {
-  //Check whether the user has a gamepad connected
+function controls(){
   if (contros[0]) {
-    if (contro.pressing("rightTrigger") && !endGame) {
-      if (slowed) {
-        if (player.speed < 1) {
-          player.speed += (20 / 120)
-        }
-      } else {
-        if (player.speed < 3) {
-          player.speed += (45 / 120)
-        }
+      if (contro.pressing("rightTrigger") && !endGame) {
+          if (slowed) {
+              if (player.speed < 1) {
+                  player.speed += (20 / 120)
+              }
+          } else {
+              if (player.speed < 3) {
+                  player.speed += (45 / 120)
+              }
+          }
+          player.direction = player.rotation;
       }
-      player.direction = player.rotation;
-    }
-    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-    player.rotation = (direction * 180) / Math.PI
-    player.direction = player.rotation
-    if (contro.pressing("leftTrigger")) {
-      player.drag = 10;
-      player.friction = 10;
-      player.direction = player.rotation;
-    } else {
-      player.drag = 5;
-      player.friction = 5;
-    }
-    if (contro.presses('a') && gear < 6) {
-      gear++
-    }
-    if (contro.presses('b') && gear > 1) {
-      gear--
-    }
+      let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+      player.rotation = (direction * 180) / Math.PI
+      player.direction = player.rotation
+      if (contro.pressing("leftTrigger")) {
+          player.drag = 10;
+          player.friction = 10;
+          player.direction = player.rotation;
+      } else {
+          player.drag = 5;
+          player.friction = 5;
+      }
+      
   } else {
-    if (kb.presses("w") && !endGame) {
-      player.speed = 0.5
-      if (playerHasNotMoved){
-        music.play()
-        playerHasNotMoved = false
+      if (kb.presses("w") && !endGame) {
+          player.speed = 0.5
+          gear = 1
       }
-    }
-    if (kb.pressing("w") && !endGame) {
-      if (slowed) {
-        if (player.speed < 1) {
-          player.speed += (20 / 120)
-        }
+      if (kb.pressing("w") && !endGame) {
+          if (slowed) {
+              if (player.speed < 1) {
+                  player.speed += (20 / 120)
+              }
+          } else if (PlayerSensitivity != 1){
+              if (player.speed < 3.5) {
+                  player.speed += (45 / 120)
+              }
+          } else {
+              if (player.speed < 1) {
+                  player.speed += (1 / 120)
+              }  
+          }
+          player.direction = player.rotation;
+
+      }
+
+      if (kb.pressing("s")) {
+          if (player.speed > 0){
+              player.drag = 10;
+              player.friction = 10;
+              player.direction = player.rotation;
+          } else if (player.speed <= 0 ){
+              player.speed = -1
+              gear = "R"
+              player.drag = 0
+              player.friction = 0
+          }
+          
       } else {
-        if (player.speed < 3) {
-          player.speed += (45 / 120)
-        }
+          player.drag = 5
+          player.friction = 5
+
       }
-      player.direction = player.rotation;
 
-    }
-
-    if (kb.pressing("s")) {
-      player.drag = 10;
-      player.friction = 10;
-      player.direction = player.rotation;
-    } else {
-      player.drag = 5
-      player.friction = 5
-
-    }
-    if (kb.presses("shift")) {
-      map1nodes.push({x:player.x, y:player.y})
-      console.log({x:player.x, y:player.y})
-      console.log(map1nodes)
-    }
-    if (kb.pressing("a")) {
-      console.log(UndersteerCalc(player.speed, -3, "Left"))
-      player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
-      player.direction = player.rotation;
-    }
-    if (kb.pressing("d")) {
-      console.log(UndersteerCalc(player.speed, 3, "Right"))
-      player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
-      player.direction = player.rotation;
-    }
-    if (kb.presses('arrowUp') && gear < 6) {
-      gear++
-      console.log("shift up")
-    }
-    if (kb.presses('arrowDown') && gear > 1) {
-      gear--
-      console.log("shift down")
-    }
-    if (kb.presses("escape")) {
-      timestartheld = PST
-    }
-    if (kb.pressing("escape")) {
-      if (PST - timestartheld > 3) {
-        sessionComplete = true
+      if (kb.pressing("a")) {
+          player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
+          player.direction = player.rotation;
       }
-    }
-    if (kb.presses("enter")) {
-      console.log([usedNodes[nodenum].x, usedNodes[nodenum].y])
-      player.moveTo(usedNodes[nodenum].x, nodes[nodenum].y , 4)
-      if (player.x == usedNodes[nodenum].x && player.y == usedNodes[nodenum].y) { nodenum++ }
-    }
+      if (kb.pressing("d")) {
+          player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
+          player.direction = player.rotation;
+      }
+
+
+      if (kb.pressing("escape")) {
+          escHeld = true;
+          setTimeout(() => {
+              if (escHeld){
+                  window.sessionStorage.setItem("fastest", ttLaps)
+              }
+          }, 3000)
+          
+      } else {
+          escHeld = false
+      }
+      
 
   }
   if (player.collides(trackLimit) && player.speed > 2) {
-    //hasStalled = true
+      //hasStalled = true
   }
 
 }
