@@ -289,7 +289,7 @@ function setup() {
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
             if (slowed){
-                EnTrackLimits.play()
+                trackLimitsAudio.play()
             }
             slowed = false
         })
