@@ -52,6 +52,7 @@ function playButton() {
     push()
     textSize(60)
     textAlign(CENTER, TOP)
+    color("black")
     text("Pole Position 2025", width/2, 0)
     pop()
 }
