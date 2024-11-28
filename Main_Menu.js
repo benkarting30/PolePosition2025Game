@@ -102,7 +102,7 @@ function draw() {
      * These stages determine what buttons are shown to the player
     */
     background(255)
-    flag.updatePixels()
+    //flag.updatePixels()
     image(flag, 0, 0, width, height)
     if (menuStage === 0) { // The First stage visible to the player is the default stage of the menu
         playButton()
