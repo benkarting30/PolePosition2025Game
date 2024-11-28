@@ -42,10 +42,3 @@ window.AntiCheat = function(LT, FL, speed, sensitivity){
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
-
-/**
- * @param {Float} LT - The 'laptime' variable
- * @param {Float} FL - The 'fastest lap' variable
- * @param {Float} speed - The player's current speed
- * @param {Integer} sensitivity - The set player sensitivity
- */
