@@ -75,7 +75,7 @@ function NormalGameButton() {
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Grand Prix (WIP)", width / 2, 2 * height / 4)
+    text("Grand Prix (WIP?)", width / 2, 2 * height / 4)
 }
 
 function backButton() {
