@@ -48,7 +48,11 @@ function playButton() {
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Play", width / 2, height / 4)
+    text("Play", width / 2, 2*height / 4)
+    push()
+    textSize(60)
+    text("Pole Position 2025", width/2, height/4)
+    pop()
 }
 
 function settingsButton() {
@@ -57,7 +61,7 @@ function settingsButton() {
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Settings", width / 2, 2 * height / 4)
+    text("Settings", width / 2, 3 * height / 4)
 }
 
 function timeTrialButton() {
