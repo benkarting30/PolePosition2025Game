@@ -19,7 +19,7 @@ let PST = 0
 let endGame = false
 let timestartheld
 let timeRemaining = 60
-let countdown = 30 * 60
+let countdown = 30
 let carImages = []
 let images = [carImages]
 let secondsRemaining, trackLimitsAudio, engineidle, enginestart
@@ -1043,6 +1043,17 @@ function setup() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
+    setInterval(() => {
+        if (timeRemaining > 0) {
+            timeRemaining -= 1
+        } else {
+            if (countdown > 0) {
+                countdown--
+            } else {
+                endGame = true
+            }
+        }
+    }, 1000);
 }
 
 function draw() {
@@ -1057,7 +1068,7 @@ function draw() {
     camera.y = player.y
     camera.on()
     controls()
-    window.LapTimeModule.UpdateData(frameRate())
+    window.LapTimeModule.UpdateData(framesRate())
     if (!enginestart.isPlaying() && !engineOn) {
         engineidle.play()
         engineidle.loop()
@@ -1067,15 +1078,7 @@ function draw() {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
-    if (timeRemaining > 0) {
-        timeRemaining -= 1 / frameRate()
-    } else {
-        if (countdown > 0) {
-            countdown--
-        } else {
-            endGame = true
-        }
-    }
+
 
     //console.log(laptime)
     //text(laptime, 0, 0)
