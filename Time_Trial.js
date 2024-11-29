@@ -27,7 +27,7 @@ let carImg1, carImg2, carImg3, carImg4, boatImg
 let laptime = 24.231
 let fastestLap = 22.342
 let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger
-let nitroTime = 10, nitroActive = false
+let nitroTime = 10, nitroActive = false, ForcedRecharge
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
@@ -1072,6 +1072,12 @@ function preload() {
             nitroTime += 1/200
         }
     }, 500);
+
+    setInterval(() => {
+        if (ForcedRecharge > 0){
+            ForcedRecharge--
+        }
+    }, 1000)
 }
 
  function draw() {
@@ -1106,8 +1112,12 @@ function preload() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
-    if (nitroActive){
+    if (nitroActive && ForcedRecharge == 0){
         nitroTime -= 1/frameRate()
+        if (nitroTime < 0){
+            nitroActive = false
+            ForcedRecharge = 10
+        }
     }
     let currentGear
     if (inReverse){
