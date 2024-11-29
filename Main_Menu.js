@@ -32,7 +32,7 @@ function preload() {
     Music2 = loadSound('FTh [music]')
     RobotRock = loadSound('Audio/Robot Rock')
     controls = loadImage('images/pixil-frame-0 (2).png')
-    flag = loadImage('images/ezgif-1-7a5892843b.gif')
+    //flag = loadImage('images/ezgif-1-7a5892843b.gif')
 }
 
 function setup() {
@@ -102,7 +102,7 @@ function draw() {
      * These stages determine what buttons are shown to the player
     */
     background(255)
-    image(flag, 0, 0, width, height)
+    //image(flag, 0, 0, width, height)
     if (menuStage === 0) { // The First stage visible to the player is the default stage of the menu
         playButton()
         settingsButton()
