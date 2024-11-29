@@ -32,6 +32,7 @@ let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
 
 
 function preload() {
+    // Preload all the images and sounds used by the game
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
@@ -48,14 +49,15 @@ function preload() {
     // console.log(window.LapTimeModule.GetLaptime())
     // console.log(window.LapTimeModule.GetFL())
     // console.log(navigator.userAgent.includes("Chrome"))
+    // Check to see if the player has been caught cheating within the past day
     if (window.localStorage.getItem("Cheated")){
         let time = Date.now()
         if (time - window.localStorage.getItem("Time") < 86400000){
-            window.localStorage.clear()
+            window.localStorage.clear() // forgive the player as cheating data is stored in local storage
+        } else {
+            sessionStorage.map = "mapC" // Loads the player into the cheater map
+            throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`) // Throws an error in the console but doesn't halt code executing
         }
-        sessionStorage.map = "mapC"
-        throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
-        
     }
   }
 
@@ -64,15 +66,21 @@ function preload() {
     createCanvas(windowWidth, windowHeight);
     background(255);
     frameRate(60);
+    // Set the default font
     defaultFont = textFont()
+    // Retrieve the player's selected map from session storage
     let storage = sessionStorage.map
     console.log(storage)
+    // Does not let the player's selection override the map selected if they have cheated
     if (mapSelected != "mapC"){
         mapSelected = storage
     }
+
+    // Load settings for the players
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
     let debuged = settingsJSON.debug
+    // Check that no special gamemodes have been selected and set collisions depending on it
     if (settingsJSON.noCol){
         colState = 'n'
     } else if (settingsJSON.dyColD){
@@ -93,17 +101,19 @@ function preload() {
 
     if (colState){
 
+        // Create the player Sprite
         player = new Sprite()
         player.collider = colState
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
-            player.image = boatImg
-            player.scale = 0.75
+        if (debuged || PlayerSensitivity == 1){ 
+            player.image = boatImg // Sets the player's image to a large boat if they have their sensitivity set to 1.
+            player.scale = 0.75 
         } else {
-            player.image = random(carImages)
+            player.image = random(carImages) // Otherwise the player image will be random from the 4 car images present
             player.scale = 0.045
         }
+        // Set player's direction to face the start line depending on the map
         player.direction = Math.PI / 2
         if (mapSelected == "map2") {
             player.rotation = 0
@@ -117,7 +127,7 @@ function preload() {
         trackLimit = new Group()
         trackLimit.color = "red"
         trackLimit.tile = 'b'
-        trackLimit.collider = colState //Collisions with the track limit will be processed as static
+        trackLimit.collider = colState
         trackLimit.w = tileSize
         trackLimit.h = tileSize
 
@@ -134,9 +144,6 @@ function preload() {
             track.color = "#5a5348";
         }
         track.visible = true;
-        player.overlapping(track, function(){
-            slowed = false
-        })
 
         start = new Group()
         start.collider = colState
@@ -145,7 +152,7 @@ function preload() {
         start.w = tileSize
         start.h = tileSize
         player.overlapping(start, function () {
-            StartLineOverlap()
+            StartLineOverlap()// Calls this function when overlapped by the player
         })
 
         timingLine = new Group();
@@ -156,9 +163,10 @@ function preload() {
         timingLine.w = tileSize;
         timingLine.h = tileSize;
         player.overlapping(timingLine, function () {
-            TimingOverlap()
+            TimingOverlap()// Calls this function when overlapped by the player
         })
 
+        // unused group, kept in code incase needed from future debug or testing
         testing = new Group();
         testing.collider = colState;
         testing.tile = "=";
@@ -175,8 +183,8 @@ function preload() {
         slowArea.h = tileSize
         slowArea.visible = false
         player.overlaps(slowArea, function () {
-            lapInvalid = true
-            slowed = true
+            lapInvalid = true // Makes the player's lap invalid
+            slowed = true // Limits the player's speed as a penalty
         })
 
         removeSlow = new Group()
@@ -189,9 +197,9 @@ function preload() {
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
             if (slowed){
-                EnTrackLimits.play()
+                EnTrackLimits.play() // Plays the engineer voice line that informs them of track limits
             }
-            slowed = false
+            slowed = false // Removes slowness on overlap
         })
 
         startSlowArea = new Group()
@@ -202,7 +210,9 @@ function preload() {
         startSlowArea.w = tileSize
         startSlowArea.h = tileSize
         player.overlapping(startSlowArea, function () {
-            StartLineOverlap()
+            StartLineOverlap()// On map3 and map5, this is used if the player has entered the pitlane
+            // Potential future TODO:
+            // Allow Nitro or Damage to be fixed/refilled in the pitlane
         })
 
         gravel = new Group()
@@ -1325,7 +1335,7 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     }
 }
 
-
+// SOfC is responsible from deciding what is shown to the player on the UI
 function SofC(){
     if (nitroTime < 2){
         return `Empty (${floor(nitroTime*10)}%)`
