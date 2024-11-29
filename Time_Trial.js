@@ -1071,7 +1071,7 @@ function preload() {
     enginestart.play()
     setTimeout(() => {
         engineidle.play()
-        engineidle.play()
+        engineidle.loop()
     }, 5000);
     
     setInterval(() => {
@@ -1106,9 +1106,6 @@ function preload() {
     //text(laptime, 0, 0)
     if (lapStarted) {
         player.color = "green"
-    }
-    if (!enginestart.isPlaying()){
-        engineidle.play()
     }
     trackLimit.draw()
     track.draw()
