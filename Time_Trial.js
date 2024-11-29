@@ -1071,7 +1071,7 @@ function preload() {
         if (nitroTime < 10){
             nitroTime += 1/200
         }
-    }, 500);
+    }, 50);
 
     setInterval(() => {
         if (ForcedRecharge > 0){
@@ -1324,14 +1324,14 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 
 function SofC(){
     if (nitroTime < 2){
-        return `Empty (${(nitroTime.toFixed(3))*10}%)`
+        return `Empty (${floor(nitroTime*10)}%)`
     } else if (nitroTime >= 10){
         nitroTime = 10
         return `Full (100%)`
     } else if (2<=nitroTime<10 && nitroActive){
-        return `Discharging (${(nitroTime*10).toFixed(3)}%)`
+        return `Discharging (${floor(nitroTime*10)}%)`
     } else {
-        return `Recharging (${(nitroTime*10).toFixed(3)}%)`
+        return `Recharging (${floor(nitroTime*10)}%)`
     }
 }
 
