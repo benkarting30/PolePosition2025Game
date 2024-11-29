@@ -41,7 +41,9 @@ function preload() {
     boatImg.width = 300
     carImages = [carImg1, carImg2, carImg3, carImg4]
     EnTrackLimits = loadSound("Track_Limits.mp3")
-    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
+    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3", function(loadedSound){
+        buffer = loadedSound.buffer
+    })
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
     // console.log(window.LapTimeModule.GetLaptime())
     // console.log(window.LapTimeModule.GetFL())
