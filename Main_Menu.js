@@ -32,7 +32,7 @@ function preload() {
     Music2 = loadSound('FTh [music]')
     RobotRock = loadSound('Audio/Robot Rock')
     controls = loadImage('images/pixil-frame-0 (2).png')
-    flag = createImage('images/ezgif-1-7a5892843b.gif')
+    flag = loadImage('images/ezgif-1-7a5892843b.gif')
 }
 
 function setup() {
