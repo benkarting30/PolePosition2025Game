@@ -1121,7 +1121,7 @@ function preload() {
         text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
     }
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
-    text(`SOC: ${SofC().toFixed(3)}`, width - 350, height - 50)
+    text(`SOC: ${SofC()}`, width - 350, height - 50)
 }
 function controls(){
     if (contros[0]) {
@@ -1319,9 +1319,9 @@ function SofC(){
         nitroTime = 10
         return `Full (100%)`
     } else if (2<=nitroTime<10 && nitroActive){
-        return `Discharging (${(nitroTime.toFixed(3))*10}%)`
+        return `Discharging (${(nitroTime*10).toFixed(3)}%)`
     } else {
-        return `Recharging (${(nitroTime.toFixed(3))*10}%)`
+        return `Recharging (${(nitroTime*10).toFixed(3)}%)`
     }
 }
 
