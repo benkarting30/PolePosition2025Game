@@ -1078,7 +1078,9 @@ function draw() {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
-
+    if (timeRemaining <= 0){
+        sessionComplete = true
+    }
 
     //console.log(laptime)
     //text(laptime, 0, 0)
@@ -1228,12 +1230,9 @@ function StartLineOverlap() {
         FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
         window.LapTimeModule.ResetLaptime()
         lapInvalid = false
-        if (timeRemaining <= 0){
-            sessionComplete = true
-            lapStarted = false
-        }
+
     }
-    if (!lapStarted && sessionComplete) {
+    if (!lapStarted && sessionComplete && !endGame) {
         qLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
         FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
