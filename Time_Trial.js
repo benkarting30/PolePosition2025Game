@@ -1067,6 +1067,11 @@ function preload() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
+    setTimeout(() => {
+        engineidle.play()
+        engineidle.play()
+    }, 5000);
+    
     setInterval(() => {
         if (nitroTime < 10){
             nitroTime += 1/200
