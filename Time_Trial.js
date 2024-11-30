@@ -411,7 +411,7 @@ function preload() {
 
 
 
-
+    // From the storage variable, get the 4th character in that variable and use that to determine the map
     switch (storage[3]) {
         case "1":
             map1 = new Tiles(
@@ -517,10 +517,10 @@ function preload() {
                     "....................................................................................................",
                     "....................................................................................................",
                 ],
-                0,
-                0,
-                tileSize,
-                tileSize
+                0, // Starting x position on the canvas
+                0, // Starting y position on the canvas
+                tileSize, // the width a tile should be
+                tileSize // the height a tile should be
             );
             break
         case "2":
@@ -967,6 +967,7 @@ function preload() {
             )
             break
         case "C":
+            // This case only occurs if the player has been caught cheating previously
             map1 = new Tiles(
                 [
                     "....................................................................................................",
@@ -1080,17 +1081,20 @@ function preload() {
     // Create Tiles from Tile map depending on the input
     enginestart.play()
     setTimeout(() => {
+        // Start and loop the engine idle sound affect after 5 seconds (Duration of the engine start sfx)
         engineidle.play()
         engineidle.loop()
     }, 5000);
     
     setInterval(() => {
+        // Every 50ms, add 1/200 to nitro level whilst it is not full
         if (nitroTime < 10){
             nitroTime += 1/200
         }
     }, 50);
 
     setInterval(() => {
+        // For every second, forcedRecharge is greater than 0, decrement it
         if (ForcedRecharge > 0){
             ForcedRecharge--
         }
@@ -1098,144 +1102,179 @@ function preload() {
 }
 
  function draw() {
-    clear()
+    clear() // Clear the canvas
     background(track.color)
+    // Run the anticheat
     AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
     camera.on()
+    // Set the camera positioning and zoom to focus on the player
     camera.zoom = 3
     camera.x = player.x
     camera.y = player.y
     camera.on()
+    // If the player cheats, constantly reset the player and map collision to prevent further cheating
+    // Michael Rodney Woods caused this 
     if (mapSelected == "mapC"){
         player.collider = 'd'
         trackLimit.collider = 's'
     }
-    controls()
-    window.LapTimeModule.UpdateData(frameRate())
+    controls() // Run the controls function
+    window.LapTimeModule.UpdateData(frameRate()) // Update the laptime with the current frameRate as an input
     //console.log(laptime)
     //text(laptime, 0, 0)
-    if (lapStarted) {
-        player.color = "green"
-    }
     trackLimit.draw()
     track.draw()
-    camera.off()
+    camera.off() // Have anything below get drawn relative to the camera and not the map
+    // Draw the UI boxes
     rect(0, 0, 250, 100, 0, 0, 20, 0)
     rect(width - 350, height - 100, width, height, 20, 0, 0, 0)
+    // Prepare text for when it is used in the UI
     textAlign(LEFT, TOP)
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
-    if (nitroActive && ForcedRecharge == 0){
-        nitroTime -= 1/frameRate()
-        if (nitroTime < 0){
-            nitroActive = false
-            ForcedRecharge = 10
+    if (nitroActive && ForcedRecharge == 0){ // Checks whether nitro can be used
+        nitroTime -= 1/frameRate() // Subtracts 1/framerate so time is constant, even in different framerates
+        if (nitroTime < 0){ // If the player runs out
+            nitroActive = false // Turn of nitro
+            ForcedRecharge = 10 // Force a recharge
         }
     }
-    let currentGear
-    if (inReverse){
-        currentGear = "R"
-    } else {
-        currentGear = "1"
-    }
+    // Check if the player has a fastest lap already set
     if (window.LapTimeModule.GetFL()) {
+        // If they do, have the UI show: the current lap, current laptime, fastest lap and the lap it was set on
         text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}\nFastest: ${window.LapTimeModule.GetFL().toFixed(3)} (${fastestOnLap})`, 10, 10)
     } else {
+        // If they don't show as above but without the fastest lap details
         text(`Lap: ${lap}\nTime: ${window.LapTimeModule.GetLaptime().toFixed(3)}`, 10, 10)
     }
-    text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85)
-    text(`SOC: ${SofC()}`, width - 350, height - 50)
+    text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85) // Show the player's speed in the bottom corner UI
+    text(`SOC: ${SofC()}`, width - 350, height - 50) // Show the player state of charge in the bottom corner UI as well
 }
 function controls(){
-    if (contros[0]) {
-        if (contro.pressing("rightTrigger") && !endGame) {
+// Check if controller is connected
+if (contros[0]) {
+    // Check if right trigger is being pressed and the game has not ended
+    if (contro.pressing("rightTrigger") && !endGame) {
+        // Check if the player is slowed
+        if (slowed) {
+            // Increase player speed gradually up to a max of 1
+            if (player.speed < 1) {
+                player.speed += (20 / 120);
+            }
+        } else {
+            // Increase player speed gradually up to a max of 3
+            if (player.speed < 3) {
+                player.speed += (45 / 120);
+            }
+        }
+        // Set the player's direction to their current rotation
+        player.direction = player.rotation;
+    }
+    
+    // Calculate the direction based on the left stick position
+    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x);
+    // Convert the direction from radians to degrees and set player rotation
+    player.rotation = (direction * 180) / Math.PI;
+    player.direction = player.rotation;
+    
+    // Check if left trigger is being pressed
+    if (contro.pressing("leftTrigger")) {
+        // Apply higher drag and friction, and set direction to rotation
+        player.drag = 10;
+        player.friction = 10;
+        player.direction = player.rotation;
+    } else {
+        // Apply default drag and friction
+        player.drag = 5;
+        player.friction = 5;
+    }
+
+    // Check if 'B' button is being pressed and nitroTime is greater than 0
+    if (contro.pressing("b") && nitroTime > 0) {
+        nitroActive = true;
+    } else {
+        // If 'B' button is not pressed or nitroTime is 0, deactivate nitro
+        nitroActive = false;
+    }
+    } else {
+        // Check if 'W' key is being pressed and the game has not ended
+        if (kb.pressing("w") && !endGame) {
+            // Check if the player is slowed
             if (slowed) {
+                // Increase player speed gradually up to a max of 1
                 if (player.speed < 1) {
-                    player.speed += (20 / 120)
+                    player.speed += (20 / 120);
+                }
+            } else if (PlayerSensitivity != 1) {
+                // If nitro is active, set player speed to 4
+                if (nitroActive) {
+                    player.speed = 4;
+                } else if (player.speed < 3) {
+                    // Increase player speed gradually up to a max of 3
+                    player.speed += (45 / 120);
                 }
             } else {
-                if (player.speed < 3) {
-                    player.speed += (45 / 120)
+                // If none of the above, increase player speed very gradually up to a max of 1
+                if (player.speed < 1) {
+                    player.speed += (1 / 120);
                 }
             }
+            // Set the player's direction to their current rotation
             player.direction = player.rotation;
-        }
-        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-        player.rotation = (direction * 180) / Math.PI
-        player.direction = player.rotation
-        if (contro.pressing("leftTrigger")) {
-            player.drag = 10;
-            player.friction = 10;
-            player.direction = player.rotation;
-        } else {
-            player.drag = 5;
-            player.friction = 5;
-        }
-        
-    } else {
-        if (kb.presses("w") && !endGame) {
-            player.speed = 0.5
-            gear = 1
-        }
-        if (kb.pressing("w") && !endGame) {
-            if (slowed) {
-                if (player.speed < 1) {
-                    player.speed += (20 / 120)
-                }
-            } else if (PlayerSensitivity != 1){
-                if (nitroActive){
-                    player.speed = 4
-                } else if (player.speed < 3) {
-                    player.speed += (45 / 120)
-                }
-            } else{
-                if (player.speed < 1) {
-                    player.speed += (1 / 120)
-                }  
-            }
-            player.direction = player.rotation;
-
         }
 
+        // Check if 'S' key is being pressed
         if (kb.pressing("s")) {
-            if (player.speed > 0){
+            // If player speed is greater than 0, apply higher drag and friction and set direction to rotation
+            if (player.speed > 0) {
                 player.drag = 10;
                 player.friction = 10;
                 player.direction = player.rotation;
-            } else if (player.speed <= 0 ){
-                player.speed = -1
-                gear = "R"
-                player.drag = 0
-                player.friction = 0
+            } else if (player.speed <= 0) {
+                // If player speed is 0 or less, set speed to -1, gear to "R", and remove drag and friction
+                player.speed = -1;
+                gear = "R";
+                player.drag = 0;
+                player.friction = 0;
             }
-            
         } else {
-            player.drag = 5
-            player.friction = 5
-
+            // If 'S' key is not pressed, apply default drag and friction
+            player.drag = 5;
+            player.friction = 5;
         }
 
+        // Check if 'A' key is being pressed
         if (kb.pressing("a")) {
+            // Rotate player to the left with understeer calculation and set direction to rotation
             player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
             player.direction = player.rotation;
         }
+
+        // Check if 'D' key is being pressed
         if (kb.pressing("d")) {
+            // Rotate player to the right with understeer calculation and set direction to rotation
             player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
             player.direction = player.rotation;
         }
-        if (kb.pressing('shift') && nitroTime > 0){
-            nitroActive = true
+
+        // Check if 'Shift' key is being pressed and nitroTime is greater than 0
+        if (kb.pressing('shift') && nitroTime > 0) {
+            nitroActive = true;
         } else {
-            nitroActive = false
+            // If 'Shift' key is not pressed or nitroTime is 0, deactivate nitro
+            nitroActive = false;
         }
+
 
 
         if (kb.pressing("escape")) {
             escHeld = true;
+            // Checks to see if the player has help esc for 3 seconds before telling the game to load the menu
             setTimeout(() => {
                 if (escHeld){
                     window.sessionStorage.setItem("fastest", ttLaps)
+                    sessionComplete = true
                 }
             }, 3000)
             
@@ -1245,35 +1284,32 @@ function controls(){
         
 
     }
-    if (player.collides(trackLimit) && player.speed > 2) {
-        //hasStalled = true
-    }
-
 }
 
+// This function handles every time the player overlaps the start line
 function StartLineOverlap() {
-    if (!sessionStarted) {
-        sector = 1
-        sessionStarted = true
+    if (!sessionStarted) { // If the session hasn't start yet (Player has just loaded in) run this branch
+        sector = 1 
+        sessionStarted = true // Makes this true so this can't be run again
         window.LapTimeModule.ResetLaptime()
         lapStarted = true
-        player.color = 'blue'
+        //player.color = 'blue'
         lapInvalid = false
     }
-    if (!lapStarted && !sessionComplete) {
+    if (!lapStarted && !sessionComplete) { // Branch runs if the player completes their first lap onwards
         lapStarted = true
+        ttLaps[lap] = window.LapTimeModule.GetLaptime() // Add players laptime to an array
+        lap++ // Increment Lap counter
+        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid) // Checks if the fastest lap needs to be updated
+        window.LapTimeModule.ResetLaptime() // Sets laptime back to 0
+        lapInvalid = false
+    }
+    if (!lapStarted && sessionComplete) { // Only runs when the player presses esc
         ttLaps[lap] = window.LapTimeModule.GetLaptime()
         lap++
         FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
         window.LapTimeModule.ResetLaptime()
-        lapInvalid = false
-    }
-    if (!lapStarted && sessionComplete) {
-        ttLaps[lap] = window.LapTimeModule.GetLaptime()
-        lap++
-        FastestLapCalculation(window.LapTimeModule.GetLaptime(), lapInvalid)
-        window.LapTimeModule.ResetLaptime()
-        endGame = true
+        endGame = true // Triggers the game to load the main menu again
     }
 }
 
@@ -1288,15 +1324,15 @@ function TimingOverlap() {
  */
 
 function FastestLapCalculation(prevLap, InvalidLap) {
-    let fast = window.LapTimeModule.GetFL()
-    if (!InvalidLap){
-        if (fast) {
+    let fast = window.LapTimeModule.GetFL() // Get the fastest lap recorded in functs.js
+    if (!InvalidLap){ 
+        if (fast) { //Check if a fastest lap even exists first
             if (prevLap < fast) {
-                window.LapTimeModule.SetFL(prevLap)
+                window.LapTimeModule.SetFL(prevLap) // Replace the fastest lap in functs.js with the users last lap
                 fastestOnLap = lap - 1
             }
         } else {
-            window.LapTimeModule.SetFL(prevLap)
+            window.LapTimeModule.SetFL(prevLap) //If fastest lap doesn't exist let, make previous lap fastest lap anyways
         }
     }
 }
@@ -1310,7 +1346,8 @@ function FastestLapCalculation(prevLap, InvalidLap) {
  */
 
 
-
+// The function for determining the turn speed for the player
+// Direction is unused as I'm not sure how to apply understeer to controller input
 function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     let turnSpeed, finalsensitivity
     if (speed > 1) {
