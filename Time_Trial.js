@@ -1337,7 +1337,7 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 
 // SOfC is responsible from deciding what is shown to the player on the UI
 function SofC(){
-    if (nitroTime < 2){
+    if (nitroTime < 1){
         return `Empty (${floor(nitroTime*10)}%)`
     } else if (nitroTime >= 10){
         nitroTime = 10
