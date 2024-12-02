@@ -31,7 +31,7 @@ function preload() {
     Music1 = loadSound('FT')
     Music2 = loadSound('FTh [music]')
     RobotRock = loadSound('Audio/Robot Rock')
-    mrBeast = loadSound('Audio/mrbeast')
+    //mrBeast = loadSound('Audio/mrbeast')
     controls = loadImage('images/pixil-frame-0 (2).png')
     flag = loadImage('images/ezgif-1-7a5892843b.gif')
 }
@@ -341,10 +341,10 @@ function backgroundMusic() {
         RobotRock.play()
         RobotRock.loop()
         RobotRock.setVolume(0.5)
-    }  else if (floor(random(0, 250)) == 2){
-        mrBeast.play()
-        mrBeast.loop()
-        mrBeast.setVolume(0.5)
+    // }  else if (floor(random(0, 250)) == 2){
+    //     mrBeast.play()
+    //     mrBeast.loop()
+    //     mrBeast.setVolume(0.5)
     } else {
         Music2.play()
         Music2.loop()
