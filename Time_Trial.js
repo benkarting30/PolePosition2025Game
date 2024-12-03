@@ -1169,6 +1169,8 @@ function controls() {
                 if (player.speed < 1) {
                     player.speed += (20 / 120);
                 }
+            } else  if (nitroActive) {
+                player.speed = 4;
             } else {
                 // Increase player speed gradually up to a max of 3
                 if (player.speed < 3) {
