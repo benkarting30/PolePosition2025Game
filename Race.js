@@ -564,23 +564,6 @@ function setup() {
   Cars.hasFinished = false
   Cars.Indentifier = NaN
 
-  AiATrigger = new Group()
-  AiATrigger.tile = 'P'
-  Cars.overlaps(AiATrigger, removeAiCol)
-  AiATrigger.visible = false
-  AiATrigger.collider = 'n'
-  AiATrigger.w = tileSize
-  AiATrigger.h = tileSize
-
-  AiBTrigger = new Group()
-  AiBTrigger.tile = 'p'
-  Cars.overlaps(AiBTrigger, addAiCol)
-  AiBTrigger.visible = false
-  AiBTrigger.collider = 'n'
-  AiBTrigger.w = tileSize
-  AiBTrigger.h = tileSize
-
-
   switch (window.sessionStorage.getItem("track")[3]) {
     // Map 1 is commented out due to issues with the AI and changing of collision of the map's nature
     /*
