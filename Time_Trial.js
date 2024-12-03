@@ -77,9 +77,13 @@ function setup() {
     }
 
     // Load settings for the players
+    try {
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
-    let debuged = settingsJSON.debug
+    let debuged = settingsJSON.debugInput
+    } catch {
+        window.location.assign("Main_Menu.html")
+    }
     // Check that no special gamemodes have been selected and set collisions depending on it
     if (settingsJSON.noCol) {
         colState = 'n'
