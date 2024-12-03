@@ -42,7 +42,7 @@ function preload() {
     boatImg.width = 300
     carImages = [carImg1, carImg2, carImg3, carImg4]
     EnTrackLimits = loadSound("Track_Limits.mp3")
-    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3", function(loadedSound){
+    engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3", function (loadedSound) {
         buffer = loadedSound.buffer
     })
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
@@ -50,18 +50,18 @@ function preload() {
     // console.log(window.LapTimeModule.GetFL())
     // console.log(navigator.userAgent.includes("Chrome"))
     // Check to see if the player has been caught cheating within the past day
-    if (window.localStorage.getItem("Cheated")){
+    if (window.localStorage.getItem("Cheated")) {
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400000){
+        if (time - window.localStorage.getItem("Time") < 86400000) {
             window.localStorage.clear() // forgive the player as cheating data is stored in local storage
         } else {
             sessionStorage.map = "mapC" // Loads the player into the cheater map
             throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`) // Throws an error in the console but doesn't halt code executing
         }
     }
-  }
+}
 
- function setup() {
+function setup() {
     // Create Canvas and set background and frameRate
     createCanvas(windowWidth, windowHeight);
     background(255);
@@ -72,7 +72,7 @@ function preload() {
     let storage = sessionStorage.map
     console.log(storage)
     // Does not let the player's selection override the map selected if they have cheated
-    if (mapSelected != "mapC"){
+    if (mapSelected != "mapC") {
         mapSelected = storage
     }
 
@@ -81,9 +81,9 @@ function preload() {
     PlayerSensitivity = settingsJSON.sens
     let debuged = settingsJSON.debug
     // Check that no special gamemodes have been selected and set collisions depending on it
-    if (settingsJSON.noCol){
+    if (settingsJSON.noCol) {
         colState = 'n'
-    } else if (settingsJSON.dyColD){
+    } else if (settingsJSON.dyColD) {
         colState = 'd'
     } else {
         colState = undefined
@@ -99,16 +99,16 @@ function preload() {
 
 
 
-    if (colState){
+    if (colState) {
 
         // Create the player Sprite
         player = new Sprite()
         player.collider = colState
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){ 
+        if (debuged || PlayerSensitivity == 1) {
             player.image = boatImg // Sets the player's image to a large boat if they have their sensitivity set to 1.
-            player.scale = 0.75 
+            player.scale = 0.75
         } else {
             player.image = random(carImages) // Otherwise the player image will be random from the 4 car images present
             player.scale = 0.045
@@ -118,7 +118,7 @@ function preload() {
         if (mapSelected == "map2") {
             player.rotation = 0
         }
-        if (mapSelected == "map4"){
+        if (mapSelected == "map4") {
             player.rotation = 138
         }
         player.w = 11
@@ -138,7 +138,7 @@ function preload() {
         track.w = tileSize;
         track.h = tileSize;
         track.collider = colState;
-        if (PlayerSensitivity == 1){
+        if (PlayerSensitivity == 1) {
             track.color = "#2074bc"
         } else {
             track.color = "#5a5348";
@@ -196,7 +196,7 @@ function preload() {
         removeSlow.color = '#FF0000'
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
-            if (slowed){
+            if (slowed) {
                 EnTrackLimits.play() // Plays the engineer voice line that informs them of track limits
             }
             slowed = false // Removes slowness on overlap
@@ -228,7 +228,7 @@ function preload() {
         player.collider = 'd'
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
+        if (debuged || PlayerSensitivity == 1) {
             player.image = boatImg
             player.scale = 0.75
         } else {
@@ -239,7 +239,7 @@ function preload() {
         if (mapSelected == "map2") {
             player.rotation = 0
         }
-        if (mapSelected == "map4"){
+        if (mapSelected == "map4") {
             player.rotation = 138
         }
         player.w = 11
@@ -259,20 +259,20 @@ function preload() {
         track.w = tileSize;
         track.h = tileSize;
         track.collider = "n";
-        if (PlayerSensitivity == 1){
+        if (PlayerSensitivity == 1) {
             track.color = "#2074bc"
         } else {
             track.color = "#5a5348";
         }
         track.visible = true;
-        player.overlapping(track, function(){
+        player.overlapping(track, function () {
             slowed = false
         })
 
         start = new Group()
         start.collider = "n"
         start.tile = "s"
-        if (PlayerSensitivity == 1){
+        if (PlayerSensitivity == 1) {
             start.visible = false
         } else {
             start.visible = true
@@ -323,7 +323,7 @@ function preload() {
         removeSlow.color = '#FF0000'
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
-            if (slowed){
+            if (slowed) {
                 EnTrackLimits.play()
             }
             slowed = false
@@ -347,7 +347,7 @@ function preload() {
         gravel.visible = true
         gravel.w = tileSize
         gravel.h = tileSize
-        
+
         wallsA = new Group()
         wallsA.tile = "Y"
         wallsA.color = "red"
@@ -360,7 +360,7 @@ function preload() {
         WallsB.tile = 'y'
         WallsB.color = 'red'
         WallsB.collider = 's'
-        WallsB.visible = true   
+        WallsB.visible = true
         WallsB.w = tileSize
         WallsB.h = tileSize
 
@@ -370,7 +370,7 @@ function preload() {
         WallATrigger.visible = false
         WallATrigger.h = tileSize
         WallATrigger.w = tileSize
-        player.overlaps(WallATrigger, () =>{
+        player.overlaps(WallATrigger, () => {
             WallsB.collider = 'n'
             WallsB.visible = false
             wallsA.collider = 's'
@@ -383,13 +383,13 @@ function preload() {
         WallBTrigger.visible = false
         WallBTrigger.h = tileSize
         WallBTrigger.w = tileSize
-        player.overlaps(WallBTrigger, () =>{
+        player.overlaps(WallBTrigger, () => {
             wallsA.collider = 'n'
             wallsA.visible = false
             WallsB.collider = 's'
             WallsB.visible = true
         })
-        
+
         cheaterWall = new Group()
         cheaterWall.tile = 'F'
         cheaterWall.collider = 'n'
@@ -406,7 +406,7 @@ function preload() {
         player.collides(cheaterTrigger, () => {
             cheaterWall.collider = 's'
         })
-    
+
     }
 
 
@@ -852,7 +852,7 @@ function preload() {
                 0,
                 tileSize,
                 tileSize
-                
+
             )
             player.rotation = 135
             break
@@ -1085,23 +1085,23 @@ function preload() {
         engineidle.play()
         engineidle.loop()
     }, 5000);
-    
+
     setInterval(() => {
         // Every 50ms, add 1/200 to nitro level whilst it is not full
-        if (nitroTime < 10){
-            nitroTime += 1/200
+        if (nitroTime < 10) {
+            nitroTime += 1 / 200
         }
     }, 50);
 
     setInterval(() => {
         // For every second, forcedRecharge is greater than 0, decrement it
-        if (ForcedRecharge > 0){
+        if (ForcedRecharge > 0) {
             ForcedRecharge--
         }
     }, 1000)
 }
 
- function draw() {
+function draw() {
     clear() // Clear the canvas
     background(track.color)
     // Run the anticheat
@@ -1114,7 +1114,7 @@ function preload() {
     camera.on()
     // If the player cheats, constantly reset the player and map collision to prevent further cheating
     // Michael Rodney Woods caused this 
-    if (mapSelected == "mapC"){
+    if (mapSelected == "mapC") {
         player.collider = 'd'
         trackLimit.collider = 's'
     }
@@ -1133,9 +1133,9 @@ function preload() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
-    if (nitroActive && ForcedRecharge == 0){ // Checks whether nitro can be used
-        nitroTime -= 1/frameRate() // Subtracts 1/framerate so time is constant, even in different framerates
-        if (nitroTime < 0){ // If the player runs out
+    if (nitroActive && ForcedRecharge == 0) { // Checks whether nitro can be used
+        nitroTime -= 1 / frameRate() // Subtracts 1/framerate so time is constant, even in different framerates
+        if (nitroTime < 0) { // If the player runs out
             nitroActive = false // Turn of nitro
             ForcedRecharge = 10 // Force a recharge
         }
@@ -1151,52 +1151,52 @@ function preload() {
     text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85) // Show the player's speed in the bottom corner UI
     text(`SOC: ${SofC()}`, width - 350, height - 50) // Show the player state of charge in the bottom corner UI as well
 }
-function controls(){
-// Check if controller is connected
-if (contros[0]) {
-    // Check if right trigger is being pressed and the game has not ended
-    if (contro.pressing("rightTrigger") && !endGame) {
-        // Check if the player is slowed
-        if (slowed) {
-            // Increase player speed gradually up to a max of 1
-            if (player.speed < 1) {
-                player.speed += (20 / 120);
+function controls() {
+    // Check if controller is connected
+    if (contros[0]) {
+        // Check if right trigger is being pressed and the game has not ended
+        if (contro.pressing("rightTrigger") && !endGame) {
+            // Check if the player is slowed
+            if (slowed) {
+                // Increase player speed gradually up to a max of 1
+                if (player.speed < 1) {
+                    player.speed += (20 / 120);
+                }
+            } else {
+                // Increase player speed gradually up to a max of 3
+                if (player.speed < 3) {
+                    player.speed += (45 / 120);
+                }
             }
-        } else {
-            // Increase player speed gradually up to a max of 3
-            if (player.speed < 3) {
-                player.speed += (45 / 120);
-            }
+            // Set the player's direction to their current rotation
+            player.direction = player.rotation;
         }
-        // Set the player's direction to their current rotation
-        player.direction = player.rotation;
-    }
-    
-    // Calculate the direction based on the left stick position
-    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x);
-    // Convert the direction from radians to degrees and set player rotation
-    player.rotation = (direction * 180) / Math.PI;
-    player.direction = player.rotation;
-    
-    // Check if left trigger is being pressed
-    if (contro.pressing("leftTrigger")) {
-        // Apply higher drag and friction, and set direction to rotation
-        player.drag = 10;
-        player.friction = 10;
-        player.direction = player.rotation;
-    } else {
-        // Apply default drag and friction
-        player.drag = 5;
-        player.friction = 5;
-    }
 
-    // Check if 'B' button is being pressed and nitroTime is greater than 0
-    if (contro.pressing("b") && nitroTime > 0) {
-        nitroActive = true;
-    } else {
-        // If 'B' button is not pressed or nitroTime is 0, deactivate nitro
-        nitroActive = false;
-    }
+        // Calculate the direction based on the left stick position
+        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x);
+        // Convert the direction from radians to degrees and set player rotation
+        player.rotation = (direction * 180) / Math.PI;
+        player.direction = player.rotation;
+
+        // Check if left trigger is being pressed
+        if (contro.pressing("leftTrigger")) {
+            // Apply higher drag and friction, and set direction to rotation
+            player.drag = 10;
+            player.friction = 10;
+            player.direction = player.rotation;
+        } else {
+            // Apply default drag and friction
+            player.drag = 5;
+            player.friction = 5;
+        }
+
+        // Check if 'B' button is being pressed and nitroTime is greater than 0
+        if (contro.pressing("b") && nitroTime > 0) {
+            nitroActive = true;
+        } else {
+            // If 'B' button is not pressed or nitroTime is 0, deactivate nitro
+            nitroActive = false;
+        }
     } else {
         // Check if 'W' key is being pressed and the game has not ended
         if (kb.pressing("w") && !endGame) {
@@ -1272,16 +1272,16 @@ if (contros[0]) {
             escHeld = true;
             // Checks to see if the player has help esc for 3 seconds before telling the game to load the menu
             setTimeout(() => {
-                if (escHeld){
+                if (escHeld) {
                     window.sessionStorage.setItem("fastest", ttLaps)
                     sessionComplete = true
                 }
             }, 3000)
-            
+
         } else {
             escHeld = false
         }
-        
+
 
     }
 }
@@ -1289,7 +1289,7 @@ if (contros[0]) {
 // This function handles every time the player overlaps the start line
 function StartLineOverlap() {
     if (!sessionStarted) { // If the session hasn't start yet (Player has just loaded in) run this branch
-        sector = 1 
+        sector = 1
         sessionStarted = true // Makes this true so this can't be run again
         window.LapTimeModule.ResetLaptime()
         lapStarted = true
@@ -1325,7 +1325,7 @@ function TimingOverlap() {
 
 function FastestLapCalculation(prevLap, InvalidLap) {
     let fast = window.LapTimeModule.GetFL() // Get the fastest lap recorded in functs.js
-    if (!InvalidLap){ 
+    if (!InvalidLap) {
         if (fast) { //Check if a fastest lap even exists first
             if (prevLap < fast) {
                 window.LapTimeModule.SetFL(prevLap) // Replace the fastest lap in functs.js with the users last lap
@@ -1352,10 +1352,10 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
     let turnSpeed, finalsensitivity
     if (speed > 1) {
         if (direction == "Left") {
-            turnSpeed = -1 * abs(abs(sensitivity) - (speed - 1) / (6-sensitivity))
+            turnSpeed = -1 * abs(abs(sensitivity) - (speed - 1) / (6 - sensitivity))
             return turnSpeed
         } else if (direction == "Right") {
-            turnSpeed = abs(abs(sensitivity) - (speed - 1) / (6-sensitivity))
+            turnSpeed = abs(abs(sensitivity) - (speed - 1) / (6 - sensitivity))
             return turnSpeed
         } else {
             turnSpeed = (abs(sensitivity) - (speed - 1) / sensitivity)
@@ -1373,16 +1373,16 @@ function UndersteerCalc(speed, sensitivity, direction = 'controller') {
 }
 
 // SOfC is responsible from deciding what is shown to the player on the UI
-function SofC(){
-    if (nitroTime < 1){
-        return `Empty (${floor(nitroTime*10)}%)`
-    } else if (nitroTime >= 10){
+function SofC() {
+    if (nitroTime < 1) {
+        return `Empty (${floor(nitroTime * 10)}%)`
+    } else if (nitroTime >= 10) {
         nitroTime = 10
         return `Full (100%)`
-    } else if (2<=nitroTime<10 && nitroActive){
-        return `Discharging (${floor(nitroTime*10)}%)`
+    } else if (2 <= nitroTime < 10 && nitroActive) {
+        return `Discharging (${floor(nitroTime * 10)}%)`
     } else {
-        return `Recharging (${floor(nitroTime*10)}%)`
+        return `Recharging (${floor(nitroTime * 10)}%)`
     }
 }
 

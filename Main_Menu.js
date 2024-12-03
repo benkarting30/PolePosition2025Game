@@ -124,6 +124,7 @@ function draw() {
 
 function timeTrialMaps() {
     // Create a custom button with text on it containing the name with each map
+    // Any button with a text colour of gold is an event map
     fill(122, 122, 122)
     rect(width / 2 - buttonWidth / 2, 1 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     rect(width / 2 - buttonWidth / 2, 2 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
@@ -135,7 +136,6 @@ function timeTrialMaps() {
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
     push()
-    fill('gold')
     text("Vortex Velocity Raceway", width / 2, 1 * height / 7) // The track used in the weekly championship is highlighted in gold
     pop()
     text(`Viper’s Nest Circuit`, width / 2, 2 * height / 7)
@@ -143,7 +143,10 @@ function timeTrialMaps() {
     push()
     text("Silver Sands Speedway - w/o Chicane", width / 2, 4 * height / 7)
     pop()
+    push()
+    fill('gold')
     text("Avus", width / 2, 5 * height / 7)
+    pop()
     text("Back", width / 2, 6 * height / 7)
 
 }

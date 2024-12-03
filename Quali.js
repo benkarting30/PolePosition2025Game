@@ -36,15 +36,15 @@ function preload() {
     trackLimitsAudio = loadSound('Track_Limits.mp3')
     engineidle = loadSound("Audio/8-bit-car-engine-idle.mp3")
     enginestart = loadSound("Audio/8-bit-car-engine-start.mp3")
-    if (window.localStorage.getItem("Cheated")){
+    if (window.localStorage.getItem("Cheated")) {
         let time = Date.now()
-        if (time - window.localStorage.getItem("Time") < 86400000){
+        if (time - window.localStorage.getItem("Time") < 86400000) {
             window.localStorage.clear()
         } else {
             sessionStorage.map = "mapC"
             throw new Error(`This isn't a error, you've just cheated previously. So don't play :)`)
         }
-        
+
     }
 }
 function setup() {
@@ -60,9 +60,9 @@ function setup() {
     PlayerSensitivity = settingsJSON.sens
     console.log(PlayerSensitivity)
     let debuged = settingsJSON.debug
-    if (settingsJSON.noCol){
+    if (settingsJSON.noCol) {
         colState = 'n'
-    } else if (settingsJSON.dyColD){
+    } else if (settingsJSON.dyColD) {
         colState = 'd'
     } else {
         colState = undefined
@@ -70,13 +70,13 @@ function setup() {
 
 
 
-    if (colState){
+    if (colState) {
 
         player = new Sprite()
         player.collider = colState
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
+        if (debuged || PlayerSensitivity == 1) {
             player.image = boatImg
             player.scale = 0.75
         } else {
@@ -87,7 +87,7 @@ function setup() {
         if (mapSelected == "map2") {
             player.rotation = 0
         }
-        if (mapSelected == "map4"){
+        if (mapSelected == "map4") {
             player.rotation = 138
         }
         player.w = 11
@@ -107,13 +107,13 @@ function setup() {
         track.w = tileSize;
         track.h = tileSize;
         track.collider = colState;
-        if (PlayerSensitivity == 1){
+        if (PlayerSensitivity == 1) {
             track.color = "#2074bc"
         } else {
             track.color = "#5a5348";
         }
         track.visible = true;
-        player.overlapping(track, function(){
+        player.overlapping(track, function () {
             slowed = false
         })
 
@@ -167,7 +167,7 @@ function setup() {
         removeSlow.color = '#FF0000'
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
-            if (slowed){
+            if (slowed) {
                 EnTrackLimits.play()
             }
             slowed = false
@@ -197,7 +197,7 @@ function setup() {
         player.collider = 'd'
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
+        if (debuged || PlayerSensitivity == 1) {
             player.image = boatImg
             player.scale = 0.75
         } else {
@@ -208,7 +208,7 @@ function setup() {
         if (mapSelected == "map2") {
             player.rotation = 0
         }
-        if (mapSelected == "map4"){
+        if (mapSelected == "map4") {
             player.rotation = 138
         }
         player.w = 11
@@ -228,13 +228,13 @@ function setup() {
         track.w = tileSize;
         track.h = tileSize;
         track.collider = "n";
-        if (PlayerSensitivity == 1){
+        if (PlayerSensitivity == 1) {
             track.color = "#2074bc"
         } else {
             track.color = "#5a5348";
         }
         track.visible = true;
-        player.overlapping(track, function(){
+        player.overlapping(track, function () {
             slowed = false
         })
 
@@ -288,7 +288,7 @@ function setup() {
         removeSlow.color = '#FF0000'
         removeSlow.opacity = 0.5
         player.overlaps(removeSlow, function () {
-            if (slowed){
+            if (slowed) {
                 trackLimitsAudio.play()
             }
             slowed = false
@@ -312,7 +312,7 @@ function setup() {
         gravel.visible = true
         gravel.w = tileSize
         gravel.h = tileSize
-        
+
         wallsA = new Group()
         wallsA.tile = "Y"
         wallsA.color = "red"
@@ -325,7 +325,7 @@ function setup() {
         WallsB.tile = 'y'
         WallsB.color = 'red'
         WallsB.collider = 's'
-        WallsB.visible = true   
+        WallsB.visible = true
         WallsB.w = tileSize
         WallsB.h = tileSize
 
@@ -335,7 +335,7 @@ function setup() {
         WallATrigger.visible = false
         WallATrigger.h = tileSize
         WallATrigger.w = tileSize
-        player.overlaps(WallATrigger, () =>{
+        player.overlaps(WallATrigger, () => {
             WallsB.collider = 'n'
             WallsB.visible = false
             wallsA.collider = 's'
@@ -348,13 +348,13 @@ function setup() {
         WallBTrigger.visible = false
         WallBTrigger.h = tileSize
         WallBTrigger.w = tileSize
-        player.overlaps(WallBTrigger, () =>{
+        player.overlaps(WallBTrigger, () => {
             wallsA.collider = 'n'
             wallsA.visible = false
             WallsB.collider = 's'
             WallsB.visible = true
         })
-        
+
         cheaterWall = new Group()
         cheaterWall.tile = 'F'
         cheaterWall.collider = 'n'
@@ -371,7 +371,7 @@ function setup() {
         player.collides(cheaterTrigger, () => {
             cheaterWall.collider = 's'
         })
-    
+
     }
 
 
@@ -816,7 +816,7 @@ function setup() {
                 0,
                 tileSize,
                 tileSize
-                
+
             )
             player.rotation = 135
             break
@@ -1078,7 +1078,7 @@ function draw() {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
-    if (timeRemaining <= 0){
+    if (timeRemaining <= 0) {
         sessionComplete = true
     }
 
@@ -1090,7 +1090,7 @@ function draw() {
     trackLimit.draw()
     track.draw()
     camera.off()
-    if (window.localStorage.getItem("Cheated")){
+    if (window.localStorage.getItem("Cheated")) {
         player.collider = 'd'
         trackLimit.collider = 's'
     }
@@ -1253,7 +1253,7 @@ function TimingOverlap() {
 
 function FastestLapCalculation(prevLap, InvalidLap) {
     let fast = window.LapTimeModule.GetFL()
-    if (!InvalidLap){
+    if (!InvalidLap) {
         if (fast) {
             if (prevLap < fast) {
                 window.LapTimeModule.SetFL(prevLap)

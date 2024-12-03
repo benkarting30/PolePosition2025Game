@@ -23,199 +23,199 @@ let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
 let playerHasNotMoved = true
-let map1nodes = [{x: 592.9889081564344, y: 68.94656899678571},
-  {x: 693.8093291544558, y: 93.15223422078996},
-  {x: 710.8852730834348, y: 109.83738908823243},
-  {x: 733.5068916753524, y: 114.78364620348331},
-  {x: 762.3051394042675, y: 93.77551596025228},
-  {x: 802.0123458931909, y: 63.38553701115763},
-  {x: 842.6350066133057, y: 78.07858841731978},
-  {x: 869.920184476642, y: 100.81496373648935},
-  {x: 873.7038075748176, y: 163.11565355542226},
-  {x: 852.0969725207023, y: 216.29860960915462},
-  {x: 825.9682376655351, y: 266.27880162918984},
-  {x: 765.9025283340843, y: 326.4942598730531},
-  {x: 642.4146719531866, y: 398.60693229800535},
-  {x: 537.3727707463212, y: 465.02483829085486},
-  {x: 311.92883778422805, y: 589.9750658758597},
-  {x: 211.0492819353355, y: 706.2081191785911},
-  {x: 204.60192688390535, y: 776.95195361974},
-  {x: 247.41742834494477, y: 824.1622848099208},
-  {x: 315.5353591614642, y: 840.7943393701105},
-  {x: 380.1048194630614, y: 799.6340113398404},
-  {x: 454.08890742878356, y: 746.6885431756901},
-  {x: 537.2245443476721, y: 706.145844162602},
-  {x: 632.9661199780683, y: 733.2236129261785},
-  {x: 731.6036504779843, y: 782.14990958115},
-  {x: 814.8182398669794, y: 758.7427880914411},
-  {x: 836.2222940733782, y: 680.9606934984411},
-  {x: 779.2130542180754, y: 649.8380182854443},
-  {x: 571.6501457619953, y: 565.3313557968045},
-  {x: 527.8688986971089, y: 539.593930775258},
-  {x: 381.7063136498682, y: 488.02027784526723},
-  {x: 265.74335569201077, y: 428.5281199071196},
-  {x: 172.27556836051664, y: 360.814029947001},
-  {x: 109.27870789713096, y: 290.5475753005452},
-  {x: 103.61817325849006, y: 218.28588264094662},
-  {x: 170.7411007115927, y: 161.34462964957785},
-  {x: 288.60369853342183, y: 121.6184443284802},
-  {x: 386.7715965098251, y: 88.53045730236252}]
+let map1nodes = [{ x: 592.9889081564344, y: 68.94656899678571 },
+{ x: 693.8093291544558, y: 93.15223422078996 },
+{ x: 710.8852730834348, y: 109.83738908823243 },
+{ x: 733.5068916753524, y: 114.78364620348331 },
+{ x: 762.3051394042675, y: 93.77551596025228 },
+{ x: 802.0123458931909, y: 63.38553701115763 },
+{ x: 842.6350066133057, y: 78.07858841731978 },
+{ x: 869.920184476642, y: 100.81496373648935 },
+{ x: 873.7038075748176, y: 163.11565355542226 },
+{ x: 852.0969725207023, y: 216.29860960915462 },
+{ x: 825.9682376655351, y: 266.27880162918984 },
+{ x: 765.9025283340843, y: 326.4942598730531 },
+{ x: 642.4146719531866, y: 398.60693229800535 },
+{ x: 537.3727707463212, y: 465.02483829085486 },
+{ x: 311.92883778422805, y: 589.9750658758597 },
+{ x: 211.0492819353355, y: 706.2081191785911 },
+{ x: 204.60192688390535, y: 776.95195361974 },
+{ x: 247.41742834494477, y: 824.1622848099208 },
+{ x: 315.5353591614642, y: 840.7943393701105 },
+{ x: 380.1048194630614, y: 799.6340113398404 },
+{ x: 454.08890742878356, y: 746.6885431756901 },
+{ x: 537.2245443476721, y: 706.145844162602 },
+{ x: 632.9661199780683, y: 733.2236129261785 },
+{ x: 731.6036504779843, y: 782.14990958115 },
+{ x: 814.8182398669794, y: 758.7427880914411 },
+{ x: 836.2222940733782, y: 680.9606934984411 },
+{ x: 779.2130542180754, y: 649.8380182854443 },
+{ x: 571.6501457619953, y: 565.3313557968045 },
+{ x: 527.8688986971089, y: 539.593930775258 },
+{ x: 381.7063136498682, y: 488.02027784526723 },
+{ x: 265.74335569201077, y: 428.5281199071196 },
+{ x: 172.27556836051664, y: 360.814029947001 },
+{ x: 109.27870789713096, y: 290.5475753005452 },
+{ x: 103.61817325849006, y: 218.28588264094662 },
+{ x: 170.7411007115927, y: 161.34462964957785 },
+{ x: 288.60369853342183, y: 121.6184443284802 },
+{ x: 386.7715965098251, y: 88.53045730236252 }]
 let map2nodes = [
-  {x: 152.14940131517432, y: 395.01923002173186},
-{x: 209.35889354890654, y: 237.83744193108805},
-{x: 249.32173482945996, y: 191.4962324571841},
-{x: 326.1941974625231, y: 149.29509686250984},
-{x: 451.9738313029742, y: 130.79213256874303},
-{x: 530.856600702615, y: 169.37590154299824},
-{x: 592.7230428336344, y: 196.1840758007991},
-{x: 663.1545737991501, y: 187.7553727602887},
-{x: 707.5320046932652, y: 172.94186080175305},
-{x: 753.1371968680176, y: 177.2530876939932},
-{x: 817.6243864809287, y: 208.54999448635053},
-{x: 860.889449139403, y: 173.93076902855805},
-{x: 893.0920041780686, y: 140.95682937363398},
-{x: 928.2854236003774, y: 159.71855911715926},
-{x: 905.6497287194682, y: 234.0980892864264},
-{x: 868.7251230552115, y: 353.13937268990196},
-{x: 816.2357915088544, y: 447.02277211674},
-{x: 703.3245965778879, y: 516.5908753161995},
-{x: 646.7919387773198, y: 583.4074358842585},
-{x: 609.8816767155245, y: 574.9149699594326},
-{x: 575.5579130027251, y: 547.6308060879},
-{x: 434.856868240006, y: 539.6821780963471},
-{x: 348.03476588790846, y: 554.7191872225039},
-{x: 288.487020853951, y: 652.5324422712606},
-{x: 335.82953796913205, y: 796},
-{x: 391.45328810644503, y: 793.3727239477427},
-{x: 477.1064057956683, y: 791.4187794576561},
-{x: 586.5892417856564, y: 788.9212243199919},
-{x: 680.0663216836956, y: 773.013083870424},
-{x: 711.9294401507233, y: 765.565007529364},
-{x: 799.6529785783766, y: 807.8191051854091},
-{x: 833.7856275709432, y: 847.3442662233836},
-{x: 804.9643136893701, y: 929.2588668309613},
-{x: 684.6883029845978, y: 951.5212875990269},
-{x: 498.0082381850689, y: 945.3338987514286},
-{x: 395.33149942465485, y: 887.9245876061971},
-{x: 290.54999186856276, y: 918.2114990393235},
-{x: 174.39315077049037, y: 914.3429765425784},
-{x: 99.92514463165004, y: 862.591809042593},
-{x: 105.17866033953501, y: 784.5437115107233},
-{x: 131.93976935185106, y: 715.1752896177691},
-{x: 117.14883612444547, y: 588.3206871899156},
-{x: 107.52214657390638, y: 493.71768514036796}
+  { x: 152.14940131517432, y: 395.01923002173186 },
+  { x: 209.35889354890654, y: 237.83744193108805 },
+  { x: 249.32173482945996, y: 191.4962324571841 },
+  { x: 326.1941974625231, y: 149.29509686250984 },
+  { x: 451.9738313029742, y: 130.79213256874303 },
+  { x: 530.856600702615, y: 169.37590154299824 },
+  { x: 592.7230428336344, y: 196.1840758007991 },
+  { x: 663.1545737991501, y: 187.7553727602887 },
+  { x: 707.5320046932652, y: 172.94186080175305 },
+  { x: 753.1371968680176, y: 177.2530876939932 },
+  { x: 817.6243864809287, y: 208.54999448635053 },
+  { x: 860.889449139403, y: 173.93076902855805 },
+  { x: 893.0920041780686, y: 140.95682937363398 },
+  { x: 928.2854236003774, y: 159.71855911715926 },
+  { x: 905.6497287194682, y: 234.0980892864264 },
+  { x: 868.7251230552115, y: 353.13937268990196 },
+  { x: 816.2357915088544, y: 447.02277211674 },
+  { x: 703.3245965778879, y: 516.5908753161995 },
+  { x: 646.7919387773198, y: 583.4074358842585 },
+  { x: 609.8816767155245, y: 574.9149699594326 },
+  { x: 575.5579130027251, y: 547.6308060879 },
+  { x: 434.856868240006, y: 539.6821780963471 },
+  { x: 348.03476588790846, y: 554.7191872225039 },
+  { x: 288.487020853951, y: 652.5324422712606 },
+  { x: 335.82953796913205, y: 796 },
+  { x: 391.45328810644503, y: 793.3727239477427 },
+  { x: 477.1064057956683, y: 791.4187794576561 },
+  { x: 586.5892417856564, y: 788.9212243199919 },
+  { x: 680.0663216836956, y: 773.013083870424 },
+  { x: 711.9294401507233, y: 765.565007529364 },
+  { x: 799.6529785783766, y: 807.8191051854091 },
+  { x: 833.7856275709432, y: 847.3442662233836 },
+  { x: 804.9643136893701, y: 929.2588668309613 },
+  { x: 684.6883029845978, y: 951.5212875990269 },
+  { x: 498.0082381850689, y: 945.3338987514286 },
+  { x: 395.33149942465485, y: 887.9245876061971 },
+  { x: 290.54999186856276, y: 918.2114990393235 },
+  { x: 174.39315077049037, y: 914.3429765425784 },
+  { x: 99.92514463165004, y: 862.591809042593 },
+  { x: 105.17866033953501, y: 784.5437115107233 },
+  { x: 131.93976935185106, y: 715.1752896177691 },
+  { x: 117.14883612444547, y: 588.3206871899156 },
+  { x: 107.52214657390638, y: 493.71768514036796 }
 ]
-let map3nodes = [{x: 385.5738992662789, y: 81.07609692466775},
-  {x: 442.7307086268809, y: 120.26830745473231},
-  {x: 483.16971898815234, y: 178.65940650352783},
-  {x: 510.18852886060137, y: 197.59605483231957},
-  {x: 530.9000463412114, y: 194.39172019142964},
-  {x: 581.6507637359502, y: 162.90083649348747},
-  {x: 609.1727522256423, y: 140.36392328051556},
-  {x: 663.6107498369212, y: 123.47766783068528},
-  {x: 722.3807597080938, y: 120.55570976867632},
-  {x: 798.2403468143028, y: 141.58474682751518},
-  {x: 841.3858818751632, y: 204.38073882299912},
-  {x: 894.8800649770423, y: 297.0333780903294},
-  {x: 916.3130369806652, y: 352.37997982612046},
-  {x: 921.3012087865397, y: 415.6941772415902},
-  {x: 890.8302483007661, y: 492.1476204717936},
-  {x: 868.2363636286863, y: 514.7450632547028},
-  {x: 832.2664529372656, y: 521.5592533190467},
-  {x: 806.525790189708, y: 532.6512223968634},
-  {x: 778.8736177102384, y: 565.7613885521434},
-  {x: 778.4086853529038, y: 566.4908224276278},
-  {x: 795.0659562561588, y: 627.1359613309064},
-  {x: 815.3074926837295, y: 653.9001299448493},
-  {x: 847.4830389985608, y: 692.8908984405158},
-  {x: 871.4355554380368, y: 721.9168865074156},
-  {x: 885.2358568322475, y: 765.1389724095094},
-  {x: 883.6291525181638, y: 805.681344818157},
-  {x: 876.8513210844345, y: 861.2402900784908},
-  {x: 870.249653229961, y: 867.7339805686781},
-  {x: 767.2367598968606, y: 898.913900400895},
-  {x: 662.8520348359239, y: 893.5196559447814},
-  {x: 592.8474432537035, y: 850.3556773164128},
-  {x: 568.8439525467013, y: 782.7496679276277},
-  {x: 519.035159833059, y: 509.0130764329198},
-  {x: 466.27889612335326, y: 418.8140569793693},
-  {x: 404.0551763751391, y: 378.60163595923234},
-  {x: 323.7208415403155, y: 422.4223694899493},
-  {x: 309.0570657878949, y: 662.426676188313},
-  {x: 331.33029079947346, y: 727.7170165789389},
-  {x: 314.28614964067106, y: 762.9038197451631},
-  {x: 254.78826018152353, y: 788.805304038981},
-  {x: 80.62210407940434, y: 661.6151694118178},
-  {x: 94.80534757841703, y: 536.0277299917336},
-  {x: 136.12525654324622, y: 444.472378323971},
-  {x: 128.85747736469563, y: 340.01908899329794},
-  {x: 54.396060781983884, y: 265.71831831862056},
-  {x: 46.56506473080162, y: 197.27291915146364},
-  {x: 83.83418770393007, y: 119.37698558862458},
-  {x: 152.39156189129238, y: 86.6925602215931},
-  {x: 256.2460009768967, y: 74.63303819133104},
-  {x: 340.616635679055, y: 78.25273880746015}]
-let map4nodes = [{x: 491.93040218329946, y: 258.0695978167002},
-  {x: 410.19208585223527, y: 389.4736356276792},
-  {x: 326.183513205654, y: 501.7703804434514},
-  {x: 235.27611735720285, y: 644.3037223431108},
-  {x: 139.68014588433923, y: 763.9027520092989},
-  {x: 98.28218554770915, y: 806.5695730121249},
-  {x: 95.97297271322286, y: 838.9030584790083},
-  {x: 115.2673781314933, y: 862.5827713330941},
-  {x: 151.4566702086924, y: 880.1400532889402},
-  {x: 229.61024587636456, y: 857.1415563628815},
-  {x: 313.75706253967724, y: 704.8517983450438},
-  {x: 476.3919351551976, y: 462.2816117852421},
-  {x: 583.3909014379414, y: 344.026747717243},
-  {x: 690.0366174423987, y: 258.63435130585793},
-  {x: 754.2125092379556, y: 237.31256838519298},
-  {x: 760.6316775380075, y: 209.1569077113417},
-  {x: 753.8118264496022, y: 161.9630750614251},
-  {x: 728.6271673293431, y: 143.03004126092765},
-  {x: 698.0433207582525, y: 135.38807809344354},
-  {x: 655.1455888871596, y: 148.84872269961681},
-  {x: 569.351574356032, y: 183.09609546686758}]
-let map5nodes = [{x: 395.7841282878494, y: 74.50931730076722},
-  {x: 521.3153712217354, y: 84.29590269703566},
-  {x: 545.5695600299251, y: 89.3598195029924},
-  {x: 595.9071359551097, y: 88.9411649572985},
-  {x: 626.9428953841842, y: 113.34908583052066},
-  {x: 762.7194744718352, y: 120.27977203739806},
-  {x: 830.3363491859217, y: 159.77467747442896},
-  {x: 881.6555311240465, y: 224.68329085847196},
-  {x: 919.197207578645, y: 313.2629356775279},
-  {x: 923.3078478046796, y: 433.8781168467699},
-  {x: 859.8579457782595, y: 501.5248697317207},
-  {x: 786.9933032544885, y: 546.6048718868575},
-  {x: 791.2485864222276, y: 645.7350026840767},
-  {x: 870.8474443979444, y: 740.3153318175745},
-  {x: 893.5356837367561, y: 767.9342321757487},
-  {x: 897.9495209205029, y: 777.3663380659353},
-  {x: 890, y: 833.378002920741},
-  {x: 830.8198218605595, y: 883.0912910571758},
-  {x: 765.5803061732743, y: 881.3917689470696},
-  {x: 673.3119394822457, y: 876.1706009459457},
-  {x: 610, y: 869.4646864753383},
-  {x: 581.6865888379725, y: 841.9664580941948},
-  {x: 567.5236495919787, y: 801.1464258160897},
-  {x: 562.673461937857, y: 697.3930315993475},
-  {x: 553.9768808403626, y: 584.7856089970073},
-  {x: 512.9119249881843, y: 447.1190029603214},
-  {x: 479.9680192600668, y: 426.46355664508434},
-  {x: 434.98164174919555, y: 415.6768165061271},
-  {x: 333.0545917367166, y: 415.8967687163193},
-  {x: 310.5241498060085, y: 442.8504832404042},
-  {x: 304.1649935896256, y: 542.850898598944},
-  {x: 293.0650271643894, y: 754.1637586318557},
-  {x: 212.20530790294242, y: 757.1627605982364},
-  {x: 151.57332698239568, y: 747.5831016029432},
-  {x: 91.99217645240854, y: 638.1028045831031},
-  {x: 96.68026913079187, y: 513.6310827898753},
-  {x: 128.5248980947179, y: 335.54668894403005},
-  {x: 56.76638224266324, y: 242.5638762858622},
-  {x: 80.48492716402822, y: 126.37414970385521},
-  {x: 336.9458109083048, y: 84.58548066439425}]
+let map3nodes = [{ x: 385.5738992662789, y: 81.07609692466775 },
+{ x: 442.7307086268809, y: 120.26830745473231 },
+{ x: 483.16971898815234, y: 178.65940650352783 },
+{ x: 510.18852886060137, y: 197.59605483231957 },
+{ x: 530.9000463412114, y: 194.39172019142964 },
+{ x: 581.6507637359502, y: 162.90083649348747 },
+{ x: 609.1727522256423, y: 140.36392328051556 },
+{ x: 663.6107498369212, y: 123.47766783068528 },
+{ x: 722.3807597080938, y: 120.55570976867632 },
+{ x: 798.2403468143028, y: 141.58474682751518 },
+{ x: 841.3858818751632, y: 204.38073882299912 },
+{ x: 894.8800649770423, y: 297.0333780903294 },
+{ x: 916.3130369806652, y: 352.37997982612046 },
+{ x: 921.3012087865397, y: 415.6941772415902 },
+{ x: 890.8302483007661, y: 492.1476204717936 },
+{ x: 868.2363636286863, y: 514.7450632547028 },
+{ x: 832.2664529372656, y: 521.5592533190467 },
+{ x: 806.525790189708, y: 532.6512223968634 },
+{ x: 778.8736177102384, y: 565.7613885521434 },
+{ x: 778.4086853529038, y: 566.4908224276278 },
+{ x: 795.0659562561588, y: 627.1359613309064 },
+{ x: 815.3074926837295, y: 653.9001299448493 },
+{ x: 847.4830389985608, y: 692.8908984405158 },
+{ x: 871.4355554380368, y: 721.9168865074156 },
+{ x: 885.2358568322475, y: 765.1389724095094 },
+{ x: 883.6291525181638, y: 805.681344818157 },
+{ x: 876.8513210844345, y: 861.2402900784908 },
+{ x: 870.249653229961, y: 867.7339805686781 },
+{ x: 767.2367598968606, y: 898.913900400895 },
+{ x: 662.8520348359239, y: 893.5196559447814 },
+{ x: 592.8474432537035, y: 850.3556773164128 },
+{ x: 568.8439525467013, y: 782.7496679276277 },
+{ x: 519.035159833059, y: 509.0130764329198 },
+{ x: 466.27889612335326, y: 418.8140569793693 },
+{ x: 404.0551763751391, y: 378.60163595923234 },
+{ x: 323.7208415403155, y: 422.4223694899493 },
+{ x: 309.0570657878949, y: 662.426676188313 },
+{ x: 331.33029079947346, y: 727.7170165789389 },
+{ x: 314.28614964067106, y: 762.9038197451631 },
+{ x: 254.78826018152353, y: 788.805304038981 },
+{ x: 80.62210407940434, y: 661.6151694118178 },
+{ x: 94.80534757841703, y: 536.0277299917336 },
+{ x: 136.12525654324622, y: 444.472378323971 },
+{ x: 128.85747736469563, y: 340.01908899329794 },
+{ x: 54.396060781983884, y: 265.71831831862056 },
+{ x: 46.56506473080162, y: 197.27291915146364 },
+{ x: 83.83418770393007, y: 119.37698558862458 },
+{ x: 152.39156189129238, y: 86.6925602215931 },
+{ x: 256.2460009768967, y: 74.63303819133104 },
+{ x: 340.616635679055, y: 78.25273880746015 }]
+let map4nodes = [{ x: 491.93040218329946, y: 258.0695978167002 },
+{ x: 410.19208585223527, y: 389.4736356276792 },
+{ x: 326.183513205654, y: 501.7703804434514 },
+{ x: 235.27611735720285, y: 644.3037223431108 },
+{ x: 139.68014588433923, y: 763.9027520092989 },
+{ x: 98.28218554770915, y: 806.5695730121249 },
+{ x: 95.97297271322286, y: 838.9030584790083 },
+{ x: 115.2673781314933, y: 862.5827713330941 },
+{ x: 151.4566702086924, y: 880.1400532889402 },
+{ x: 229.61024587636456, y: 857.1415563628815 },
+{ x: 313.75706253967724, y: 704.8517983450438 },
+{ x: 476.3919351551976, y: 462.2816117852421 },
+{ x: 583.3909014379414, y: 344.026747717243 },
+{ x: 690.0366174423987, y: 258.63435130585793 },
+{ x: 754.2125092379556, y: 237.31256838519298 },
+{ x: 760.6316775380075, y: 209.1569077113417 },
+{ x: 753.8118264496022, y: 161.9630750614251 },
+{ x: 728.6271673293431, y: 143.03004126092765 },
+{ x: 698.0433207582525, y: 135.38807809344354 },
+{ x: 655.1455888871596, y: 148.84872269961681 },
+{ x: 569.351574356032, y: 183.09609546686758 }]
+let map5nodes = [{ x: 395.7841282878494, y: 74.50931730076722 },
+{ x: 521.3153712217354, y: 84.29590269703566 },
+{ x: 545.5695600299251, y: 89.3598195029924 },
+{ x: 595.9071359551097, y: 88.9411649572985 },
+{ x: 626.9428953841842, y: 113.34908583052066 },
+{ x: 762.7194744718352, y: 120.27977203739806 },
+{ x: 830.3363491859217, y: 159.77467747442896 },
+{ x: 881.6555311240465, y: 224.68329085847196 },
+{ x: 919.197207578645, y: 313.2629356775279 },
+{ x: 923.3078478046796, y: 433.8781168467699 },
+{ x: 859.8579457782595, y: 501.5248697317207 },
+{ x: 786.9933032544885, y: 546.6048718868575 },
+{ x: 791.2485864222276, y: 645.7350026840767 },
+{ x: 870.8474443979444, y: 740.3153318175745 },
+{ x: 893.5356837367561, y: 767.9342321757487 },
+{ x: 897.9495209205029, y: 777.3663380659353 },
+{ x: 890, y: 833.378002920741 },
+{ x: 830.8198218605595, y: 883.0912910571758 },
+{ x: 765.5803061732743, y: 881.3917689470696 },
+{ x: 673.3119394822457, y: 876.1706009459457 },
+{ x: 610, y: 869.4646864753383 },
+{ x: 581.6865888379725, y: 841.9664580941948 },
+{ x: 567.5236495919787, y: 801.1464258160897 },
+{ x: 562.673461937857, y: 697.3930315993475 },
+{ x: 553.9768808403626, y: 584.7856089970073 },
+{ x: 512.9119249881843, y: 447.1190029603214 },
+{ x: 479.9680192600668, y: 426.46355664508434 },
+{ x: 434.98164174919555, y: 415.6768165061271 },
+{ x: 333.0545917367166, y: 415.8967687163193 },
+{ x: 310.5241498060085, y: 442.8504832404042 },
+{ x: 304.1649935896256, y: 542.850898598944 },
+{ x: 293.0650271643894, y: 754.1637586318557 },
+{ x: 212.20530790294242, y: 757.1627605982364 },
+{ x: 151.57332698239568, y: 747.5831016029432 },
+{ x: 91.99217645240854, y: 638.1028045831031 },
+{ x: 96.68026913079187, y: 513.6310827898753 },
+{ x: 128.5248980947179, y: 335.54668894403005 },
+{ x: 56.76638224266324, y: 242.5638762858622 },
+{ x: 80.48492716402822, y: 126.37414970385521 },
+{ x: 336.9458109083048, y: 84.58548066439425 }]
 let carImg1, carImg2, carImg3, carImg4, carImages
 let settingsJSON = JSON.parse(window.sessionStorage.Settings)
 let LapTotal = settingsJSON.rL
@@ -240,343 +240,343 @@ function preload() {
 }
 
 function setup() {
-    // Create Canvas and set background and frameRate
-    createCanvas(windowWidth, windowHeight);
-    background(255);
-    frameRate(60);
-    defaultFont = textFont()
-    mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
-    // Create tile types
+  // Create Canvas and set background and frameRate
+  createCanvas(windowWidth, windowHeight);
+  background(255);
+  frameRate(60);
+  defaultFont = textFont()
+  mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
+  // Create tile types
 
-    let settingsJSON = JSON.parse(window.sessionStorage.Settings)
-    PlayerSensitivity = settingsJSON.sens
-    console.log(PlayerSensitivity)
-    let debuged = settingsJSON.debug
-    if (settingsJSON.noCol){
-        colState = 'n'
-    } else if (settingsJSON.dyColD){
-        colState = 'd'
+  let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+  PlayerSensitivity = settingsJSON.sens
+  console.log(PlayerSensitivity)
+  let debuged = settingsJSON.debug
+  if (settingsJSON.noCol) {
+    colState = 'n'
+  } else if (settingsJSON.dyColD) {
+    colState = 'd'
+  } else {
+    colState = undefined
+  }
+
+
+
+  if (colState) {
+
+    player = new Sprite()
+    player.collider = colState
+    player.tile = 'x'
+    player.color = 'yellow'
+    if (debuged || PlayerSensitivity == 1) {
+      player.image = boatImg
+      player.scale = 0.75
     } else {
-        colState = undefined
+      player.image = random(carImages)
+      player.scale = 0.045
     }
+    player.direction = Math.PI / 2
+    if (mapSelected == "map2") {
+      player.rotation = 0
+    }
+    if (mapSelected == "map4") {
+      player.rotation = 138
+    }
+    player.w = 11
+    player.h = 6
+
+    trackLimit = new Group()
+    trackLimit.color = "red"
+    trackLimit.tile = 'b'
+    trackLimit.collider = colState //Collisions with the track limit will be processed as static
+    trackLimit.w = tileSize
+    trackLimit.h = tileSize
 
 
 
-    if (colState){
-
-        player = new Sprite()
-        player.collider = colState
-        player.tile = 'x'
-        player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
-            player.image = boatImg
-            player.scale = 0.75
-        } else {
-            player.image = random(carImages)
-            player.scale = 0.045
-        }
-        player.direction = Math.PI / 2
-        if (mapSelected == "map2") {
-            player.rotation = 0
-        }
-        if (mapSelected == "map4"){
-            player.rotation = 138
-        }
-        player.w = 11
-        player.h = 6
-
-        trackLimit = new Group()
-        trackLimit.color = "red"
-        trackLimit.tile = 'b'
-        trackLimit.collider = colState //Collisions with the track limit will be processed as static
-        trackLimit.w = tileSize
-        trackLimit.h = tileSize
-
-
-
-        track = new Group()
-        track.tile = '.'
-        track.w = tileSize;
-        track.h = tileSize;
-        track.collider = colState;
-        if (PlayerSensitivity == 1){
-            track.color = "#2074bc"
-        } else {
-            track.color = "#5a5348";
-        }
-        track.visible = true;
-        player.overlapping(track, function(){
-            slowed = false
-        })
-
-        start = new Group()
-        start.collider = colState
-        start.tile = "s"
-        start.visible = true
-        start.w = tileSize
-        start.h = tileSize
-        player.overlapping(start, function () {
-            StartLineOverlap()
-        })
-
-        timingLine = new Group();
-        timingLine.collider = colState;
-        timingLine.tile = "t";
-        timingLine.visible = false;
-        timingLine.color = "orange";
-        timingLine.w = tileSize;
-        timingLine.h = tileSize;
-        player.overlapping(timingLine, function () {
-            TimingOverlap()
-        })
-
-        testing = new Group();
-        testing.collider = colState;
-        testing.tile = "=";
-        testing.visible = true;
-        testing.color = "orange";
-        testing.w = tileSize;
-        testing.h = tileSize;
-
-        slowArea = new Group()
-        slowArea.collider = colState
-        slowArea.tile = "B"
-        slowArea.color = "#969292"
-        slowArea.w = tileSize
-        slowArea.h = tileSize
-        slowArea.visible = false
-        player.overlaps(slowArea, function () {
-            lapInvalid = true
-            slowed = true
-        })
-
-        removeSlow = new Group()
-        removeSlow.collider = colState
-        removeSlow.tile = 'R'
-        removeSlow.w = tileSize
-        removeSlow.h = tileSize
-        removeSlow.visible = true
-        removeSlow.color = '#FF0000'
-        removeSlow.opacity = 0.5
-        player.overlaps(removeSlow, function () {
-            if (slowed){
-                EnTrackLimits.play()
-            }
-            slowed = false
-        })
-
-        startSlowArea = new Group()
-        startSlowArea.collider = colState
-        startSlowArea.tile = "S"
-        startSlowArea.color = "#969292"
-        startSlowArea.visible = false
-        startSlowArea.w = tileSize
-        startSlowArea.h = tileSize
-        player.overlapping(startSlowArea, function () {
-            StartLineOverlap()
-        })
-
-        gravel = new Group()
-        gravel.tile = "G"
-        gravel.color = '#e4b382'
-        gravel.collider = colState
-        gravel.visible = 'true'
-        gravel.w = tileSize
-        gravel.h = tileSize
+    track = new Group()
+    track.tile = '.'
+    track.w = tileSize;
+    track.h = tileSize;
+    track.collider = colState;
+    if (PlayerSensitivity == 1) {
+      track.color = "#2074bc"
     } else {
+      track.color = "#5a5348";
+    }
+    track.visible = true;
+    player.overlapping(track, function () {
+      slowed = false
+    })
 
-        player = new Sprite()
-        player.collider = 'd'
-        player.tile = 'x'
-        player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1){
-            player.image = boatImg
-            player.scale = 0.75
-        } else {
-            player.image = random(carImages)
-            player.scale = 0.045
-        }
-        player.direction = Math.PI / 2
-        if (mapSelected == "map2") {
-            player.rotation = 0
-        }
-        if (mapSelected == "map4"){
-            player.rotation = 138
-        }
-        player.w = 11
-        player.h = 6
+    start = new Group()
+    start.collider = colState
+    start.tile = "s"
+    start.visible = true
+    start.w = tileSize
+    start.h = tileSize
+    player.overlapping(start, function () {
+      StartLineOverlap()
+    })
 
-        trackLimit = new Group()
-        trackLimit.color = "red"
-        trackLimit.tile = 'b'
-        trackLimit.collider = 's' //Collisions with the track limit will be processed as static
-        trackLimit.w = tileSize
-        trackLimit.h = tileSize
+    timingLine = new Group();
+    timingLine.collider = colState;
+    timingLine.tile = "t";
+    timingLine.visible = false;
+    timingLine.color = "orange";
+    timingLine.w = tileSize;
+    timingLine.h = tileSize;
+    player.overlapping(timingLine, function () {
+      TimingOverlap()
+    })
 
+    testing = new Group();
+    testing.collider = colState;
+    testing.tile = "=";
+    testing.visible = true;
+    testing.color = "orange";
+    testing.w = tileSize;
+    testing.h = tileSize;
 
+    slowArea = new Group()
+    slowArea.collider = colState
+    slowArea.tile = "B"
+    slowArea.color = "#969292"
+    slowArea.w = tileSize
+    slowArea.h = tileSize
+    slowArea.visible = false
+    player.overlaps(slowArea, function () {
+      lapInvalid = true
+      slowed = true
+    })
 
-        track = new Group()
-        track.tile = '.'
-        track.w = tileSize;
-        track.h = tileSize;
-        track.collider = "n";
-        if (PlayerSensitivity == 1){
-            track.color = "#2074bc"
-        } else {
-            track.color = "#5a5348";
-        }
-        track.visible = true;
-        player.overlapping(track, function(){
-            slowed = false
-        })
-
-        start = new Group()
-        start.collider = "n"
-        start.tile = "s"
-        start.visible = true
-        start.w = tileSize
-        start.h = tileSize
-        player.overlapping(start, function () {
-            StartLineOverlap()
-        })
-
-        timingLine = new Group();
-        timingLine.collider = "n";
-        timingLine.tile = "t";
-        timingLine.visible = false;
-        timingLine.color = "orange";
-        timingLine.w = tileSize;
-        timingLine.h = tileSize;
-        player.overlapping(timingLine, function () {
-            TimingOverlap()
-        })
-
-        testing = new Group();
-        testing.collider = "n";
-        testing.tile = "=";
-        testing.visible = true;
-        testing.color = "orange";
-        testing.w = tileSize;
-        testing.h = tileSize;
-
-        slowArea = new Group()
-        slowArea.collider = "n"
-        slowArea.tile = "B"
-        slowArea.color = "#969292"
-        slowArea.w = tileSize
-        slowArea.h = tileSize
-        slowArea.visible = false
-        player.overlaps(slowArea, function () {
-            lapInvalid = true
-            slowed = true
-        })
-
-        removeSlow = new Group()
-        removeSlow.collider = 'n'
-        removeSlow.tile = 'R'
-        removeSlow.w = tileSize
-        removeSlow.h = tileSize
-        removeSlow.visible = true
-        removeSlow.color = '#FF0000'
-        removeSlow.opacity = 0.5
-        player.overlaps(removeSlow, function () {
-            if (slowed){
-                EnTrackLimits.play()
-            }
-            slowed = false
-        })
-
-        startSlowArea = new Group()
-        startSlowArea.collider = "n"
-        startSlowArea.tile = "S"
-        startSlowArea.color = "#969292"
-        startSlowArea.visible = false
-        startSlowArea.w = tileSize
-        startSlowArea.h = tileSize
-        player.overlapping(startSlowArea, function () {
-            StartLineOverlap()
-        })
-
-        gravel = new Group()
-        gravel.tile = "G"
-        gravel.color = '#e4b382'
-        gravel.collider = 'n'
-        gravel.visible = true
-        gravel.w = tileSize
-        gravel.h = tileSize
-        
-        wallsA = new Group()
-        wallsA.tile = "Y"
-        wallsA.color = "red"
-        wallsA.collider = 's'
-        wallsA.visible = true
-        wallsA.w = tileSize
-        wallsA.h = tileSize
-
-        WallsB = new Group()
-        WallsB.tile = 'y'
-        WallsB.color = 'red'
-        WallsB.collider = 's'
-        WallsB.visible = true   
-        WallsB.w = tileSize
-        WallsB.h = tileSize
-
-        WallATrigger = new Group()
-        WallATrigger.tile = 'V'
-        WallATrigger.collider = 'n'
-        WallATrigger.visible = false
-        WallATrigger.h = tileSize
-        WallATrigger.w = tileSize
-        player.overlaps(WallATrigger, () =>{
-            WallsB.collider = 'n'
-            WallsB.visible = false
-            wallsA.collider = 's'
-            wallsA.visible = true
-        })
-
-        WallBTrigger = new Group()
-        WallBTrigger.tile = 'v'
-        WallBTrigger.collider = 'n'
-        WallBTrigger.visible = false
-        WallBTrigger.h = tileSize
-        WallBTrigger.w = tileSize
-        player.overlaps(WallBTrigger, () =>{
-            wallsA.collider = 'n'
-            wallsA.visible = false
-            WallsB.collider = 's'
-            WallsB.visible = true
-        })
-
+    removeSlow = new Group()
+    removeSlow.collider = colState
+    removeSlow.tile = 'R'
+    removeSlow.w = tileSize
+    removeSlow.h = tileSize
+    removeSlow.visible = true
+    removeSlow.color = '#FF0000'
+    removeSlow.opacity = 0.5
+    player.overlaps(removeSlow, function () {
+      if (slowed) {
+        EnTrackLimits.play()
       }
+      slowed = false
+    })
 
-      Cars = new Group()
-        Cars.tile = "c"
-        Cars.w = 11
-        Cars.h = 6
-        Cars.counter = 0
-        Cars.speed = 0
-        Cars.collider = 'd'
-        Cars.image = random(carImages)
-        Cars.scale = 0.045
-        Cars.lapCount = 0 
-        Cars.hasFinished = false
-        Cars.Indentifier = NaN
-      
-      AiATrigger = new Group()
-      AiATrigger.tile = 'P'
-      Cars.overlaps(AiATrigger, removeAiCol)
-      AiATrigger.visible = false
-      AiATrigger.collider = 'n'
-      AiATrigger.w = tileSize
-      AiATrigger.h = tileSize
+    startSlowArea = new Group()
+    startSlowArea.collider = colState
+    startSlowArea.tile = "S"
+    startSlowArea.color = "#969292"
+    startSlowArea.visible = false
+    startSlowArea.w = tileSize
+    startSlowArea.h = tileSize
+    player.overlapping(startSlowArea, function () {
+      StartLineOverlap()
+    })
 
-      AiBTrigger = new Group()
-      AiBTrigger.tile = 'p'
-      Cars.overlaps(AiBTrigger, addAiCol)
-      AiBTrigger.visible = false
-      AiBTrigger.collider = 'n'
-      AiBTrigger.w = tileSize
-      AiBTrigger.h = tileSize
+    gravel = new Group()
+    gravel.tile = "G"
+    gravel.color = '#e4b382'
+    gravel.collider = colState
+    gravel.visible = 'true'
+    gravel.w = tileSize
+    gravel.h = tileSize
+  } else {
+
+    player = new Sprite()
+    player.collider = 'd'
+    player.tile = 'x'
+    player.color = 'yellow'
+    if (debuged || PlayerSensitivity == 1) {
+      player.image = boatImg
+      player.scale = 0.75
+    } else {
+      player.image = random(carImages)
+      player.scale = 0.045
+    }
+    player.direction = Math.PI / 2
+    if (mapSelected == "map2") {
+      player.rotation = 0
+    }
+    if (mapSelected == "map4") {
+      player.rotation = 138
+    }
+    player.w = 11
+    player.h = 6
+
+    trackLimit = new Group()
+    trackLimit.color = "red"
+    trackLimit.tile = 'b'
+    trackLimit.collider = 's' //Collisions with the track limit will be processed as static
+    trackLimit.w = tileSize
+    trackLimit.h = tileSize
+
+
+
+    track = new Group()
+    track.tile = '.'
+    track.w = tileSize;
+    track.h = tileSize;
+    track.collider = "n";
+    if (PlayerSensitivity == 1) {
+      track.color = "#2074bc"
+    } else {
+      track.color = "#5a5348";
+    }
+    track.visible = true;
+    player.overlapping(track, function () {
+      slowed = false
+    })
+
+    start = new Group()
+    start.collider = "n"
+    start.tile = "s"
+    start.visible = true
+    start.w = tileSize
+    start.h = tileSize
+    player.overlapping(start, function () {
+      StartLineOverlap()
+    })
+
+    timingLine = new Group();
+    timingLine.collider = "n";
+    timingLine.tile = "t";
+    timingLine.visible = false;
+    timingLine.color = "orange";
+    timingLine.w = tileSize;
+    timingLine.h = tileSize;
+    player.overlapping(timingLine, function () {
+      TimingOverlap()
+    })
+
+    testing = new Group();
+    testing.collider = "n";
+    testing.tile = "=";
+    testing.visible = true;
+    testing.color = "orange";
+    testing.w = tileSize;
+    testing.h = tileSize;
+
+    slowArea = new Group()
+    slowArea.collider = "n"
+    slowArea.tile = "B"
+    slowArea.color = "#969292"
+    slowArea.w = tileSize
+    slowArea.h = tileSize
+    slowArea.visible = false
+    player.overlaps(slowArea, function () {
+      lapInvalid = true
+      slowed = true
+    })
+
+    removeSlow = new Group()
+    removeSlow.collider = 'n'
+    removeSlow.tile = 'R'
+    removeSlow.w = tileSize
+    removeSlow.h = tileSize
+    removeSlow.visible = true
+    removeSlow.color = '#FF0000'
+    removeSlow.opacity = 0.5
+    player.overlaps(removeSlow, function () {
+      if (slowed) {
+        EnTrackLimits.play()
+      }
+      slowed = false
+    })
+
+    startSlowArea = new Group()
+    startSlowArea.collider = "n"
+    startSlowArea.tile = "S"
+    startSlowArea.color = "#969292"
+    startSlowArea.visible = false
+    startSlowArea.w = tileSize
+    startSlowArea.h = tileSize
+    player.overlapping(startSlowArea, function () {
+      StartLineOverlap()
+    })
+
+    gravel = new Group()
+    gravel.tile = "G"
+    gravel.color = '#e4b382'
+    gravel.collider = 'n'
+    gravel.visible = true
+    gravel.w = tileSize
+    gravel.h = tileSize
+
+    wallsA = new Group()
+    wallsA.tile = "Y"
+    wallsA.color = "red"
+    wallsA.collider = 's'
+    wallsA.visible = true
+    wallsA.w = tileSize
+    wallsA.h = tileSize
+
+    WallsB = new Group()
+    WallsB.tile = 'y'
+    WallsB.color = 'red'
+    WallsB.collider = 's'
+    WallsB.visible = true
+    WallsB.w = tileSize
+    WallsB.h = tileSize
+
+    WallATrigger = new Group()
+    WallATrigger.tile = 'V'
+    WallATrigger.collider = 'n'
+    WallATrigger.visible = false
+    WallATrigger.h = tileSize
+    WallATrigger.w = tileSize
+    player.overlaps(WallATrigger, () => {
+      WallsB.collider = 'n'
+      WallsB.visible = false
+      wallsA.collider = 's'
+      wallsA.visible = true
+    })
+
+    WallBTrigger = new Group()
+    WallBTrigger.tile = 'v'
+    WallBTrigger.collider = 'n'
+    WallBTrigger.visible = false
+    WallBTrigger.h = tileSize
+    WallBTrigger.w = tileSize
+    player.overlaps(WallBTrigger, () => {
+      wallsA.collider = 'n'
+      wallsA.visible = false
+      WallsB.collider = 's'
+      WallsB.visible = true
+    })
+
+  }
+
+  Cars = new Group()
+  Cars.tile = "c"
+  Cars.w = 11
+  Cars.h = 6
+  Cars.counter = 0
+  Cars.speed = 0
+  Cars.collider = 'd'
+  Cars.image = random(carImages)
+  Cars.scale = 0.045
+  Cars.lapCount = 0
+  Cars.hasFinished = false
+  Cars.Indentifier = NaN
+
+  AiATrigger = new Group()
+  AiATrigger.tile = 'P'
+  Cars.overlaps(AiATrigger, removeAiCol)
+  AiATrigger.visible = false
+  AiATrigger.collider = 'n'
+  AiATrigger.w = tileSize
+  AiATrigger.h = tileSize
+
+  AiBTrigger = new Group()
+  AiBTrigger.tile = 'p'
+  Cars.overlaps(AiBTrigger, addAiCol)
+  AiBTrigger.visible = false
+  AiBTrigger.collider = 'n'
+  AiBTrigger.w = tileSize
+  AiBTrigger.h = tileSize
 
 
   switch (window.sessionStorage.getItem("track")[3]) {
@@ -694,455 +694,455 @@ function setup() {
         break
       */
     case "2":
-        map2 = new Tiles(
-          [
-              "....................................................................................................",
-              "....................................................................................................",
-              "....................................................................................................",
-              "....................................................................................................",
-              "....................................................................................................",
-              "....................................................................................................",
-              "....................bbbbbbbbb.......................................................................",
-              "....................bBBBBBBBb.......................................................................",
-              "....................bBBBBBBBb.......................................................................",
-              "....................bBBBBBBBb.............bbbbbbb......................................bbbbb........",
-              "....................bBBBBBBBBb....bbbbbbbbb.....bbb..................................bb.....b.......",
-              "....................bBBBBBBBBbbbbbb...............bbb................................b.......b......",
-              "....................bBBBBBBB........................bb...............................b........b.....",
-              "....................bBBBBB............................bb.............................b.........b....",
-              "....................bBBB...............................bbb..........................bb.........b....",
-              "....................bBB..................................bb...bb..bbbbbbbbbbbbbb....b..........b....",
-              "....................b.....................................bbbb..bb..............b..bb....bb....b....",
-              "...................bb........................................bbb................b.bb.....bb....b....",
-              "...................b.............................................................b.......b.....b....",
-              "...................b...................bbbbbbbb.........................bb..............bb....bb....",
-              "..................bb................bbbb......bbb......................b..b............bbb....b.....",
-              "..................b.............bbbbb...........bbbb...................b..bb..........bbb.....b.....",
-              ".................bb..........bbb...................bbbb..............bbb...bb........bb.b.....b.....",
-              ".................b.......bbbbb.........................bbbb......bbbbb......bbb...bbb..b......b.....",
-              "................bb......bb.................................bbbbbbb............bbbbb....b......b.....",
-              "................b.......b.............................................................bb.....bb.....",
-              "................b.......b.............................................................b......b......",
-              "...............bb.......b.............................................................b......b......",
-              "...............b.......bb.............................................................b......b......",
-              "..............bb.......b..............................................................b......b......",
-              "..............b........b..............................................................b.....bb......",
-              "..............b........b.............................................................bb.....b.......",
-              ".............bb........b.............................................................b......b.......",
-              ".............b.........b.............................................................b......b.......",
-              "............bb........bb............................................................bb......b.......",
-              "............b........bb.............................................................b......bb.......",
-              "............b........b.............................................................bb......b........",
-              "...........bb........b.............................................................b.......b........",
-              "...........b.........b............................................................bb......bb........",
-              "...........b........bb...........................................................bb.......b.........",
-              "...........b........b...........................................................bb.......b..........",
-              "..........b........bb...........................................................b........b..........",
-              "..........b........b...........................................................bb.......bb..........",
-              "..........bsss....bb..........................................................b.........b...........",
-              "..........b..sssssb..........................................................bb........b............",
-              ".........b........b.........................................................b.........bb............",
-              ".........b.......bb.......................................................bbb........bb.............",
-              ".........b.......b.......................................................bb.........bb..............",
-              "........bb.......b.....................................................bbb.........bb...............",
-              "........b.......bb...................................................bbb.........bbb................",
-              "........b.......b.................................................bbbbt.........bb..................",
-              "........b.......b...........................bbbbbbbbbbbbbb......bbb...t.........b...................",
-              "........b...x...b...................bbbbbbbbb.............b....bb.....tt.......bb...................",
-              "........b.......b.................bbb......................b...b.......t......bb....................",
-              "........b.......b...............bbb.........................b..b.......t....bbb.....................",
-              "........b.......b.............bbb............................b.b.......t.bbbb.......................",
-              "........b.......b............bb............bbbbbbbbbbbbbb.....bb....bbbbbb..........................",
-              "........b.......b...........bb.........bbbbb............bb..........b...............................",
-              "........b.......b...........b........bbb.................bb.........b...............................",
-              "........b.......b..........bb.......b.....................b.........b...............................",
-              "........b.......bbb........b.......bb.....................bb........b...............................",
-              "........b.........b.......b.......bb.......................bbbbbbbbbb...............................",
-              "........bb........b......bb......bb.................................................................",
-              ".........b........bb.....b.......b..................................................................",
-              ".........b.........b.....b.......b..................................................................",
-              ".........b.........b....bb......bb..................................................................",
-              ".........b.........b....b.......b...................................................................",
-              ".........b.........b....b.......b...................................................................",
-              ".........b.........b....b.......b...................................................................",
-              ".........b.........b....b.......b...................................................................",
-              "..........b........b....b.......b...................................................................",
-              "..........b........b....b.......b.............................bbbbbbbbbbb...........................",
-              "..........b........b....b.......b...........................bbb.........bbbb........................",
-              "..........b........b....bb......b..........................bb...............b.......................",
-              "..........b........b.....b......bb.......................bbb.................bb.....................",
-              "..........b........b.....b.......bbbb...................bb....................bbb...................",
-              "..........b........b.....b..........bbbbbbbbbbbbbbbbbbbbb.......................bb..................",
-              ".........b........b......b.......................................................bbb................",
-              ".......bb.........b......b.........................................................bb...............",
-              ".......b.........bb......bb.........................................bbbbbb..........b...............",
-              ".......b.........b........b...................................bbbbbbb....bbbb........b..............",
-              ".......b.......bb.........bb...............................bbbb.............bb.......b..............",
-              ".......b.......b............bbbbb.......................bbbb.................bb.......b.............",
-              ".......b......b.................bbbbbbbbbbbbbbbbbbbbbbbbb.....................b.......b.............",
-              ".......b......b...............................................................b.......bb............",
-              ".......b......b..................bbbbbb.......................................b........b............",
-              ".......b......b.............bbbbbb....bbbbbb..................................b........b............",
-              ".......b......b.......bb..bbb...............bbb...............................b........b............",
-              ".......b.......bbb..bbbbbbb...................bbbb...........................bb........b............",
-              ".......b.........bbbb............................bbbb.......................bb.........b............",
-              "........b...........................................bb.....................bb..........b............",
-              "........b............................................bbb.................bb...........bb............",
-              "........b.........................bbbbbbbb.............bb...........bbbbb............bb.............",
-              "........bb.....................bbbb......bbb............bbbbbbbbbbbb.................b..............",
-              ".........bb.................bbbb...........bb......................................bbb..............",
-              "..........bbbb.......bbbbbbbb...............b....................................bbb................",
-              "..............bbbbbbbb......................bb.................................bbb..................",
-              ".............................................b................................bbb...................",
-              "..............................................bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb....................",
-              "....................................................................................................",
-          ],
+      map2 = new Tiles(
+        [
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................bbbbbbbbb.......................................................................",
+          "....................bBBBBBBBb.......................................................................",
+          "....................bBBBBBBBb.......................................................................",
+          "....................bBBBBBBBb.............bbbbbbb......................................bbbbb........",
+          "....................bBBBBBBBBb....bbbbbbbbb.....bbb..................................bb.....b.......",
+          "....................bBBBBBBBBbbbbbb...............bbb................................b.......b......",
+          "....................bBBBBBBB........................bb...............................b........b.....",
+          "....................bBBBBB............................bb.............................b.........b....",
+          "....................bBBB...............................bbb..........................bb.........b....",
+          "....................bBB..................................bb...bb..bbbbbbbbbbbbbb....b..........b....",
+          "....................b.....................................bbbb..bb..............b..bb....bb....b....",
+          "...................bb........................................bbb................b.bb.....bb....b....",
+          "...................b.............................................................b.......b.....b....",
+          "...................b...................bbbbbbbb.........................bb..............bb....bb....",
+          "..................bb................bbbb......bbb......................b..b............bbb....b.....",
+          "..................b.............bbbbb...........bbbb...................b..bb..........bbb.....b.....",
+          ".................bb..........bbb...................bbbb..............bbb...bb........bb.b.....b.....",
+          ".................b.......bbbbb.........................bbbb......bbbbb......bbb...bbb..b......b.....",
+          "................bb......bb.................................bbbbbbb............bbbbb....b......b.....",
+          "................b.......b.............................................................bb.....bb.....",
+          "................b.......b.............................................................b......b......",
+          "...............bb.......b.............................................................b......b......",
+          "...............b.......bb.............................................................b......b......",
+          "..............bb.......b..............................................................b......b......",
+          "..............b........b..............................................................b.....bb......",
+          "..............b........b.............................................................bb.....b.......",
+          ".............bb........b.............................................................b......b.......",
+          ".............b.........b.............................................................b......b.......",
+          "............bb........bb............................................................bb......b.......",
+          "............b........bb.............................................................b......bb.......",
+          "............b........b.............................................................bb......b........",
+          "...........bb........b.............................................................b.......b........",
+          "...........b.........b............................................................bb......bb........",
+          "...........b........bb...........................................................bb.......b.........",
+          "...........b........b...........................................................bb.......b..........",
+          "..........b........bb...........................................................b........b..........",
+          "..........b........b...........................................................bb.......bb..........",
+          "..........bsss....bb..........................................................b.........b...........",
+          "..........b..sssssb..........................................................bb........b............",
+          ".........b........b.........................................................b.........bb............",
+          ".........b.......bb.......................................................bbb........bb.............",
+          ".........b.......b.......................................................bb.........bb..............",
+          "........bb.......b.....................................................bbb.........bb...............",
+          "........b.......bb...................................................bbb.........bbb................",
+          "........b.......b.................................................bbbbt.........bb..................",
+          "........b.......b...........................bbbbbbbbbbbbbb......bbb...t.........b...................",
+          "........b...x...b...................bbbbbbbbb.............b....bb.....tt.......bb...................",
+          "........b.......b.................bbb......................b...b.......t......bb....................",
+          "........b.......b...............bbb.........................b..b.......t....bbb.....................",
+          "........b.......b.............bbb............................b.b.......t.bbbb.......................",
+          "........b.......b............bb............bbbbbbbbbbbbbb.....bb....bbbbbb..........................",
+          "........b.......b...........bb.........bbbbb............bb..........b...............................",
+          "........b.......b...........b........bbb.................bb.........b...............................",
+          "........b.......b..........bb.......b.....................b.........b...............................",
+          "........b.......bbb........b.......bb.....................bb........b...............................",
+          "........b.........b.......b.......bb.......................bbbbbbbbbb...............................",
+          "........bb........b......bb......bb.................................................................",
+          ".........b........bb.....b.......b..................................................................",
+          ".........b.........b.....b.......b..................................................................",
+          ".........b.........b....bb......bb..................................................................",
+          ".........b.........b....b.......b...................................................................",
+          ".........b.........b....b.......b...................................................................",
+          ".........b.........b....b.......b...................................................................",
+          ".........b.........b....b.......b...................................................................",
+          "..........b........b....b.......b...................................................................",
+          "..........b........b....b.......b.............................bbbbbbbbbbb...........................",
+          "..........b........b....b.......b...........................bbb.........bbbb........................",
+          "..........b........b....bb......b..........................bb...............b.......................",
+          "..........b........b.....b......bb.......................bbb.................bb.....................",
+          "..........b........b.....b.......bbbb...................bb....................bbb...................",
+          "..........b........b.....b..........bbbbbbbbbbbbbbbbbbbbb.......................bb..................",
+          ".........b........b......b.......................................................bbb................",
+          ".......bb.........b......b.........................................................bb...............",
+          ".......b.........bb......bb.........................................bbbbbb..........b...............",
+          ".......b.........b........b...................................bbbbbbb....bbbb........b..............",
+          ".......b.......bb.........bb...............................bbbb.............bb.......b..............",
+          ".......b.......b............bbbbb.......................bbbb.................bb.......b.............",
+          ".......b......b.................bbbbbbbbbbbbbbbbbbbbbbbbb.....................b.......b.............",
+          ".......b......b...............................................................b.......bb............",
+          ".......b......b..................bbbbbb.......................................b........b............",
+          ".......b......b.............bbbbbb....bbbbbb..................................b........b............",
+          ".......b......b.......bb..bbb...............bbb...............................b........b............",
+          ".......b.......bbb..bbbbbbb...................bbbb...........................bb........b............",
+          ".......b.........bbbb............................bbbb.......................bb.........b............",
+          "........b...........................................bb.....................bb..........b............",
+          "........b............................................bbb.................bb...........bb............",
+          "........b.........................bbbbbbbb.............bb...........bbbbb............bb.............",
+          "........bb.....................bbbb......bbb............bbbbbbbbbbbb.................b..............",
+          ".........bb.................bbbb...........bb......................................bbb..............",
+          "..........bbbb.......bbbbbbbb...............b....................................bbb................",
+          "..............bbbbbbbb......................bb.................................bbb..................",
+          ".............................................b................................bbb...................",
+          "..............................................bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb....................",
+          "....................................................................................................",
+        ],
         0,
         0,
         tileSize,
         tileSize
-        );
-        player.rotation = -90
-        usedNodes = map2nodes
-        break
+      );
+      player.rotation = -90
+      usedNodes = map2nodes
+      break
     case "3":
-        new Tiles(
-            [
-                "....................................................................................................",
-                ".......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............................................................",
-                "......b.............................S.Bbbb..........................................................",
-                ".....b..............................S.B..bbb........................................................",
-                "....b...............................S.B....bb.......................................................",
-                "...b................................S.B.....b.......................................................",
-                "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
-                "..bBBBBBBbbbbb......................s...........R.B...bb..B..bb.....................................",
-                "..bRRRRbb.............c...c...c...c.s...........R.B....b..B...bb....................................",
-                "..b...............c.................s...........R.B.......B..RRbbbbbbbbbbbbbbbbb....................",
-                ".b..................................s...........R.Bb......b.RR.................bbb..................",
-                ".b......................c...c...c...s...........R.bb.....bb.R....................bbb................",
-                ".b..............x...c...............s...........bbbbbbbbbbbb.......................bb...............",
-                "bb........................bbbbbbbbbbs...........b.......bbb.........................bb..............",
-                "b................bbbbbbbbbb........bbbbbbbb.....bb....bbb............................bb.............",
-                "b............bbbbb........................b......b...bb.........bbbbbbbbbbbb..........b.............",
-                "b.........bbbb............................b......bb.bb.........bb..........bbb........bb............",
-                "b........bb...............................b.......bbb.......bbbb.............bb........bb...........",
-                "b........b................................bb...............bb.................bb........b...........",
-                "bb......bb.................................b..............bb...................bb.......bb..........",
-                ".b......bb.................................bbb............b.....................bb.......bb.........",
-                ".b.......b...................................bb.........bbb......................b........b.........",
-                ".b.......bb...................................bbb.....bbb........................bb.......bb........",
-                ".b........bb....................................bbbbbbb...........................b........b........",
-                ".b.........bb.....................................................................bb.......bb.......",
-                ".b..........bb.....................................................................b........b.......",
-                "..b..........bbb....................................................................b.......bb......",
-                "..bb...........bb...................................................................bb.......b......",
-                "...b.............bb..................................................................b.......b......",
-                "...bb.............bb.................................................................bb......bb.....",
-                "....b..............bb.................................................................b.......b.....",
-                "....bb..............bb..............bbbbbb............................................bb......bb....",
-                ".....bb..............bb...........bbbGGGGbbbb..........................................b.......b....",
-                "......bb..............b..........bbGGGGGGGGGbb.........................................b.......b....",
-                ".......bb..............b.......bbbGGGGGGGGGGGb.........................................b........b...",
-                "........bb.............b.......bGGGGGGGGGGGGGbb........................................b........b...",
-                ".........bb............b......bbGGGGGGGGGGGGGGb........................................b........b...",
-                "..........b............b.....bbBBBBBBBBBBBBBBBbb.......................................b........b...",
-                ".........b.............b....bbRRRRRRRRRRRRRRRRRbb......................................b........b...",
-                "........bb............bb....b...................bb....................................bb........b...",
-                "........b............bb....bb....................bb...................................b.........b...",
-                ".......b............bb.....b......................bb..................................b.........b...",
-                "......bb...........bb......b........................bb................................b.........b...",
-                "......b...........bb......bb.........................bb...............................b.........b...",
-                ".....bb..........bb.......b...........................bb.............................bb.........b...",
-                ".....b...........b.......bb............................bb............................b..........b...",
-                ".....b..........bb.......b..........bbbbbbb.............b............................b..........b...",
-                "....b...........b........b.........bb.....b.............bb..........................bb.........bb...",
-                "....b..........bb.......bb.........b......b..............b..........................b..........b....",
-                "....b..........b........b..........b......bb.............bb......................bbb...........b....",
-                "....b..........b........b..........b.......b..............b...................bbbb............bb....",
-                "...b...........b........b..........b.......b..............b.................bbb..............bb.....",
-                "...b...........b.......bb..........b.......bb..............b...............bb...............bb......",
-                "...b...........b.......b...........b........b..............b..............bb...............bb.......",
-                "..b............b.......b...........b........b..............b..............b.............bbbb........",
-                "..b............b......bb...........b........bb.............b..............b.......bbbbbbb...........",
-                "..b............b......b............b.........b.............bb.............b......bb.................",
-                "..b............b......b............b.........b..............b.............b......b..................",
-                "..b............b......b............b..........b.............b.............b......b..................",
-                "..b............b......b.............b.........b.............b.............bb.....b..................",
-                "..b............b......b.............b.........bb............b..............b.....bb.................",
-                "..b............b......b.............b..........b............b..............b......bb................",
-                "..bb...........b......b.............b..........bb...........b...............b......bb...............",
-                "...b...........b......b..............b..........b...........b...............b.......bb..............",
-                "...b...........bb.....b..............b..........b...........b...............bb.......bbb............",
-                "...bb...........b.....b..............b..........b...........b................b.........bb...........",
-                "....b...........b....bb..............b...........b..........b................bb.........bb..........",
-                "....b...........b....b...............b...........b..........b.................b..........bb.........",
-                "....b...........b....b...............b...........b..........b.................bb..........bb........",
-                ".....b..........bb...b...............b...........bb..........b.................bb..........bb.......",
-                ".....b...........b...b...............b............b..........b..................bb..........b.......",
-                "......b..........b...b...............b............b..........b...................bb.........bb......",
-                "......b..........bb..b...............b............bb.........b....................b..........b......",
-                "......bb..........bbbb...............b.............b.........b....................bb.........b......",
-                ".......b.............................b..............b........b.....................bb........bb.....",
-                ".......bb............................b...............b.......b......................b.........b.....",
-                "........b............................b...............bb......b......................b.........b.....",
-                "........b............................b................b......b......................b.........b.....",
-                ".........b...........................b................b......b......................b.........b.....",
-                ".........b..........................bb................bttttttbb.....................b........b......",
-                ".........bb.........................b.................bb......b.....................b........b......",
-                "..........b.......................bbb..................b......b.....................b........b......",
-                "..........b......................bb....................b......b....................bb........b......",
-                "...........b...................bbb.....................bb.....bb..................bb........bb......",
-                "...........bb..............bbbbb........................b......bbb........bbbbbbbbb.........b.......",
-                ".............bbbbbbbbbbbbbbb............................b........bbbbbbbbbb.................b.......",
-                "........................................................bb..................................b.......",
-                ".........................................................b.................................bb.......",
-                ".........................................................bb...............................bb........",
-                "..........................................................bb.............................bb.........",
-                "...........................................................bb...........................bb..........",
-                "............................................................bb........................bbb...........",
-                ".............................................................bb.....................bbb.............",
-                "..............................................................bb..............bbbbbbb...............",
-                "................................................................bbbbbbbbbbbbbbb.....................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-            ],
-            0,
-            0,
-            tileSize,
-            tileSize
-        )
-        usedNodes = map3nodes
-        break
+      new Tiles(
+        [
+          "....................................................................................................",
+          ".......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............................................................",
+          "......b.............................S.Bbbb..........................................................",
+          ".....b..............................S.B..bbb........................................................",
+          "....b...............................S.B....bb.......................................................",
+          "...b................................S.B.....b.......................................................",
+          "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
+          "..bBBBBBBbbbbb......................s...........R.B...bb..B..bb.....................................",
+          "..bRRRRbb.............c...c...c...c.s...........R.B....b..B...bb....................................",
+          "..b...............c.................s...........R.B.......B..RRbbbbbbbbbbbbbbbbb....................",
+          ".b..................................s...........R.Bb......b.RR.................bbb..................",
+          ".b......................c...c...c...s...........R.bb.....bb.R....................bbb................",
+          ".b..............x...c...............s...........bbbbbbbbbbbb.......................bb...............",
+          "bb........................bbbbbbbbbbs...........b.......bbb.........................bb..............",
+          "b................bbbbbbbbbb........bbbbbbbb.....bb....bbb............................bb.............",
+          "b............bbbbb........................b......b...bb.........bbbbbbbbbbbb..........b.............",
+          "b.........bbbb............................b......bb.bb.........bb..........bbb........bb............",
+          "b........bb...............................b.......bbb.......bbbb.............bb........bb...........",
+          "b........b................................bb...............bb.................bb........b...........",
+          "bb......bb.................................b..............bb...................bb.......bb..........",
+          ".b......bb.................................bbb............b.....................bb.......bb.........",
+          ".b.......b...................................bb.........bbb......................b........b.........",
+          ".b.......bb...................................bbb.....bbb........................bb.......bb........",
+          ".b........bb....................................bbbbbbb...........................b........b........",
+          ".b.........bb.....................................................................bb.......bb.......",
+          ".b..........bb.....................................................................b........b.......",
+          "..b..........bbb....................................................................b.......bb......",
+          "..bb...........bb...................................................................bb.......b......",
+          "...b.............bb..................................................................b.......b......",
+          "...bb.............bb.................................................................bb......bb.....",
+          "....b..............bb.................................................................b.......b.....",
+          "....bb..............bb..............bbbbbb............................................bb......bb....",
+          ".....bb..............bb...........bbbGGGGbbbb..........................................b.......b....",
+          "......bb..............b..........bbGGGGGGGGGbb.........................................b.......b....",
+          ".......bb..............b.......bbbGGGGGGGGGGGb.........................................b........b...",
+          "........bb.............b.......bGGGGGGGGGGGGGbb........................................b........b...",
+          ".........bb............b......bbGGGGGGGGGGGGGGb........................................b........b...",
+          "..........b............b.....bbBBBBBBBBBBBBBBBbb.......................................b........b...",
+          ".........b.............b....bbRRRRRRRRRRRRRRRRRbb......................................b........b...",
+          "........bb............bb....b...................bb....................................bb........b...",
+          "........b............bb....bb....................bb...................................b.........b...",
+          ".......b............bb.....b......................bb..................................b.........b...",
+          "......bb...........bb......b........................bb................................b.........b...",
+          "......b...........bb......bb.........................bb...............................b.........b...",
+          ".....bb..........bb.......b...........................bb.............................bb.........b...",
+          ".....b...........b.......bb............................bb............................b..........b...",
+          ".....b..........bb.......b..........bbbbbbb.............b............................b..........b...",
+          "....b...........b........b.........bb.....b.............bb..........................bb.........bb...",
+          "....b..........bb.......bb.........b......b..............b..........................b..........b....",
+          "....b..........b........b..........b......bb.............bb......................bbb...........b....",
+          "....b..........b........b..........b.......b..............b...................bbbb............bb....",
+          "...b...........b........b..........b.......b..............b.................bbb..............bb.....",
+          "...b...........b.......bb..........b.......bb..............b...............bb...............bb......",
+          "...b...........b.......b...........b........b..............b..............bb...............bb.......",
+          "..b............b.......b...........b........b..............b..............b.............bbbb........",
+          "..b............b......bb...........b........bb.............b..............b.......bbbbbbb...........",
+          "..b............b......b............b.........b.............bb.............b......bb.................",
+          "..b............b......b............b.........b..............b.............b......b..................",
+          "..b............b......b............b..........b.............b.............b......b..................",
+          "..b............b......b.............b.........b.............b.............bb.....b..................",
+          "..b............b......b.............b.........bb............b..............b.....bb.................",
+          "..b............b......b.............b..........b............b..............b......bb................",
+          "..bb...........b......b.............b..........bb...........b...............b......bb...............",
+          "...b...........b......b..............b..........b...........b...............b.......bb..............",
+          "...b...........bb.....b..............b..........b...........b...............bb.......bbb............",
+          "...bb...........b.....b..............b..........b...........b................b.........bb...........",
+          "....b...........b....bb..............b...........b..........b................bb.........bb..........",
+          "....b...........b....b...............b...........b..........b.................b..........bb.........",
+          "....b...........b....b...............b...........b..........b.................bb..........bb........",
+          ".....b..........bb...b...............b...........bb..........b.................bb..........bb.......",
+          ".....b...........b...b...............b............b..........b..................bb..........b.......",
+          "......b..........b...b...............b............b..........b...................bb.........bb......",
+          "......b..........bb..b...............b............bb.........b....................b..........b......",
+          "......bb..........bbbb...............b.............b.........b....................bb.........b......",
+          ".......b.............................b..............b........b.....................bb........bb.....",
+          ".......bb............................b...............b.......b......................b.........b.....",
+          "........b............................b...............bb......b......................b.........b.....",
+          "........b............................b................b......b......................b.........b.....",
+          ".........b...........................b................b......b......................b.........b.....",
+          ".........b..........................bb................bttttttbb.....................b........b......",
+          ".........bb.........................b.................bb......b.....................b........b......",
+          "..........b.......................bbb..................b......b.....................b........b......",
+          "..........b......................bb....................b......b....................bb........b......",
+          "...........b...................bbb.....................bb.....bb..................bb........bb......",
+          "...........bb..............bbbbb........................b......bbb........bbbbbbbbb.........b.......",
+          ".............bbbbbbbbbbbbbbb............................b........bbbbbbbbbb.................b.......",
+          "........................................................bb..................................b.......",
+          ".........................................................b.................................bb.......",
+          ".........................................................bb...............................bb........",
+          "..........................................................bb.............................bb.........",
+          "...........................................................bb...........................bb..........",
+          "............................................................bb........................bbb...........",
+          ".............................................................bb.....................bbb.............",
+          "..............................................................bb..............bbbbbbb...............",
+          "................................................................bbbbbbbbbbbbbbb.....................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+        ],
+        0,
+        0,
+        tileSize,
+        tileSize
+      )
+      usedNodes = map3nodes
+      break
     case "4":
-        new Tiles(
-            [
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                ".................................................................bbbbbbbbbbb........................",
-                "..............................................................bbbb.........bb.......................",
-                "..........................................................bbbbb.............bb......................",
-                ".........................................................bb......x...........b......................",
-                ".......................................................bbb.c.................bb.....................",
-                "......................................................bb.......c..............b.....................",
-                ".....................................................bb..c........bbbbbb......b.....................",
-                "...................................................bbb......c....bb....bb.....b.....................",
-                "..................................................bb.ss.c.......b.......b.....b.....................",
-                ".................................................bb...ss...c...bb.......b.....b.....................",
-                "................................................bb.....ss...bbb........bb......b....................",
-                "...............................................bb.......ssc.b........bbb......bb....................",
-                "..............................................bb.........ss.bbbbbbbbbb........b.....................",
-                ".............................................bb...........bbb.................b.....................",
-                "............................................bb...........bb...................b.....................",
-                "...........................................bb............b....................b.....................",
-                "..........................................bb............bb...................bb.....................",
-                "..........................................b............bb...................bb......................",
-                ".........................................bb...........bb.................bbb........................",
-                "........................................bb............b............bbbbbbb..........................",
-                ".......................................bb............b..........bbbb................................",
-                ".......................................b............bb.........bb...................................",
-                "......................................b............bb.........bb....................................",
-                ".....................................bb............b.........bb.....................................",
-                ".....................................b............b.........bb......................................",
-                "....................................bb...........bb.........b.......................................",
-                "....................................b...........bb.........bb.......................................",
-                "...................................bb...........b.........bb........................................",
-                "...................................b...........bb.........b.........................................",
-                "..................................b...........bb.........b..........................................",
-                ".................................bb...........b.........bb..........................................",
-                ".................................b...........bb........bb...........................................",
-                "................................b...........bb.........b............................................",
-                "...............................bb..........bb.........b.............................................",
-                "...............................b...........b.........bb.............................................",
-                "..............................bb..........bb........bb..............................................",
-                "..............................b..........bb.........b...............................................",
-                ".............................b..........bb.........b................................................",
-                ".............................b..........b.........bb................................................",
-                "............................bb.........b.........bb.................................................",
-                "............................b.........bb........bb..................................................",
-                "...........................bb.........b........bb...................................................",
-                "...........................b.........bb........b....................................................",
-                "..........................bb........bb........bb....................................................",
-                "..........................b........bb........bb.....................................................",
-                ".........................b........bb.........b......................................................",
-                ".........................b........b.........bb......................................................",
-                "........................b........b.........bb.......................................................",
-                ".......................bb.......bb.........b........................................................",
-                ".......................b........b.........bb........................................................",
-                ".......................b.......bb.........b.........................................................",
-                "......................bb.......b.........bb.........................................................",
-                ".....................bb.......b..........b..........................................................",
-                "....................bb.......bb.........bb..........................................................",
-                "...................bb........b.........bb...........................................................",
-                "..................bb........bb........bb............................................................",
-                ".................bb.........b.........b.............................................................",
-                "................bb.........b.........b..............................................................",
-                "................b.........bb........b...............................................................",
-                "...............bb.........b.........b...............................................................",
-                "..............bb.........bb........bb...............................................................",
-                ".............bb..........b.........b................................................................",
-                "...........bbb..........b..........b................................................................",
-                ".........bbb...........bb........bb.................................................................",
-                "........bb............bbt.......b...................................................................",
-                ".....bbb..............b..ttt....b...................................................................",
-                ".....b...............b.....ttt.bb...................................................................",
-                ".....b..............bb.......tbb....................................................................",
-                ".....b.............b..........b.....................................................................",
-                ".....b...........bb...........b.....................................................................",
-                ".....b..........bb............b.....................................................................",
-                ".....b......bbbbb............bb.....................................................................",
-                ".....b.......................b......................................................................",
-                ".....b......................b.......................................................................",
-                ".....bb....................bb.......................................................................",
-                "......bb...................b........................................................................",
-                ".......bb.................bb........................................................................",
-                "........bbb..............bb.........................................................................",
-                "...........bbbb.......bbbb..........................................................................",
-                "..............bbbbbbbbb.............................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-            ],
-            0,
-            0,
-            tileSize,
-            tileSize
-            
-        )
-        player.rotation = 180
-        for (c of Cars){
-          c.rotation = 135
-        }
-        usedNodes = map4nodes
-        break
+      new Tiles(
+        [
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          ".................................................................bbbbbbbbbbb........................",
+          "..............................................................bbbb.........bb.......................",
+          "..........................................................bbbbb.............bb......................",
+          ".........................................................bb......x...........b......................",
+          ".......................................................bbb.c.................bb.....................",
+          "......................................................bb.......c..............b.....................",
+          ".....................................................bb..c........bbbbbb......b.....................",
+          "...................................................bbb......c....bb....bb.....b.....................",
+          "..................................................bb.ss.c.......b.......b.....b.....................",
+          ".................................................bb...ss...c...bb.......b.....b.....................",
+          "................................................bb.....ss...bbb........bb......b....................",
+          "...............................................bb.......ssc.b........bbb......bb....................",
+          "..............................................bb.........ss.bbbbbbbbbb........b.....................",
+          ".............................................bb...........bbb.................b.....................",
+          "............................................bb...........bb...................b.....................",
+          "...........................................bb............b....................b.....................",
+          "..........................................bb............bb...................bb.....................",
+          "..........................................b............bb...................bb......................",
+          ".........................................bb...........bb.................bbb........................",
+          "........................................bb............b............bbbbbbb..........................",
+          ".......................................bb............b..........bbbb................................",
+          ".......................................b............bb.........bb...................................",
+          "......................................b............bb.........bb....................................",
+          ".....................................bb............b.........bb.....................................",
+          ".....................................b............b.........bb......................................",
+          "....................................bb...........bb.........b.......................................",
+          "....................................b...........bb.........bb.......................................",
+          "...................................bb...........b.........bb........................................",
+          "...................................b...........bb.........b.........................................",
+          "..................................b...........bb.........b..........................................",
+          ".................................bb...........b.........bb..........................................",
+          ".................................b...........bb........bb...........................................",
+          "................................b...........bb.........b............................................",
+          "...............................bb..........bb.........b.............................................",
+          "...............................b...........b.........bb.............................................",
+          "..............................bb..........bb........bb..............................................",
+          "..............................b..........bb.........b...............................................",
+          ".............................b..........bb.........b................................................",
+          ".............................b..........b.........bb................................................",
+          "............................bb.........b.........bb.................................................",
+          "............................b.........bb........bb..................................................",
+          "...........................bb.........b........bb...................................................",
+          "...........................b.........bb........b....................................................",
+          "..........................bb........bb........bb....................................................",
+          "..........................b........bb........bb.....................................................",
+          ".........................b........bb.........b......................................................",
+          ".........................b........b.........bb......................................................",
+          "........................b........b.........bb.......................................................",
+          ".......................bb.......bb.........b........................................................",
+          ".......................b........b.........bb........................................................",
+          ".......................b.......bb.........b.........................................................",
+          "......................bb.......b.........bb.........................................................",
+          ".....................bb.......b..........b..........................................................",
+          "....................bb.......bb.........bb..........................................................",
+          "...................bb........b.........bb...........................................................",
+          "..................bb........bb........bb............................................................",
+          ".................bb.........b.........b.............................................................",
+          "................bb.........b.........b..............................................................",
+          "................b.........bb........b...............................................................",
+          "...............bb.........b.........b...............................................................",
+          "..............bb.........bb........bb...............................................................",
+          ".............bb..........b.........b................................................................",
+          "...........bbb..........b..........b................................................................",
+          ".........bbb...........bb........bb.................................................................",
+          "........bb............bbt.......b...................................................................",
+          ".....bbb..............b..ttt....b...................................................................",
+          ".....b...............b.....ttt.bb...................................................................",
+          ".....b..............bb.......tbb....................................................................",
+          ".....b.............b..........b.....................................................................",
+          ".....b...........bb...........b.....................................................................",
+          ".....b..........bb............b.....................................................................",
+          ".....b......bbbbb............bb.....................................................................",
+          ".....b.......................b......................................................................",
+          ".....b......................b.......................................................................",
+          ".....bb....................bb.......................................................................",
+          "......bb...................b........................................................................",
+          ".......bb.................bb........................................................................",
+          "........bbb..............bb.........................................................................",
+          "...........bbbb.......bbbb..........................................................................",
+          "..............bbbbbbbbb.............................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+        ],
+        0,
+        0,
+        tileSize,
+        tileSize
+
+      )
+      player.rotation = 180
+      for (c of Cars) {
+        c.rotation = 135
+      }
+      usedNodes = map4nodes
+      break
     case "5":
-        new Tiles(
-            [
-                "....................................................................................................",
-                ".......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............................................................",
-                "......b.............................S.Bbbb..........................................................",
-                ".....b..............................S.B..bbb........................................................",
-                "....b...............................S.B....bb.......................................................",
-                "...b................................S.B.....b.......................................................",
-                "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
-                "..bBBBBBBbbbbb......................s.................bb.....bb.....................................",
-                "..bRRRRbb.............c...c...c...c.s..................b......bb....................................",
-                "..b...............c.................s..........................bbbbbbbbbbbbbbbbb....................",
-                ".b..................................s..............b......b....................bbb..................",
-                ".b......................c...c...c...s.............bb.....bb......................bbb................",
-                ".b..............x...c...............s.......RRRRbbbbbbbbbbbR.......................bb...............",
-                "bb........................bbbbbbbbbbs......R....b.......bbb.R.......................bb..............",
-                "b................bbbbbbbbbb........bbbbbbbb.....bb....bbb....R.......................bb.............",
-                "b............bbbbb........................b......b...bb.......Rbbbbbbbbbbbbb..........b.............",
-                "b.........bbbb............................b......bb.bb.........bb..........bbb........bb............",
-                "b........bb...............................b.......bbb.......bbbb.............bb........bb...........",
-                "b........b................................bb...............bb.................bb........b...........",
-                "bb......bb.................................b..............bb...................bb.......bb..........",
-                ".b......bb.................................bbb............b.....................bb.......bb.........",
-                ".b.......b...................................bb.........bbb......................b........b.........",
-                ".b.......bb...................................bbb.....bbb........................bb.......bb........",
-                ".b........bb....................................bbbbbbb...........................b........b........",
-                ".b.........bb.....................................................................bb.......bb.......",
-                ".b..........bb.....................................................................b........b.......",
-                "..b..........bbb....................................................................b.......bb......",
-                "..bb...........bb...................................................................bb.......b......",
-                "...b.............bb..................................................................b.......b......",
-                "...bb.............bb.................................................................bb......bb.....",
-                "....b..............bb.................................................................b.......b.....",
-                "....bb..............bb..............bbbbbb............................................bb......bb....",
-                ".....bb..............bb...........bbbGGGGbbbb..........................................b.......b....",
-                "......bb..............b..........bbGGGGGGGGGbb.........................................b.......b....",
-                ".......bb..............b.......bbbGGGGGGGGGGGb.........................................b........b...",
-                "........bb.............b.......bGGGGGGGGGGGGGbb........................................b........b...",
-                ".........bb............b......bbGGGGGGGGGGGGGGb........................................b........b...",
-                "..........b............b.....bbBBBBBBBBBBBBBBBbb.......................................b........b...",
-                ".........b.............b....bbRRRRRRRRRRRRRRRRRbb......................................b........b...",
-                "........bb............bb....b...................bb....................................bb........b...",
-                "........b............bb....bb....................bb...................................b.........b...",
-                ".......b............bb.....b......................bb..................................b.........b...",
-                "......bb...........bb......b........................bb................................b.........b...",
-                "......b...........bb......bb.........................bb...............................b.........b...",
-                ".....bb..........bb.......b...........................bb.............................bb.........b...",
-                ".....b...........b.......bb............................bb............................b..........b...",
-                ".....b..........bb.......b..........bbbbbbb.............b............................b..........b...",
-                "....b...........b........b.........bb.....b.............bb..........................bb.........bb...",
-                "....b..........bb.......bb.........b......b..............b..........................b..........b....",
-                "....b..........b........b..........b......bb.............bb......................bbb...........b....",
-                "....b..........b........b..........b.......b..............b...................bbbb............bb....",
-                "...b...........b........b..........b.......b..............b.................bbb..............bb.....",
-                "...b...........b.......bb..........b.......bb..............b...............bb...............bb......",
-                "...b...........b.......b...........b........b..............b..............bb...............bb.......",
-                "..b............b.......b...........b........b..............b..............b.............bbbb........",
-                "..b............b......bb...........b........bb.............b..............b.......bbbbbbb...........",
-                "..b............b......b............b.........b.............bb.............b......bb.................",
-                "..b............b......b............b.........b..............b.............b......b..................",
-                "..b............b......b............b..........b.............b.............b......b..................",
-                "..b............b......b.............b.........b.............b.............bb.....b..................",
-                "..b............b......b.............b.........bb............b..............b.....bb.................",
-                "..b............b......b.............b..........b............b..............b......bb................",
-                "..bb...........b......b.............b..........bb...........b...............b......bb...............",
-                "...b...........b......b..............b..........b...........b...............b.......bb..............",
-                "...b...........bb.....b..............b..........b...........b...............bb.......bbb............",
-                "...bb...........b.....b..............b..........b...........b................b.........bb...........",
-                "....b...........b....bb..............b...........b..........b................bb.........bb..........",
-                "....b...........b....b...............b...........b..........b.................b..........bb.........",
-                "....b...........b....b...............b...........b..........b.................bb..........bb........",
-                ".....b..........bb...b...............b...........bb..........b.................bb..........bb.......",
-                ".....b...........b...b...............b............b..........b..................bb..........b.......",
-                "......b..........b...b...............b............b..........b...................bb.........bb......",
-                "......b..........bb..b...............b............bb.........b....................b..........b......",
-                "......bb..........bbbb...............b.............b.........b....................bb.........b......",
-                ".......b.............................b..............b........b.....................bb........bb.....",
-                ".......bb............................b...............b.......b......................b.........b.....",
-                "........b............................b...............bb......b......................b.........b.....",
-                "........b............................b................b......b......................b.........b.....",
-                ".........b...........................b................b......b......................b.........b.....",
-                ".........b..........................bb................bttttttbb.....................b........b......",
-                ".........bb.........................b.................bb......b.....................b........b......",
-                "..........b.......................bbb..................b......b.....................b........b......",
-                "..........b......................bb....................b......b....................bb........b......",
-                "...........b...................bbb.....................bb.....bb..................bb........bb......",
-                "...........bb..............bbbbb........................b......bbb........bbbbbbbbb.........b.......",
-                ".............bbbbbbbbbbbbbbb............................b........bbbbbbbbbb.................b.......",
-                "........................................................bb..................................b.......",
-                ".........................................................b.................................bb.......",
-                ".........................................................bb...............................bb........",
-                "..........................................................bb.............................bb.........",
-                "...........................................................bb...........................bb..........",
-                "............................................................bb........................bbb...........",
-                ".............................................................bb.....................bbb.............",
-                "..............................................................bb..............bbbbbbb...............",
-                "................................................................bbbbbbbbbbbbbbb.....................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-                "....................................................................................................",
-            ],
-            0,
-            0,
-            tileSize,
-            tileSize
-        )
-        usedNodes = map5nodes
-        break
+      new Tiles(
+        [
+          "....................................................................................................",
+          ".......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb............................................................",
+          "......b.............................S.Bbbb..........................................................",
+          ".....b..............................S.B..bbb........................................................",
+          "....b...............................S.B....bb.......................................................",
+          "...b................................S.B.....b.......................................................",
+          "..b..........bbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRbbbbbbbbbbbbbbbbbb......................................",
+          "..bBBBBBBbbbbb......................s.................bb.....bb.....................................",
+          "..bRRRRbb.............c...c...c...c.s..................b......bb....................................",
+          "..b...............c.................s..........................bbbbbbbbbbbbbbbbb....................",
+          ".b..................................s..............b......b....................bbb..................",
+          ".b......................c...c...c...s.............bb.....bb......................bbb................",
+          ".b..............x...c...............s.......RRRRbbbbbbbbbbbR.......................bb...............",
+          "bb........................bbbbbbbbbbs......R....b.......bbb.R.......................bb..............",
+          "b................bbbbbbbbbb........bbbbbbbb.....bb....bbb....R.......................bb.............",
+          "b............bbbbb........................b......b...bb.......Rbbbbbbbbbbbbb..........b.............",
+          "b.........bbbb............................b......bb.bb.........bb..........bbb........bb............",
+          "b........bb...............................b.......bbb.......bbbb.............bb........bb...........",
+          "b........b................................bb...............bb.................bb........b...........",
+          "bb......bb.................................b..............bb...................bb.......bb..........",
+          ".b......bb.................................bbb............b.....................bb.......bb.........",
+          ".b.......b...................................bb.........bbb......................b........b.........",
+          ".b.......bb...................................bbb.....bbb........................bb.......bb........",
+          ".b........bb....................................bbbbbbb...........................b........b........",
+          ".b.........bb.....................................................................bb.......bb.......",
+          ".b..........bb.....................................................................b........b.......",
+          "..b..........bbb....................................................................b.......bb......",
+          "..bb...........bb...................................................................bb.......b......",
+          "...b.............bb..................................................................b.......b......",
+          "...bb.............bb.................................................................bb......bb.....",
+          "....b..............bb.................................................................b.......b.....",
+          "....bb..............bb..............bbbbbb............................................bb......bb....",
+          ".....bb..............bb...........bbbGGGGbbbb..........................................b.......b....",
+          "......bb..............b..........bbGGGGGGGGGbb.........................................b.......b....",
+          ".......bb..............b.......bbbGGGGGGGGGGGb.........................................b........b...",
+          "........bb.............b.......bGGGGGGGGGGGGGbb........................................b........b...",
+          ".........bb............b......bbGGGGGGGGGGGGGGb........................................b........b...",
+          "..........b............b.....bbBBBBBBBBBBBBBBBbb.......................................b........b...",
+          ".........b.............b....bbRRRRRRRRRRRRRRRRRbb......................................b........b...",
+          "........bb............bb....b...................bb....................................bb........b...",
+          "........b............bb....bb....................bb...................................b.........b...",
+          ".......b............bb.....b......................bb..................................b.........b...",
+          "......bb...........bb......b........................bb................................b.........b...",
+          "......b...........bb......bb.........................bb...............................b.........b...",
+          ".....bb..........bb.......b...........................bb.............................bb.........b...",
+          ".....b...........b.......bb............................bb............................b..........b...",
+          ".....b..........bb.......b..........bbbbbbb.............b............................b..........b...",
+          "....b...........b........b.........bb.....b.............bb..........................bb.........bb...",
+          "....b..........bb.......bb.........b......b..............b..........................b..........b....",
+          "....b..........b........b..........b......bb.............bb......................bbb...........b....",
+          "....b..........b........b..........b.......b..............b...................bbbb............bb....",
+          "...b...........b........b..........b.......b..............b.................bbb..............bb.....",
+          "...b...........b.......bb..........b.......bb..............b...............bb...............bb......",
+          "...b...........b.......b...........b........b..............b..............bb...............bb.......",
+          "..b............b.......b...........b........b..............b..............b.............bbbb........",
+          "..b............b......bb...........b........bb.............b..............b.......bbbbbbb...........",
+          "..b............b......b............b.........b.............bb.............b......bb.................",
+          "..b............b......b............b.........b..............b.............b......b..................",
+          "..b............b......b............b..........b.............b.............b......b..................",
+          "..b............b......b.............b.........b.............b.............bb.....b..................",
+          "..b............b......b.............b.........bb............b..............b.....bb.................",
+          "..b............b......b.............b..........b............b..............b......bb................",
+          "..bb...........b......b.............b..........bb...........b...............b......bb...............",
+          "...b...........b......b..............b..........b...........b...............b.......bb..............",
+          "...b...........bb.....b..............b..........b...........b...............bb.......bbb............",
+          "...bb...........b.....b..............b..........b...........b................b.........bb...........",
+          "....b...........b....bb..............b...........b..........b................bb.........bb..........",
+          "....b...........b....b...............b...........b..........b.................b..........bb.........",
+          "....b...........b....b...............b...........b..........b.................bb..........bb........",
+          ".....b..........bb...b...............b...........bb..........b.................bb..........bb.......",
+          ".....b...........b...b...............b............b..........b..................bb..........b.......",
+          "......b..........b...b...............b............b..........b...................bb.........bb......",
+          "......b..........bb..b...............b............bb.........b....................b..........b......",
+          "......bb..........bbbb...............b.............b.........b....................bb.........b......",
+          ".......b.............................b..............b........b.....................bb........bb.....",
+          ".......bb............................b...............b.......b......................b.........b.....",
+          "........b............................b...............bb......b......................b.........b.....",
+          "........b............................b................b......b......................b.........b.....",
+          ".........b...........................b................b......b......................b.........b.....",
+          ".........b..........................bb................bttttttbb.....................b........b......",
+          ".........bb.........................b.................bb......b.....................b........b......",
+          "..........b.......................bbb..................b......b.....................b........b......",
+          "..........b......................bb....................b......b....................bb........b......",
+          "...........b...................bbb.....................bb.....bb..................bb........bb......",
+          "...........bb..............bbbbb........................b......bbb........bbbbbbbbb.........b.......",
+          ".............bbbbbbbbbbbbbbb............................b........bbbbbbbbbb.................b.......",
+          "........................................................bb..................................b.......",
+          ".........................................................b.................................bb.......",
+          ".........................................................bb...............................bb........",
+          "..........................................................bb.............................bb.........",
+          "...........................................................bb...........................bb..........",
+          "............................................................bb........................bbb...........",
+          ".............................................................bb.....................bbb.............",
+          "..............................................................bb..............bbbbbbb...............",
+          "................................................................bbbbbbbbbbbbbbb.....................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+          "....................................................................................................",
+        ],
+        0,
+        0,
+        tileSize,
+        tileSize
+      )
+      usedNodes = map5nodes
+      break
   }
 
   // easystar.setGrid(matrices)
@@ -1197,19 +1197,19 @@ function setup() {
 
 function aiMove() {
   for (c of Cars) {
-    if (mapSelected == "map2"){
-    c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-    c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
-    if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+    if (mapSelected == "map2") {
+      c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+      c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
+      if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
     } else {
-      c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y}, 10, 0)
-      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3) 
+      c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
+      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3)
       if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
     }
-    if (c.counter > usedNodes.length-1) { 
+    if (c.counter > usedNodes.length - 1) {
       c.counter = 0
       c.lapCount++
-      if (c.lapCount == LapTotal-1){
+      if (c.lapCount == LapTotal - 1) {
         finishingOrder.push(`car${Cars.Indentifier}`)
       }
     }
@@ -1251,9 +1251,9 @@ function draw() {
     text(`Lap: ${lap}\nTime: ${laptime.toFixed(3)}`, 10, 10)
   }
   text(`Speed: ${floor(player.speed * 30)}MPH`, width - 350, height - 30)
-  if (endGame){
+  if (endGame) {
     setTimeout(() => {
-      let flJSON = {time: fastestLap, lap: fastestOnLap}
+      let flJSON = { time: fastestLap, lap: fastestOnLap }
       window.sessionStorage.setItem('order', finishingOrder)
       window.sessionStorage.setItem('fastest', flJSON)
       window.location.assign("Main_Menu.html")
@@ -1261,99 +1261,99 @@ function draw() {
   }
 }
 
-function controls(){
+function controls() {
   if (contros[0]) {
-      if (contro.pressing("rightTrigger") && !endGame) {
-          if (slowed) {
-              if (player.speed < 1) {
-                  player.speed += (20 / 120)
-              }
-          } else {
-              if (player.speed < 3) {
-                  player.speed += (45 / 120)
-              }
-          }
-          player.direction = player.rotation;
-      }
-      let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-      player.rotation = (direction * 180) / Math.PI
-      player.direction = player.rotation
-      if (contro.pressing("leftTrigger")) {
-          player.drag = 10;
-          player.friction = 10;
-          player.direction = player.rotation;
+    if (contro.pressing("rightTrigger") && !endGame) {
+      if (slowed) {
+        if (player.speed < 1) {
+          player.speed += (20 / 120)
+        }
       } else {
-          player.drag = 5;
-          player.friction = 5;
+        if (player.speed < 3) {
+          player.speed += (45 / 120)
+        }
       }
-      
+      player.direction = player.rotation;
+    }
+    let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
+    player.rotation = (direction * 180) / Math.PI
+    player.direction = player.rotation
+    if (contro.pressing("leftTrigger")) {
+      player.drag = 10;
+      player.friction = 10;
+      player.direction = player.rotation;
+    } else {
+      player.drag = 5;
+      player.friction = 5;
+    }
+
   } else {
-      if (kb.presses("w") && !endGame) {
-          player.speed = 0.5
-          gear = 1
-      }
-      if (kb.pressing("w") && !endGame) {
-          if (slowed) {
-              if (player.speed < 1) {
-                  player.speed += (20 / 120)
-              }
-          } else if (PlayerSensitivity != 1){
-              if (player.speed < 3.5) {
-                  player.speed += (45 / 120)
-              }
-          } else {
-              if (player.speed < 1) {
-                  player.speed += (1 / 120)
-              }  
-          }
-          player.direction = player.rotation;
-
-      }
-
-      if (kb.pressing("s")) {
-          if (player.speed > 0){
-              player.drag = 10;
-              player.friction = 10;
-              player.direction = player.rotation;
-          } else if (player.speed <= 0 ){
-              player.speed = -1
-              gear = "R"
-              player.drag = 0
-              player.friction = 0
-          }
-          
+    if (kb.presses("w") && !endGame) {
+      player.speed = 0.5
+      gear = 1
+    }
+    if (kb.pressing("w") && !endGame) {
+      if (slowed) {
+        if (player.speed < 1) {
+          player.speed += (20 / 120)
+        }
+      } else if (PlayerSensitivity != 1) {
+        if (player.speed < 3.5) {
+          player.speed += (45 / 120)
+        }
       } else {
-          player.drag = 5
-          player.friction = 5
+        if (player.speed < 1) {
+          player.speed += (1 / 120)
+        }
+      }
+      player.direction = player.rotation;
 
+    }
+
+    if (kb.pressing("s")) {
+      if (player.speed > 0) {
+        player.drag = 10;
+        player.friction = 10;
+        player.direction = player.rotation;
+      } else if (player.speed <= 0) {
+        player.speed = -1
+        gear = "R"
+        player.drag = 0
+        player.friction = 0
       }
 
-      if (kb.pressing("a")) {
-          player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
-          player.direction = player.rotation;
-      }
-      if (kb.pressing("d")) {
-          player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
-          player.direction = player.rotation;
-      }
+    } else {
+      player.drag = 5
+      player.friction = 5
+
+    }
+
+    if (kb.pressing("a")) {
+      player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
+      player.direction = player.rotation;
+    }
+    if (kb.pressing("d")) {
+      player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
+      player.direction = player.rotation;
+    }
 
 
-      if (kb.pressing("escape")) {
-          escHeld = true;
-          setTimeout(() => {
-              if (escHeld){
-                  window.sessionStorage.setItem("fastest", ttLaps)
-              }
-          }, 3000)
-          
-      } else {
-          escHeld = false
-      }
-      
+    if (kb.pressing("escape")) {
+      escHeld = true;
+      setTimeout(() => {
+        if (escHeld) {
+          window.sessionStorage.setItem("fastest", ttLaps)
+        }
+      }, 3000)
+
+    } else {
+      escHeld = false
+    }
+
 
   }
   if (player.collides(trackLimit) && player.speed > 2) {
-      //hasStalled = true
+    //hasStalled = true
   }
 
 }
@@ -1370,10 +1370,10 @@ function StartLineOverlap() {
     lapStarted = true
     ttLaps[lap] = laptime
     lap++
-    if (lap-2 == LapTotal){
+    if (lap - 2 == LapTotal) {
       finalLap.play()
     }
-    if (lap-1 == LapTotal){
+    if (lap - 1 == LapTotal) {
       sessionComplete = true
       lapStarted = false
       finished.play()
@@ -1452,10 +1452,10 @@ function SlowZone() {
   }
 }
 
-function removeAiCol(car, AiATrigger){
+function removeAiCol(car, AiATrigger) {
   car.collider = 'n'
 }
 
-function addAiCol(car, AiBTrigger){
+function addAiCol(car, AiBTrigger) {
   car.collider = 'd'
 }
