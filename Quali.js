@@ -55,8 +55,12 @@ function setup() {
     defaultFont = textFont()
     mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
     // Create tile types
-
-    let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+    let settingsJSON
+    try {
+        settingsJSON = JSON.parse(window.sessionStorage.Settings)
+    } catch {
+        window.location.assign("Main_Menu.html")
+    }
     PlayerSensitivity = settingsJSON.sens
     timeRemaining = settingsJSON.qL * 60
     console.log(PlayerSensitivity)
@@ -375,7 +379,7 @@ function setup() {
 
     }
 
-    if(!window.Robustness(settingsJSON, undefined, "Q")){
+    if (!window.Robustness(settingsJSON, undefined, "Q")) {
         window.location.assign("Main_Menu.html")
     }
 
