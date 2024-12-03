@@ -75,12 +75,12 @@ function setup() {
     if (mapSelected != "mapC") {
         mapSelected = storage
     }
-    let settingsJSON
+    let settingsJSON, debuged
     // Load settings for the players
     try {
     settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
-    let debuged = settingsJSON.debugInput
+    debuged = settingsJSON.debugInput
     } catch {
         window.location.assign("Main_Menu.html")
     }
