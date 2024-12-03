@@ -26,7 +26,7 @@ let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
 let hasPlayedRemaining = false
 let PlayerSensitivity, colState
-let nitroActive, nitroTime, forcedRecharge
+let nitroActive, nitroTime = 10, forcedRecharge
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
