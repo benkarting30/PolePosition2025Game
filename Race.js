@@ -1540,3 +1540,16 @@ function SetAiSpeed(Strength) {
 /**
  * @param {Integer} Strength - The value of the Ai difficult setting
  */
+// SOfC is responsible from deciding what is shown to the player on the UI
+function SofC() {
+  if (nitroTime < 1) {
+      return `Empty (${floor(nitroTime * 10)}%)`
+  } else if (nitroTime >= 10) {
+      nitroTime = 10
+      return `Full (100%)`
+  } else if (2 <= nitroTime < 10 && nitroActive) {
+      return `Discharging (${floor(nitroTime * 10)}%)`
+  } else {
+      return `Recharging (${floor(nitroTime * 10)}%)`
+  }
+}

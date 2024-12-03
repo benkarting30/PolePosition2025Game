@@ -26,6 +26,7 @@ let secondsRemaining, trackLimitsAudio, engineidle, enginestart
 let engineOn = false
 let hasPlayedRemaining = false
 let PlayerSensitivity, colState
+let nitroActive, nitroTime, forcedRecharge
 function preload() {
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
@@ -1062,6 +1063,25 @@ function setup() {
             }
         }
     }, 1000);
+    setTimeout(() => {
+        // Start and loop the engine idle sound affect after 5 seconds (Duration of the engine start sfx)
+        engineidle.play()
+        engineidle.loop()
+    }, 5000);
+
+    setInterval(() => {
+        // Every 50ms, add 1/200 to nitro level whilst it is not full
+        if (nitroTime < 10) {
+            nitroTime += 1 / 200
+        }
+    }, 50);
+
+    setInterval(() => {
+        // For every second, forcedRecharge is greater than 0, decrement it
+        if (ForcedRecharge > 0) {
+            ForcedRecharge--
+        }
+    }, 1000)
 }
 
 function draw() {
@@ -1077,11 +1097,6 @@ function draw() {
     camera.on()
     controls()
     window.LapTimeModule.UpdateData(frameRate())
-    if (!enginestart.isPlaying() && !engineOn) {
-        engineidle.play()
-        engineidle.loop()
-        engineOn = true
-    }
     if (floor(window.LapTimeModule.GetLaptime()) == 30 && !hasPlayedRemaining) {
         secondsRemaining.play()
         hasPlayedRemaining = true
@@ -1107,6 +1122,13 @@ function draw() {
     textFont('Titillium Web')
     textStyle(BOLD)
     textSize(24)
+    if (nitroActive && ForcedRecharge == 0) { // Checks whether nitro can be used
+        nitroTime -= 1 / frameRate() // Subtracts 1/framerate so time is constant, even in different framerates
+        if (nitroTime < 0) { // If the player runs out
+            nitroActive = false // Turn of nitro
+            ForcedRecharge = 10 // Force a recharge
+        }
+    }
     if (window.LapTimeModule.GetFL()) {
         rect(0, 0, 250, 125, 0, 0, 20, 0)
         text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}\nFastest: ${floor(window.LapTimeModule.GetFL() / 60)}:${(window.LapTimeModule.GetFL() % 60).toFixed(3)} (${fastestOnLap})`, 10, 10)
@@ -1114,7 +1136,8 @@ function draw() {
         rect(0, 0, 250, 100, 0, 0, 20, 0)
         text(`Lap: ${lap}\nRemaining: ${floor(timeRemaining / 60)}:${floor(timeRemaining % 60)}\nTime: ${floor(window.LapTimeModule.GetLaptime() / 60)}:${(window.LapTimeModule.GetLaptime() % 60).toFixed(3)}`, 10, 10)
     }
-    text(`Speed: ${floor(player.speed * 30)}MPH`, width - 340, height - 85)
+    text(`Speed: ${floor(player.speed * 60)}MPH`, width - 340, height - 85)
+    text(`SOC: ${SofC()}`, width - 350, height - 50) // Show the player state of charge in the bottom corner UI as well
     if (endGame) {
         setTimeout(() => {
             //window.sessionStorage.setItem("times", qLaps)
@@ -1127,99 +1150,138 @@ function draw() {
 }
 
 function controls() {
-    //Check whether the user has a gamepad connected
+    // Check if controller is connected
     if (contros[0]) {
+        // Check if right trigger is being pressed and the game has not ended
         if (contro.pressing("rightTrigger") && !endGame) {
+            // Check if the player is slowed
             if (slowed) {
+                // Increase player speed gradually up to a max of 1
                 if (player.speed < 1) {
-                    player.speed += (20 / 120)
+                    player.speed += (20 / 120);
                 }
             } else {
+                // Increase player speed gradually up to a max of 3
                 if (player.speed < 3) {
-                    player.speed += (45 / 120)
+                    player.speed += (45 / 120);
                 }
             }
+            // Set the player's direction to their current rotation
             player.direction = player.rotation;
         }
-        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x)
-        player.rotation = (direction * 180) / Math.PI
-        player.direction = player.rotation
+
+        // Calculate the direction based on the left stick position
+        let direction = Math.atan2(contro.leftStick.y, contro.leftStick.x);
+        // Convert the direction from radians to degrees and set player rotation
+        player.rotation = (direction * 180) / Math.PI;
+        player.direction = player.rotation;
+
+        // Check if left trigger is being pressed
         if (contro.pressing("leftTrigger")) {
+            // Apply higher drag and friction, and set direction to rotation
             player.drag = 10;
             player.friction = 10;
             player.direction = player.rotation;
         } else {
+            // Apply default drag and friction
             player.drag = 5;
             player.friction = 5;
         }
-        if (contro.presses('a') && gear < 6) {
-            gear++
-        }
-        if (contro.presses('b') && gear > 1) {
-            gear--
+
+        // Check if 'B' button is being pressed and nitroTime is greater than 0
+        if (contro.pressing("b") && nitroTime > 0) {
+            nitroActive = true;
+        } else {
+            // If 'B' button is not pressed or nitroTime is 0, deactivate nitro
+            nitroActive = false;
         }
     } else {
-        if (kb.presses("w") && !endGame) {
-            player.speed = 0.5
-        }
+        // Check if 'W' key is being pressed and the game has not ended
         if (kb.pressing("w") && !endGame) {
+            // Check if the player is slowed
             if (slowed) {
+                // Increase player speed gradually up to a max of 1
                 if (player.speed < 1) {
-                    player.speed += (20 / 120)
+                    player.speed += (20 / 120);
+                }
+            } else if (PlayerSensitivity != 1) {
+                // If nitro is active, set player speed to 4
+                if (nitroActive) {
+                    player.speed = 4;
+                } else if (player.speed < 3) {
+                    // Increase player speed gradually up to a max of 3
+                    player.speed += (45 / 120);
                 }
             } else {
-                if (player.speed < 3) {
-                    player.speed += (45 / 120)
+                // If none of the above, increase player speed very gradually up to a max of 1
+                if (player.speed < 1) {
+                    player.speed += (1 / 120);
                 }
             }
+            // Set the player's direction to their current rotation
             player.direction = player.rotation;
-
         }
 
+        // Check if 'S' key is being pressed
         if (kb.pressing("s")) {
-            player.drag = 10;
-            player.friction = 10;
-            player.direction = player.rotation;
-        } else {
-            player.drag = 5
-            player.friction = 5
-
-        }
-        if (kb.presses("shift")) {
-            hasStalled = false
-        }
-        if (kb.pressing("a")) {
-            console.log(UndersteerCalc(player.speed, -3, "Left"))
-            player.rotate(UndersteerCalc(player.speed, -3, "Left"), 3);
-            player.direction = player.rotation;
-        }
-        if (kb.pressing("d")) {
-            console.log(UndersteerCalc(player.speed, 3, "Right"))
-            player.rotate(UndersteerCalc(player.speed, 3, "Right"), 3);
-            player.direction = player.rotation;
-        }
-        if (kb.presses('arrowUp') && gear < 6) {
-            gear++
-            console.log("shift up")
-        }
-        if (kb.presses('arrowDown') && gear > 1) {
-            gear--
-            console.log("shift down")
-        }
-        if (kb.presses("escape")) {
-            timestartheld = PST
-        }
-        if (kb.pressing("escape")) {
-            if (PST - timestartheld > 3) {
-                sessionComplete = true
+            // If player speed is greater than 0, apply higher drag and friction and set direction to rotation
+            if (player.speed > 0) {
+                player.drag = 10;
+                player.friction = 10;
+                player.direction = player.rotation;
+            } else if (player.speed <= 0) {
+                // If player speed is 0 or less, set speed to -1, gear to "R", and remove drag and friction
+                player.speed = -1;
+                gear = "R";
+                player.drag = 0;
+                player.friction = 0;
             }
+        } else {
+            // If 'S' key is not pressed, apply default drag and friction
+            player.drag = 5;
+            player.friction = 5;
         }
 
-    }
-    if (player.collides(trackLimit) && player.speed > 2) {
-        //hasStalled = true
-    }
+        // Check if 'A' key is being pressed
+        if (kb.pressing("a")) {
+            // Rotate player to the left with understeer calculation and set direction to rotation
+            player.rotate(UndersteerCalc(player.speed, -PlayerSensitivity, "Left"), PlayerSensitivity);
+            player.direction = player.rotation;
+        }
 
+        // Check if 'D' key is being pressed
+        if (kb.pressing("d")) {
+            // Rotate player to the right with understeer calculation and set direction to rotation
+            player.rotate(UndersteerCalc(player.speed, PlayerSensitivity, "Right"), PlayerSensitivity);
+            player.direction = player.rotation;
+        }
+
+        // Check if 'Shift' key is being pressed and nitroTime is greater than 0
+        if (kb.pressing('shift') && nitroTime > 0) {
+            nitroActive = true;
+        } else {
+            // If 'Shift' key is not pressed or nitroTime is 0, deactivate nitro
+            nitroActive = false;
+        }
+
+
+
+        if (kb.pressing("escape")) {
+            escHeld = true;
+            // Checks to see if the player has help esc for 3 seconds before telling the game to load the menu
+            setTimeout(() => {
+                if (escHeld) {
+                    window.sessionStorage.setItem("fastest", ttLaps)
+                    sessionComplete = true
+                }
+            }, 3000)
+
+        } else {
+            escHeld = false
+        }
+
+
+    }
 }
 
 function StartLineOverlap() {
@@ -1309,5 +1371,18 @@ function SlowZone() {
         slowed = true
     } else {
         slowed = false
+    }
+}
+// SOfC is responsible from deciding what is shown to the player on the UI
+function SofC() {
+    if (nitroTime < 1) {
+        return `Empty (${floor(nitroTime * 10)}%)`
+    } else if (nitroTime >= 10) {
+        nitroTime = 10
+        return `Full (100%)`
+    } else if (2 <= nitroTime < 10 && nitroActive) {
+        return `Discharging (${floor(nitroTime * 10)}%)`
+    } else {
+        return `Recharging (${floor(nitroTime * 10)}%)`
     }
 }
