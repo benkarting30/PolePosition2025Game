@@ -375,6 +375,9 @@ function setup() {
 
     }
 
+    if(!window.Robustness(settingsJSON, undefined, "Q")){
+        window.location.assign("Main_Menu.html")
+    }
 
     switch (mapSelected[3]) {
         /*case "1":

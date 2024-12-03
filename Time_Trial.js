@@ -408,8 +408,7 @@ function setup() {
         })
 
     }
-
-    if (!storage){
+    if (!window.Robustness(settingsJSON, storage, "TT")){
         window.location.assign("Main_Menu.html")
     }
     // From the storage variable, get the 4th character in that variable and use that to determine the map

@@ -42,3 +42,11 @@ window.AntiCheat = function (LT, FL, speed, sensitivity) {
         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
     }
 }
+
+window.Robustness = function(settings, map, mode){
+    if ((settings && map && mode == "TT")||(settings && mode == "Q")){
+      return true
+    } else {
+      return false
+    }
+}
