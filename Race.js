@@ -1238,7 +1238,7 @@ function draw() {
   clear() // Clear the canvas
   background(track.color)
   // Run the anticheat
-  AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
+  window.AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
   camera.on()
   // Set the camera positioning and zoom to focus on the player
   camera.zoom = 3
