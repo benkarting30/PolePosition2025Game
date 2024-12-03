@@ -409,8 +409,9 @@ function setup() {
 
     }
 
-
-    try{
+    if (!storage){
+        window.location.assign("Main_Menu.html")
+    }
     // From the storage variable, get the 4th character in that variable and use that to determine the map
     switch (storage[3]) {
         case "1":
@@ -1079,9 +1080,6 @@ function setup() {
             break
         case undefined:
             window.location.assign("Main_Menu.html")
-    }
-    } catch {
-        window.location.assign("Main_Menu.html")
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
