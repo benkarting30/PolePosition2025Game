@@ -1217,7 +1217,7 @@ function controls() {
                 }
             } else if (PlayerSensitivity != 1) {
                 // If nitro is active, set player speed to 4
-                if (nitroActive) {
+                if (nitroActive && forcedRecharge ==0) {
                     player.speed = 4;
                 } else if (player.speed < 3) {
                     // Increase player speed gradually up to a max of 3
