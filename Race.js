@@ -22,7 +22,7 @@ let path, newpath
 let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
-let nitroTime = 10, nitroActive = false, forcedRecharge = 0
+let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
 let playerHasNotMoved = true
 // All map nodes for the AI are stored in JSONs contained within an array
 let map1nodes = [{ x: 592.9889081564344, y: 68.94656899678571 },
@@ -1296,7 +1296,7 @@ function controls() {
         if (player.speed < 1) {
           player.speed += (20 / 120);
         }
-      } else  if (nitroActive && forcedRecharge ==0) {
+      } else  if (nitroActive && ForcedRecharge ==0) {
         player.speed = 4;
     } else {
         // Increase player speed gradually up to a max of 3
@@ -1344,7 +1344,7 @@ function controls() {
         }
       } else if (PlayerSensitivity != 1) {
         // If nitro is active, set player speed to 4
-        if (nitroActive && forcedRecharge ==0) {
+        if (nitroActive && ForcedRecharge ==0) {
           player.speed = 4;
         } else if (player.speed < 3) {
           // Increase player speed gradually up to a max of 3
