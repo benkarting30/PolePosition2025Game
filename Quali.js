@@ -1077,7 +1077,7 @@ function setup() {
     }, 50);
 
     setInterval(() => {
-        // For every second, forcedRecharge is greater than 0, decrement it
+        // For every second, ForcedRecharge is greater than 0, decrement it
         if (ForcedRecharge > 0) {
             ForcedRecharge--
         }
@@ -1160,7 +1160,7 @@ function controls() {
                 if (player.speed < 1) {
                     player.speed += (20 / 120);
                 }
-            } else  if (nitroActive && forcedRecharge ==0) {
+            } else  if (nitroActive && ForcedRecharge ==0) {
                 player.speed = 4;
             }else {
                 // Increase player speed gradually up to a max of 3
@@ -1208,7 +1208,7 @@ function controls() {
                 }
             } else if (PlayerSensitivity != 1) {
                 // If nitro is active, set player speed to 4
-                if (nitroActive && forcedRecharge ==0) {
+                if (nitroActive && ForcedRecharge ==0) {
                     player.speed = 4;
                 } else if (player.speed < 3) {
                     // Increase player speed gradually up to a max of 3
