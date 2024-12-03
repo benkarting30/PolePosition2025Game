@@ -23,6 +23,7 @@ let nodenum = 0
 let aiIndentifier = 0
 let usedNodes
 let playerHasNotMoved = true
+// All map nodes for the AI are stored in JSONs contained within an array
 let map1nodes = [{ x: 592.9889081564344, y: 68.94656899678571 },
 { x: 693.8093291544558, y: 93.15223422078996 },
 { x: 710.8852730834348, y: 109.83738908823243 },
@@ -219,6 +220,8 @@ let map5nodes = [{ x: 395.7841282878494, y: 74.50931730076722 },
 let carImg1, carImg2, carImg3, carImg4, carImages
 let settingsJSON = JSON.parse(window.sessionStorage.Settings)
 let LapTotal = settingsJSON.rL
+let AiValue = 3
+let PlayerSensitivity
 let finishingOrder = []
 let music, finalLap, EnTrackLimits, finished, engineidle, enginestart
 let engineOn = false
@@ -246,9 +249,7 @@ function setup() {
   frameRate(60);
   defaultFont = textFont()
   mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
-  // Create tile types
-
-  let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+  SetAiSpeed(settingsJSON.diff)
   PlayerSensitivity = settingsJSON.sens
   console.log(PlayerSensitivity)
   let debuged = settingsJSON.debug
@@ -580,6 +581,7 @@ function setup() {
 
 
   switch (window.sessionStorage.getItem("track")[3]) {
+    // Map 1 is commented out due to issues with the AI and changing of collision of the map's nature
     /*
     case "1":
         map1 = new Tiles(
@@ -1197,20 +1199,33 @@ function setup() {
 
 function aiMove() {
   for (c of Cars) {
-    if (mapSelected == "map2") {
-      c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
-      c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 3)
-      if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+    if (c.hasFinished) {
+      if (mapSelected == "map2") {
+        c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 1)
+        if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+      } else {
+        c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 1)
+        if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
+      }
     } else {
-      c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
-      c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 3)
-      if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
+      if (mapSelected == "map2") {
+        c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, AiValue)
+        if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+      } else {
+        c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, AiValue)
+        if (c.x == usedNodes[c.counter].x && c.y == usedNodes[c.counter].y) { c.counter++ }
+      }
     }
-    if (c.counter > usedNodes.length - 1) {
+    if (c.counter > usedNodes.length - 1 && !c.hasFinished) {
       c.counter = 0
       c.lapCount++
       if (c.lapCount == LapTotal - 1) {
-        finishingOrder.push(`car${Cars.Indentifier}`)
+        c.counter = undefined
+        c.hasFinished = true
       }
     }
   }
@@ -1451,11 +1466,13 @@ function SlowZone() {
     slowed = false
   }
 }
-
-function removeAiCol(car, AiATrigger) {
-  car.collider = 'n'
+// Called at the start of the script
+function SetAiSpeed(Strength) {
+  let multiplier = Strength / 4
+  // Alters the Ai's speed using the multipler, max possible is 3.75
+  AiValue = AiValue * multiplier
 }
 
-function addAiCol(car, AiBTrigger) {
-  car.collider = 'd'
-}
+/**
+ * @param {Integer} Strength - The value of the Ai difficult setting
+ */

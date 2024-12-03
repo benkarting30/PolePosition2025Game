@@ -1077,6 +1077,8 @@ function setup() {
                 tileSize
             );
             break
+        default:
+            window.location.assign("Main_Menu.html")
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
