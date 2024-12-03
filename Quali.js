@@ -202,7 +202,7 @@ function setup() {
         player.collider = 'd'
         player.tile = 'x'
         player.color = 'yellow'
-        if (debuged || PlayerSensitivity == 1) {
+        if (PlayerSensitivity == 1) {
             player.image = boatImg
             player.scale = 0.75
         } else {
