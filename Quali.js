@@ -54,7 +54,7 @@ function setup() {
     background(255);
     frameRate(60);
     defaultFont = textFont()
-    mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
+    mapSelected = random(["map2", "map3", "map4", "map5"])
     // Create tile types
     let settingsJSON
     try {
