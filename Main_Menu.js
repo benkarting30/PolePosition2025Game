@@ -253,37 +253,47 @@ function mouseClicked() {
     } else if (menuStage == 3) {
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 8 - buttonHeight / 2 && mouseY < 2 * height / 8 + buttonHeight / 2) {
             sensitivityLevel++
+            // Increment the value of sensitivity and reset to 1 if the value is greater than 5
             if (sensitivityLevel == 6) {
                 sensitivityLevel = 1
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 8 - buttonHeight / 2 && mouseY < 3 * height / 8 + buttonHeight / 2) {
             AILevel++
+            // Increment the value of Ai Strength and reset to 1 if the value is greater than 5
             if (AILevel == 6) {
                 AILevel = 1
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
+            // Prompt the player to enter a quali length
             let tempQLength = parseInt(prompt("Please enter a length for Qualifying"))
+            // Check the player's input is even an integer
             if (!Number.isInteger(tempQLength)) {
                 console.warn("Invalid Input")
             } else {
+                // Check whether the player's input is within range
                 if (!(tempQLength > 0 && tempQLength < 15)) {
                     console.warn("Invalid Input")
                 } else {
-                    tempQLength = qLength
+                    // Update the length of Qualifying if these checks are passed
+                    qLength = tempQLength
                 }
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 8 - buttonHeight / 2 && mouseY < 5 * height / 8 + buttonHeight / 2) {
+            // Prompt the player to enter a quali length
             let tempRLength = parseInt(prompt("Please enter a length for the Race"))
+            // Check the player's input is even an integer
             if (!Number.isInteger(tempRLength)) {
                 console.warn("Invalid Input")
             } else {
+                // Check whether the player's input is within range
                 if (tempRLength < 0 || tempRLength > 100) {
                     console.warn("Invalid Input")
                 } else {
-                    tempRLength = rLength
+                    // Update the length of Qualifying if these checks are passed
+                    rLength = tempRLength
                 }
             }
         }

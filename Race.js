@@ -216,10 +216,9 @@ let map5nodes = [{x: 395.7841282878494, y: 74.50931730076722},
   {x: 56.76638224266324, y: 242.5638762858622},
   {x: 80.48492716402822, y: 126.37414970385521},
   {x: 336.9458109083048, y: 84.58548066439425}]
-let Rockedmap1 = 13.500
-
 let carImg1, carImg2, carImg3, carImg4, carImages
-let LapTotal = 10
+let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+let LapTotal = settingsJSON.rL
 let finishingOrder = []
 let music, finalLap, trackLimitsAudio, finished, engineidle, enginestart
 let engineOn = false
