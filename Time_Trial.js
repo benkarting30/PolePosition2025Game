@@ -408,6 +408,7 @@ function setup() {
         })
 
     }
+    debugger
     if (!window.Robustness(settingsJSON, storage, "TT")){
         window.location.assign("Main_Menu.html")
     }
