@@ -1077,7 +1077,7 @@ function setup() {
                 tileSize
             );
             break
-        default:
+        case undefined:
             window.location.assign("Main_Menu.html")
     }
     // Create Tiles from Tile map depending on the input

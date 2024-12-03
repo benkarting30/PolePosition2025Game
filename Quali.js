@@ -58,7 +58,7 @@ function setup() {
 
     let settingsJSON = JSON.parse(window.sessionStorage.Settings)
     PlayerSensitivity = settingsJSON.sens
-    timeRemaining = settingsJSON.qL
+    timeRemaining = settingsJSON.qL * 60
     console.log(PlayerSensitivity)
     let debuged = settingsJSON.debug
     if (settingsJSON.noCol) {
