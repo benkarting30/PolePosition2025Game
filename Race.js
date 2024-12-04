@@ -1242,6 +1242,7 @@ function draw() {
   // Run the anticheat
   window.AntiCheat(laptime, fastestLap, player.speed, PlayerSensitivity)
   camera.on()
+  aiMove()
   // Set the camera positioning and zoom to focus on the player
   camera.zoom = 3
   camera.x = player.x
