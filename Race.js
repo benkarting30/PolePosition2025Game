@@ -1202,7 +1202,9 @@ function setup() {
 
 function aiMove() {
   for (c of Cars) {
-    if (!c.hasFinished) {
+    console.log(c.hasFinished)
+    console.log(AiValue)
+    if (c.hasFinished) {
       if (mapSelected == "map2") {
         c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
         c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 1)
