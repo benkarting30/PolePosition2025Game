@@ -1212,6 +1212,10 @@ function aiMove() {
         c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
         c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, 1)
         if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+      } if (mapSelected == "map3"){
+        c.rotateMinTo({ x: usedNodes[c.counter].x / tileSize, y: usedNodes[c.counter].y / tileSize }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x / tileSize, usedNodes[c.counter].y / tileSize, AiValue)
+        if (c.x == usedNodes[c.counter].x / 10 && c.y == usedNodes[c.counter].y / 10) { c.counter++ }
       } else {
         c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
         c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, 1)
@@ -1222,6 +1226,10 @@ function aiMove() {
         c.rotateMinTo({ x: usedNodes[c.counter].x * tileSize, y: usedNodes[c.counter].y * tileSize }, 10, 0)
         c.moveTo(usedNodes[c.counter].x * tileSize, usedNodes[c.counter].y * tileSize, AiValue)
         if (c.x / tileSize == usedNodes[c.counter].x && c.y / tileSize == usedNodes[c.counter].y) { c.counter++ }
+      } if (mapSelected == "map3"){
+        c.rotateMinTo({ x: usedNodes[c.counter].x / tileSize, y: usedNodes[c.counter].y / tileSize }, 10, 0)
+        c.moveTo(usedNodes[c.counter].x / tileSize, usedNodes[c.counter].y / tileSize, AiValue)
+        if (c.x == usedNodes[c.counter].x / 10 && c.y == usedNodes[c.counter].y / 10) { c.counter++ }
       } else {
         c.rotateMinTo({ x: usedNodes[c.counter].x, y: usedNodes[c.counter].y }, 10, 0)
         c.moveTo(usedNodes[c.counter].x, usedNodes[c.counter].y, AiValue)
