@@ -385,7 +385,9 @@ function setup() {
     }
 
     switch (mapSelected[3]) {
-        /*case "1":
+        /*
+        The First map is commented out due to it's error's in Race.js
+        case "1":
             map1 = new Tiles(
                 [
                     "....................................................................................................",
@@ -1052,6 +1054,7 @@ function setup() {
     }
     // Create Tiles from Tile map depending on the input
     enginestart.play()
+    // Start an interval which acts as a countdown, making it not reliant on framerate
     setInterval(() => {
         if (timeRemaining > 0) {
             timeRemaining -= 1
@@ -1097,10 +1100,12 @@ function draw() {
     camera.on()
     controls()
     window.LapTimeModule.UpdateData(frameRate())
-    if (floor(window.LapTimeModule.GetLaptime()) == 30 && !hasPlayedRemaining) {
+    // Trigger the 30 seconds remaining engineer audio
+    if (timeRemaining == 30 && !hasPlayedRemaining) {
         secondsRemaining.play()
         hasPlayedRemaining = true
     }
+    // Tell the code the session is finished when time = 0
     if (timeRemaining <= 0) {
         sessionComplete = true
     }
@@ -1138,6 +1143,8 @@ function draw() {
     }
     text(`Speed: ${floor(player.speed * 60)}MPH`, width - 340, height - 85)
     text(`SOC: ${SofC()}`, width - 350, height - 50) // Show the player state of charge in the bottom corner UI as well
+
+    // When the game ends, send the player to the race with the correct map.
     if (endGame) {
         setTimeout(() => {
             //window.sessionStorage.setItem("times", qLaps)
