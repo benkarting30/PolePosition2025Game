@@ -37,7 +37,7 @@ function preload() {
     carImg2 = loadImage('images/cars/cars_racer (2).png')
     carImg3 = loadImage('images/cars/cars_racer (3).png')
     carImg4 = loadImage('images/cars/cars_racer (4).png')
-    boatImg = loadImage('images/cars/boat.png')
+    boatImg = loadImage('images/cars/boat (1).png')
     boatImg.height = 240
     boatImg.width = 300
     carImages = [carImg1, carImg2, carImg3, carImg4]
