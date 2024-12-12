@@ -175,18 +175,20 @@ function settingsButtons() {
 function superSettingsButtons() {
     // create a custom button with text on it containing the value of each variable
     fill(122, 122, 122)
-    rect(width / 2 - buttonWidth / 2, 2 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 3 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 4 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
-    rect(width / 2 - buttonWidth / 2, 5 * height / 6 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 2 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 3 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 4 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 5 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
+    rect(width / 2 - buttonWidth / 2, 6 * height / 7 - buttonHeight / 2, buttonWidth, buttonHeight, 30)
     fill(255)
     textFont('Titillium Web')
     textAlign(CENTER, CENTER)
-    text("Super Not-So-Secret Secret Settings", width / 2, 1 * height / 6)
-    text(`Disable Collisions ${collisionStat}`, width / 2, 2 * height / 6)
-    text(`Turn on Dymanic Collision ${dynamicStat}`, width / 2, 3 * height / 6)
-    text(`Back to Settings`, width / 2, 4 * height / 6)
-    text(`Back to Menu`, width / 2, 5 * height / 6)
+    text("Super Not-So-Secret Secret Settings", width / 2, 1 * height / 7)
+    text(`Disable Collisions ${collisionStat}`, width / 2, 2 * height / 7)
+    text(`Turn on Dymanic Collision ${dynamicStat}`, width / 2, 3 * height / 7)
+    text("Found a bug? Click me!", width / 2, 4*height/7)
+    text(`Back to Settings`, width / 2, 5 * height / 7)
+    text(`Back to Menu`, width / 2, 6 * height / 7)
 
 }
 
@@ -309,24 +311,27 @@ function mouseClicked() {
     } else if (menuStage===5){
         menuStage = 3
     }else {
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 6 - buttonHeight / 2 && mouseY < 2 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 2 * height / 7 - buttonHeight / 2 && mouseY < 2 * height / 7 + buttonHeight / 2) {
             if (dynamicStat) {
                 alert("Please disable dynamic collisions to enable this!")
             } else {
                 collisionStat = !collisionStat
             }
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 6 - buttonHeight / 2 && mouseY < 3 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 7 - buttonHeight / 2 && mouseY < 3 * height / 7 + buttonHeight / 2) {
             if (collisionStat) {
                 alert("Please disable no collisions to enable this!")
             } else {
                 dynamicStat = !dynamicStat
             }
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 6 - buttonHeight / 2 && mouseY < 4 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 7 - buttonHeight / 2 && mouseY < 5 * height / 7 + buttonHeight / 2) {
+            window.open("https://github.com/benkarting30/PolePosition2025Game/issues") // Sends the player to the issues page of the github where they can report bugs
+        }
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 7 - buttonHeight / 2 && mouseY < 5 * height / 7 + buttonHeight / 2) {
             menuStage--
         }
-        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 5 * height / 6 - buttonHeight / 2 && mouseY < 5 * height / 6 + buttonHeight / 2) {
+        if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 6 * height / 7 - buttonHeight / 2 && mouseY < 6 * height / 7 + buttonHeight / 2) {
             menuStage = 0
             window.sessionStorage.removeItem("settings")
             settingsPackager()
