@@ -1094,9 +1094,9 @@ function setup() {
     }, 5000);
 
     setInterval(() => {
-        // Every 50ms, add 1/200 to nitro level whilst it is not full
+        // Every 50ms, add 1/120 to nitro level whilst it is not full
         if (nitroTime < 10) {
-            nitroTime += 1 / 200
+            nitroTime += 1 / 120
         }
     }, 50);
 
