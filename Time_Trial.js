@@ -69,8 +69,12 @@ function setup() {
     // Set the default font
     defaultFont = textFont()
     // Retrieve the player's selected map from session storage
-    let storage = sessionStorage.map
-    console.log(storage)
+    try {
+        let storage = sessionStorage.map
+        console.log(storage)
+    } catch {
+        window.location.assign("Main_Menu.html")
+    }
     // Does not let the player's selection override the map selected if they have cheated
     if (mapSelected != "mapC") {
         mapSelected = storage
