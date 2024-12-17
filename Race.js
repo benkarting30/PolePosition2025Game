@@ -1,7 +1,7 @@
 let tileSize = 10
 let map1, map2, map3, trackLimit, timingLine, testing, start, player, track, car1, car2, car3, car4, cars, mapSelected, slowArea, startSlowArea, slowed, pathfinderDebug1, pathfinderDebug2, gravel
 let resButton
-let maps = [map1, map2, map3]
+let maps = [map1, map2, map3, map4, map5]
 let debugInput = "map2"
 let gear = 1
 let lapStarted = false
@@ -219,7 +219,7 @@ let map5nodes = [{ x: 395.7841282878494, y: 74.50931730076722 },
 { x: 80.48492716402822, y: 126.37414970385521 },
 { x: 336.9458109083048, y: 84.58548066439425 }]
 let carImg1, carImg2, carImg3, carImg4, carImages
-let settingsJSON = JSON.parse(window.sessionStorage.Settings)
+let settingsJSON
 let LapTotal = settingsJSON.rL
 let AiValue = 3
 let PlayerSensitivity
@@ -246,10 +246,19 @@ function preload() {
 function setup() {
   // Create Canvas and set background and frameRate
   createCanvas(windowWidth, windowHeight);
+  try {
+    settingsJSON = JSON.parse(window.sessionStorage.Settings)
+  } catch {
+    window.location.assign("Main_Menu.html")
+  }
+  try {
+    mapSelected = window.sessionStorage.track
+  } catch {
+    window.location.assign("Quali.html")
+  }
   background(255);
   frameRate(60);
   defaultFont = textFont()
-  mapSelected = random(["map1", "map2", "map3", "map4", "map5"])
   SetAiSpeed(settingsJSON.diff)
   PlayerSensitivity = settingsJSON.sens
   console.log(PlayerSensitivity)
@@ -1295,6 +1304,11 @@ function draw() {
   }
   text(`Speed: ${(floor((player.speed).toFixed(3) * 60))}MPH`, width - 350, height - 85) // Show the player's speed in the bottom corner UI
   text(`SOC: ${SofC()}`, width - 350, height - 50) // Show the player state of charge in the bottom corner UI as well
+  if (endGame){
+    setTimeout(() => {
+      window.location.assign("Main_Menu.html")
+    }, 1000);
+  }
 }
 
 function controls() {
