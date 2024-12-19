@@ -32,6 +32,12 @@ let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
 
 
 function preload() {
+    try {
+        let storage = sessionStorage.map
+        console.log(storage)
+    } catch {
+        window.location.assign("Main_Menu.html")
+    }
     // Preload all the images and sounds used by the game
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
@@ -69,12 +75,7 @@ function setup() {
     // Set the default font
     defaultFont = textFont()
     // Retrieve the player's selected map from session storage
-    try {
-        let storage = sessionStorage.map
-        console.log(storage)
-    } catch {
-        window.location.assign("Main_Menu.html")
-    }
+
     // Does not let the player's selection override the map selected if they have cheated
     if (mapSelected != "mapC") {
         mapSelected = storage
