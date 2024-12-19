@@ -32,10 +32,9 @@ let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
 
 
 function preload() {
-    try {
-        let storage = sessionStorage.map
+    let storage = sessionStorage.map
         console.log(storage)
-    } catch {
+    if (storage === undefined) {
         window.location.assign("Main_Menu.html")
     }
     // Preload all the images and sounds used by the game
