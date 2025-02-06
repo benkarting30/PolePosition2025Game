@@ -28,11 +28,12 @@ let laptime = 24.231
 let fastestLap = 22.342
 let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger
 let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
+let storage
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
 function preload() {
-    let storage = sessionStorage.map
+    storage = sessionStorage.map
         console.log(storage)
     if (storage === undefined) {
         window.location.assign("Main_Menu.html")
@@ -77,7 +78,7 @@ function setup() {
 
     // Does not let the player's selection override the map selected if they have cheated
     if (mapSelected != "mapC") {
-        mapSelected = sessionStorage.map
+        mapSelected = storage
     }
     let settingsJSON, debuged
     // Load settings for the players
