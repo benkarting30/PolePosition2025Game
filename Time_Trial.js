@@ -77,7 +77,7 @@ function setup() {
 
     // Does not let the player's selection override the map selected if they have cheated
     if (mapSelected != "mapC") {
-        mapSelected = storage
+        mapSelected = sessionStorage.map
     }
     let settingsJSON, debuged
     // Load settings for the players
