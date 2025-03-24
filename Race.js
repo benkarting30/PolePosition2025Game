@@ -259,7 +259,7 @@ function setup() {
   background(255);
   frameRate(60);
   defaultFont = textFont()
-  SetAiSpeed(settingsJSON.diff)
+  //SetAiSpeed(settingsJSON.diff)
   PlayerSensitivity = settingsJSON.sens
   console.log(PlayerSensitivity)
   let debuged = settingsJSON.debug
@@ -1545,11 +1545,11 @@ function SlowZone() {
   }
 }
 // Called at the start of the script
-function SetAiSpeed(Strength) {
-  let multiplier = Strength / 4
-  // Alters the Ai's speed using the multipler, max possible is 3.75
-  AiValue = AiValue * multiplier
-}
+// function SetAiSpeed(Strength) {
+//   let multiplier = Strength / 4
+//   // Alters the Ai's speed using the multipler, max possible is 3.75
+//   AiValue = AiValue * multiplier
+// }
 
 /**
  * @param {Integer} Strength - The value of the Ai difficult setting

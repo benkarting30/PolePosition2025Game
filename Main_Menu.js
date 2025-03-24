@@ -5,12 +5,12 @@ let menuStage = 0
 let Music1, Music2, controls, RobotRock, mrBeast, flag
 let collisionStat = false
 let dynamicStat = false
-let sensitivityLevel = 3, AILevel = 3, qLength = 2, rLength = 15
+let sensitivityLevel = 3, TTGhost = false, qLength = 2, rLength = 15
 // Settings packager is responsible for making settings accessable to the other files so it can be applied
 function settingsPackager(Playermap = undefined) {
     window.sessionStorage.clear()
     // sessionStorage is cleared to prevent an override
-    let selectedSettings = {sens: sensitivityLevel, diff:AILevel, qL: qLength, rL: rLength, noCol:collisionStat, dyCol: dynamicStat}
+    let selectedSettings = {sens: sensitivityLevel, diff:TTGhost, qL: qLength, rL: rLength, noCol:collisionStat, dyCol: dynamicStat}
     let JSONSettings = JSON.stringify(selectedSettings)
     // The JSONObject is stringified so it can be used in local storage
 
@@ -165,7 +165,7 @@ function settingsButtons() {
     textAlign(CENTER, CENTER)
     text("Settings", width / 2, 1 * height / 8)
     text(`Sensitivity ${sensitivityLevel}`, width / 2, 2 * height / 8)
-    text(`AI Difficulty ${AILevel}`, width / 2, 3 * height / 8) // Has no effect
+    text(`Time Trial Ghost ${TTGhost}`, width / 2, 3 * height / 8) // Has no effect
     text(`Qualifying Length ${qLength}`, width / 2, 4 * height / 8)
     text(`Race Length ${rLength}`, width / 2, 5 * height / 8)
     text(`Controls`, width / 2, 6 * height / 8)
@@ -264,11 +264,7 @@ function mouseClicked() {
             }
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 3 * height / 8 - buttonHeight / 2 && mouseY < 3 * height / 8 + buttonHeight / 2) {
-            AILevel++
-            // Increment the value of Ai Strength and reset to 1 if the value is greater than 5
-            if (AILevel == 6) {
-                AILevel = 1
-            }
+            TTGhost = !TTGhost
         }
         if (mouseX > width / 2 - buttonWidth / 2 && mouseX < width / 2 + buttonWidth / 2 && mouseY > 4 * height / 8 - buttonHeight / 2 && mouseY < 4 * height / 8 + buttonHeight / 2) {
             // Prompt the player to enter a quali length

@@ -29,16 +29,20 @@ let fastestLap = 22.342
 let wallsA, WallsB, WallATrigger, WallBTrigger, cheaterWall, cheaterTrigger
 let nitroTime = 10, nitroActive = false, ForcedRecharge = 0
 let storage
-let sector1Time, sector2Time
+let sector1Time, sector2Time, ghost, nodeArry = [], node, Cars,
 //import { UpdateData, SetFL, GetLaptime, ResetLaptime, GetFL } from "./Functs.js";
 
 
 function preload() {
-    storage = sessionStorage.map
-        console.log(storage)
-    if (storage === undefined) {
+
+    try {
+        settingsJSON = JSON.parse(window.sessionStorage.Settings)
+        storage = sessionStorage.map
+        if (storage == '') throw "No Map"
+    } catch {
         window.location.assign("Main_Menu.html")
     }
+    ghost = settingsJSON.diff
     // Preload all the images and sounds used by the game
     carImg1 = loadImage('images/cars/cars_racer (1).png')
     carImg2 = loadImage('images/cars/cars_racer (2).png')
@@ -108,6 +112,21 @@ function setup() {
     // Create tile types
 
 
+    node = new Group()
+    node.visited = false
+    node.radius = 10
+    node.collider = 'n'
+    node.visible = false
+
+    Cars = new Group()
+    Cars.tile = "c"
+    Cars.w = 11
+    Cars.h = 6
+    Cars.collider = 'n'
+    Cars.image = player.image
+    Cars.scale = 0.045
+    Cars.counter = 0
+    Cars.visible = false
 
     if (colState) {
 
@@ -436,6 +455,7 @@ function setup() {
         player.collides(cheaterTrigger, () => {
             cheaterWall.collider = 's'
         })
+
 
     }
     if (!window.Robustness(settingsJSON, storage, "TT")){
@@ -1181,6 +1201,7 @@ function setup() {
         if (ForcedRecharge > 0) {
             ForcedRecharge--
         }
+        AddPlayerNodes()
     }, 1000)
 }
 
@@ -1207,6 +1228,7 @@ function draw() {
     //text(laptime, 0, 0)
     trackLimit.draw()
     track.draw()
+    aiMove()
     camera.off() // Have anything below get drawn relative to the camera and not the map
     // Draw the UI boxes
     rect(0, 0, 250, 100, 0, 0, 20, 0)
@@ -1487,3 +1509,21 @@ function SofC() {
 //         window.location.assign("https://youtu.be/dPtXaAZHuho?si=nxRhBqF30im7HpSI")
 //     }
 // }
+
+
+function AddPlayerNodes(){
+
+    nodeArry[lap].push({x: player.x, y: player.y})
+
+}
+
+function MoveGhost(){
+    let lapToFollow = fastestOnLap
+    if (lapToFollow > 0){
+        Cars.visible = true
+        for(c of Cars){
+            c.rotateMinTo({ x: nodeArry[lapToFollow][c.counter].x, y: nodeArry[lapToFollow][c.counter].y}, 10, 0)
+            c.moveTo(nodeArry[lapToFollow][c.counter].x, nodeArry[lapToFollow][c.counter].y, 1)
+        }
+    }
+}
